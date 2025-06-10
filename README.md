@@ -160,10 +160,10 @@ _Greeting screen after successful login_
 
 ## 🖼️ Screenshots
 
-- `screen_shots/Login%20screen.jpeg`
-- `screen_shots/Registration screen.jpeg`
-- `screen_shots/Forgot password screen.jpeg`
-- `screen_shots/Home screen.jpeg`
+- `screen_shots/login_screen.jpeg`
+- `screen_shots/registration_screen.jpeg`
+- `screen_shots/forgot_password_screen.jpeg`
+- `screen_shots/home_screen.jpeg`
 
 ---
 
