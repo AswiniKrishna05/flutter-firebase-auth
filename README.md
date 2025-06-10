@@ -164,6 +164,17 @@ _Greeting screen after successful login_
 - `screenshots/registration_screen.jpeg`
 - `screenshots/forgot_password_screen.jpeg`
 - `screenshots/home_screen.jpeg`
+### 🚀 Splash Screen
+<img src="<img src="screenshots/login_screen.jpeg" alt="Splash Screen" width="300"/>
+
+### 🏠 Home Screen (Light Mode)
+<img src="screenshots/registration_screen.jpeg" alt="Home Light" width="300"/>
+
+### 🌙 Home Screen (Dark Mode)
+<img src="screenshots/forgot_password_screen.jpeg" alt="Home Dark" width="300"/>
+
+### ✍️ Add Note
+<img src="screenshots/home_screen.jpeg" alt="Add Note" width="300"/>
 
 ---
 
