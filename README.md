@@ -180,5 +180,3 @@ _Greeting screen after successful login_
 **Objective**: Build a Flutter module that includes the above features, using Firebase Auth & Firestore, with proper input validation and navigation flows.
 
 ---
-
-Thanks for reviewing this module! Feel free to use this template for future demos or evaluations.
