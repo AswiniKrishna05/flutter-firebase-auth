@@ -161,7 +161,7 @@ _Greeting screen after successful login_
 ## 🖼️ Screenshots
 
 ### Login Screen
-<img src="<img src="screenshots/login_screen.jpeg" alt="Splash Screen" width="300"/>
+<img src="screenshots/login_screen.jpeg" alt="Splash Screen" width="300"/>
 
 ### Registration Screen
 <img src="screenshots/registration_screen.jpeg" alt="Home Light" width="300"/>
