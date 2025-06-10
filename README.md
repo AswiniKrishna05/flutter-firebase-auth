@@ -160,9 +160,7 @@ _Greeting screen after successful login_
 
 ## 🖼️ Screenshots
 
-*(Replace placeholders with actual images in `/assets` folder)*
-
-- `screen_shots/Login screen.jpeg`
+- `screen_shots/Login%20screen.jpeg`
 - `screen_shots/Registration screen.jpeg`
 - `screen_shots/Forgot password screen.jpeg`
 - `screen_shots/Home screen.jpeg`
