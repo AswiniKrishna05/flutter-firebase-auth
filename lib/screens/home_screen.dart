@@ -1,29 +1,51 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../widgets/bottom_bar.dart';
+import '../widgets/dashboard_grid.dart';
+import '../widgets/greetingCard.dart';
+import '../widgets/headerCard.dart';
+import '../widgets/overview_row.dart';
+import '../widgets/task_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-   void _logout (BuildContext context)async{
-     await FirebaseAuth.instance.signOut();
-     Navigator.pushReplacementNamed(context, '/login');
-   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: ()=> _logout(context),
-              icon: const Icon(Icons.logout))
-        ],
-      ),
-      body: const Center(
-        child: Text(
-          'Login Successful',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomBar(),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:  [
+              HeaderCard(),
+              SizedBox(height: 10),
+              Text(
+                '"Good Morning,\nHemant Rangarajan"',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                ),
+              ),
+              SizedBox(height: 10),
+              GreetingCard(),
+              SizedBox(height: 10),
+              Text(
+                'Overview',
+                style: TextStyle(
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: 12),
+              OverviewRow(),
+              SizedBox(height: 28),
+              TaskSection(),
+            ],
+          ),
         ),
       ),
     );
