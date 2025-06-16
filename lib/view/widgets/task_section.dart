@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/widgets/sort_filter_bar.dart';
-import 'package:flutter_firebase_auth/widgets/task_my_tab.dart';
-import 'package:flutter_firebase_auth/widgets/task_tab_bar.dart';
-import 'package:flutter_firebase_auth/widgets/task_tracker_tab.dart';
-import 'package:flutter_firebase_auth/widgets/work_summary.dart';
-import 'ongoing_pending.dart'; // Ensure this exists
+import 'package:flutter_firebase_auth/view/widgets/sort_filter_bar.dart';
+import 'package:flutter_firebase_auth/view/widgets/task_my_tab.dart';
+import 'package:flutter_firebase_auth/view/widgets/task_tab_bar.dart';
+import 'package:flutter_firebase_auth/view/widgets/task_tracker_tab.dart';
+import 'package:flutter_firebase_auth/view/widgets/work_summary.dart';
+import 'ongoing_pending.dart';
 
 class TaskSection extends StatefulWidget {
   const TaskSection({super.key});

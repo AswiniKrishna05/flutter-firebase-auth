@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_bar.dart';
-import '../widgets/dashboard_grid.dart';
 import '../widgets/greetingCard.dart';
 import '../widgets/headerCard.dart';
 import '../widgets/overview_row.dart';

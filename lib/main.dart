@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'screens/login_screen.dart';
-import 'screens/signup_screen.dart';
-import 'screens/forgot_password_screen.dart';
-import 'screens/home_screen.dart';
+import 'package:flutter_firebase_auth/view/screens/forgot_password_screen.dart';
+import 'package:flutter_firebase_auth/view/screens/home_screen.dart';
+import 'package:flutter_firebase_auth/view/screens/login_screen.dart';
+import 'package:flutter_firebase_auth/view/screens/signup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
