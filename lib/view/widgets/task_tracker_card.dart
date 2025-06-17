@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
+import '../../view_model/task_tracker_view_model.dart';
 
 class TaskTrackerCard extends StatelessWidget {
   final String title;
@@ -7,6 +9,7 @@ class TaskTrackerCard extends StatelessWidget {
   final double progress;
   final String status;
   final String priority;
+  final String? assignedBy;
 
   const TaskTrackerCard({
     super.key,
@@ -15,230 +18,231 @@ class TaskTrackerCard extends StatelessWidget {
     required this.progress,
     required this.status,
     required this.priority,
+    this.assignedBy,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// Title and Due Date
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Flexible(
-                child: Text(
-                  'Due Date: $dueDate',
-                  style: const TextStyle(fontSize: 11),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-
-          /// Status Row
-          Wrap(
-            spacing: 6,
-            runSpacing: 6,
-            children: [
-              const Text(
-                'Status:',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-              ),
-              _buildStatusChip('Not Started', status),
-              _buildStatusChip('In Progress', status),
-              _buildStatusChip('Completed', status),
-              _buildStatusChip('Overdue', status),
-            ],
-          ),
-          const SizedBox(height: 12),
-
-          /// Progress + Indicator + Remaining + Assigned in one row
-          Row(
+    return ChangeNotifierProvider(
+      create: (_) => TaskTrackerViewModel(),
+      child: Consumer<TaskTrackerViewModel>(
+        builder: (context, viewModel, _) {
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 8, top: 6),
-                child: Text(
-                  "Progress:",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-              CircularPercentIndicator(
-                radius: 13.0,
-                lineWidth: 4.0,
-                percent: progress,
-                center: Text(
-                  "${(progress * 100).round()}%",
-                  style: const TextStyle(fontSize: 10),
-                ),
-                progressColor: Colors.green,
-                backgroundColor: Colors.grey.shade300,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Row(
-                      children: [
-                        Icon(Icons.access_time, color: Colors.orange, size: 14),
-                        SizedBox(width: 4),
-                        Text(
-                          "2 days remaining",
-                          style: TextStyle(color: Colors.orange, fontSize: 11),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+              // Title and Due Date
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF43A047),
+                        fontSize: 16,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 6),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(Icons.edit,
-                            size: 14, color: Colors.black87),
-                        SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            "Assigned By (optional)",
-                            style: TextStyle(fontSize: 11),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                  ),
+                  Text(
+                    'Due Date: $dueDate',
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              // Status Row
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    const Text('Status:', style: TextStyle(fontSize: 13)),
+                    const SizedBox(width: 8),
+                    _statusDot('Not Started', status),
+                    const SizedBox(width: 2),
+                    const Text('Not Started', style: TextStyle(fontSize: 12)),
+                    const SizedBox(width: 8),
+                    _statusDot('In Progress', status),
+                    const SizedBox(width: 2),
+                    const Text('In Progress', style: TextStyle(fontSize: 12)),
+                    const SizedBox(width: 8),
+                    _statusDot('Completed', status),
+                    const SizedBox(width: 2),
+                    const Text('Completed', style: TextStyle(fontSize: 12)),
+                    const SizedBox(width: 8),
+                    _statusDot('Overdue', status),
+                    const SizedBox(width: 2),
+                    const Text('Overdue', style: TextStyle(fontSize: 12)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              // Progress, Remaining, Assigned
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text('Progress:', style: TextStyle(fontSize: 13)),
+                    const SizedBox(width: 8),
+                    CircularPercentIndicator(
+                      radius: 18.0,
+                      lineWidth: 4.0,
+                      percent: progress,
+                      center: Text(
+                        "${(progress * 100).round()}%",
+                        style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                      ),
+                      progressColor: const Color(0xFF43A047),
+                      backgroundColor: Colors.grey.shade300,
+                    ),
+                    const SizedBox(width: 12),
+                    Icon(Icons.access_time, color: Colors.orange, size: 16),
+                    const SizedBox(width: 2),
+                    Text(
+                      '"${viewModel.getRemainingDays(dueDate)}"',
+                      style: const TextStyle(color: Colors.orange, fontSize: 12),
+                    ),
+                    const SizedBox(width: 12),
+                    const Icon(Icons.edit, size: 16, color: Colors.grey),
+                    const SizedBox(width: 2),
+                    Text(
+                      'Assigned By\n(optional)',
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   ],
                 ),
-              )
+              ),
+              const SizedBox(height: 8),
+              // Priority Row
+              Row(
+                children: [
+                  const Text('Priority', style: TextStyle(fontSize: 13)),
+                  const SizedBox(width: 8),
+                  _priorityLabel('Low', priority),
+                  const SizedBox(width: 8),
+                  _priorityLabel('Medium', priority),
+                  const SizedBox(width: 8),
+                  _priorityLabel('High', priority),
+                ],
+              ),
+              const SizedBox(height: 8),
+              // Actions Row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _actionRadio('Start', priority == 'Low'),
+                  _actionRadio('Update', priority == 'Medium'),
+                  _actionRadio('Complete', priority == 'High'),
+                ],
+              ),
+              const SizedBox(height: 12),
+              // Dotted line divider
+              _DottedLine(),
+              const SizedBox(height: 12),
             ],
-          ),
-          const SizedBox(height: 12),
-
-          /// Priority
-          Row(
-            children: [
-              const Text("Priority: ",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
-              _buildPriorityLabel("Low", priority),
-              _buildPriorityLabel("Medium", priority),
-              _buildPriorityLabel("High", priority),
-            ],
-          ),
-          const SizedBox(height: 14),
-
-          /// Actions
-          Row(
-            children: [
-              Expanded(child: _buildAction("Start", priority == 'Low')),
-              Expanded(child: _buildAction("Update", priority == 'Medium')),
-              Expanded(child: _buildAction("Complete", priority == 'High')),
-            ],
-          ),
-
-          /// Dotted Divider
-          const DottedDivider(),
-        ],
+          );
+        },
       ),
     );
   }
 
-  Widget _buildStatusChip(String label, String selectedStatus) {
-    Color activeColor;
+  Widget _statusDot(String label, String selected) {
+    Color color;
     switch (label) {
+      case 'Not Started':
+        color = Colors.grey;
+        break;
       case 'In Progress':
-        activeColor = Colors.yellow;
-      break;
+        color = Colors.orange;
+        break;
       case 'Completed':
-        activeColor = Colors.green;
+        color = Colors.green;
         break;
       case 'Overdue':
-        activeColor = Colors.grey;
+        color = Colors.red;
         break;
       default:
-        activeColor = Colors.grey;
+        color = Colors.grey;
     }
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          Icons.circle,
-          size: 8,
-          color: label == selectedStatus ? activeColor : Colors.grey.shade300,
-        ),
-        const SizedBox(width: 2),
-        Text(label, style: const TextStyle(fontSize: 11)),
-      ],
+    return Icon(
+      Icons.circle,
+      size: 10,
+      color: label == selected ? color : Colors.grey.shade300,
     );
   }
 
-  Widget _buildPriorityLabel(String label, String selected) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 12,
-          color: selected == label ? Colors.teal : Colors.black,
-        ),
+  Widget _priorityLabel(String label, String selected) {
+    Color color;
+    switch (label) {
+      case 'Low':
+        color = Colors.green;
+        break;
+      case 'Medium':
+        color = Colors.orange;
+        break;
+      case 'High':
+        color = Colors.red;
+        break;
+      default:
+        color = Colors.grey;
+    }
+    return Text(
+      label,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 13,
+        color: selected == label ? color : Colors.black,
       ),
     );
   }
 
-  Widget _buildAction(String label, bool isSelected) {
+  Widget _actionRadio(String label, bool selected) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.radio_button_checked,
-            size: 14, color: isSelected ? Colors.green : Colors.black),
-        const SizedBox(width: 4),
-        Text(label,
-            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12)),
+        Icon(
+          selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+          size: 16,
+          color: selected ? Colors.green : Colors.grey,
+        ),
+        const SizedBox(width: 2),
+        Text(
+          label,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 13,
+            color: selected ? Colors.green : Colors.black,
+          ),
+        ),
       ],
     );
   }
 }
 
-class DottedDivider extends StatelessWidget {
-  final Color color;
-
-  const DottedDivider({this.color = Colors.grey, super.key});
-
+class _DottedLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final dotCount = (screenWidth / 6).floor();
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 14.0),
-      child: Wrap(
-        spacing: 3,
-        children: List.generate(dotCount, (index) {
-          return Container(
-            width: 2,
-            height: 1,
-            color: color,
-          );
-        }),
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final boxWidth = constraints.constrainWidth();
+        final dashWidth = 4.0;
+        final dashSpace = 4.0;
+        final dashCount = (boxWidth / (dashWidth + dashSpace)).floor();
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(dashCount, (_) {
+            return Container(
+              width: dashWidth,
+              height: 1,
+              color: Colors.grey.shade400,
+            );
+          }),
+        );
+      },
     );
   }
 }
