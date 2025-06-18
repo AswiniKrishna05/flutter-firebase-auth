@@ -15,7 +15,7 @@ void showPunchInTypeDialog(BuildContext context) {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 36, 24, 28), // extra top padding for close button
+              padding: const EdgeInsets.fromLTRB(26, 36, 26, 28), // extra top padding for close button
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,9 +24,9 @@ void showPunchInTypeDialog(BuildContext context) {
                     child: Text(
                       'Select Punch-In Type',
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 2,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -40,7 +40,7 @@ void showPunchInTypeDialog(BuildContext context) {
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 60),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -48,11 +48,11 @@ void showPunchInTypeDialog(BuildContext context) {
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(4),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black12,
-                              blurRadius: 4,
+                              blurRadius: 2,
                               offset: Offset(0, 2),
                             ),
                           ],
