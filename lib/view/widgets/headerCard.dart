@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HeaderCard extends StatelessWidget {
   const HeaderCard({super.key});
@@ -43,16 +44,25 @@ class HeaderCard extends StatelessWidget {
                     const SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "Hemant Rangarajan",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                      children: [
+                        FutureBuilder<String>(
+                          future: () async {
+                            final prefs = await SharedPreferences.getInstance();
+                            return prefs.getString('fullName') ?? 'User';
+                          }(),
+                          builder: (context, snapshot) {
+                            final name = snapshot.data ?? 'User';
+                            return Text(
+                              name,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            );
+                          },
                         ),
-                        Text(
+                        const Text(
                           "Full-stack Developer",
                           style: TextStyle(
                             fontSize: 12,

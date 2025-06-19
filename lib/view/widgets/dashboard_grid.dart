@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../app_colors.dart';
 import '../screens/leave_screen.dart';
 import 'dash_card.dart';
 import '../screens/apply_leave_screen.dart'; // <- Import your target screen
@@ -9,12 +10,12 @@ class DashboardGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const items = [
-      ('Attendance', Icons.calendar_today_rounded, Color(0xFF32C05E)),
-      ('Leaves', Icons.exit_to_app_rounded, Color(0xFFFF9D31)),
-      ('Leave Status', Icons.pie_chart_outline_rounded, Color(0xFFB063FF)),
-      ('Holiday List', Icons.checklist_rounded, Color(0xFF3267FF)),
-      ('Payslip', Icons.receipt_long_rounded, Color(0xFF10B981)),
-      ('Reports', Icons.show_chart_rounded, Color(0xFFFF5E5E)),
+      ('Attendance', Icons.calendar_today_rounded, AppColors.green),
+      ('Leaves', Icons.exit_to_app_rounded, AppColors.orange),
+      ('Leave Status', Icons.pie_chart_outline_rounded, AppColors.purple),
+      ('Holiday List', Icons.checklist_rounded, AppColors.blueAccent),
+      ('Payslip', Icons.receipt_long_rounded, AppColors.teal),
+      ('Reports', Icons.show_chart_rounded, AppColors.red),
     ];
 
     return GridView.builder(

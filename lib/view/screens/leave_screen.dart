@@ -1,101 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/app_colors.dart';
 import 'dashboard_content_screen.dart';
 import 'apply_leave_screen.dart';
+import 'package:provider/provider.dart';
+import '../../view_model/leave_screen_viewmodel.dart';
 
-class LeaveScreen extends StatefulWidget {
+class LeaveScreen extends StatelessWidget {
   const LeaveScreen({super.key});
 
   @override
-  State<LeaveScreen> createState() => _LeaveScreenState();
-}
-
-class _LeaveScreenState extends State<LeaveScreen> {
-  int selectedTab = 0;
-
-  @override
   Widget build(BuildContext context) {
-    final Color blue = const Color(0xFF2196F3);
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
+    return ChangeNotifierProvider(
+      create: (_) => LeaveScreenViewModel(),
+      child: Consumer<LeaveScreenViewModel>(
+        builder: (context, viewModel, child) {
+          final Color blue = AppColors.blue;
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: Column(
                 children: [
-                  Image.asset('assets/ziya_logo.png', width: 40),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Container(
-                      height: 38,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(4),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 6,
-                            offset: const Offset(0, 2),
+                  // Header
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Image.asset('assets/ziya_logo.png', width: 40),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Container(
+                            height: 38,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: const TextField(
+                              decoration: InputDecoration(
+                                hintText: "Search",
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                                border: InputBorder.none,
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          hintText: "Search",
-                          isDense: true,
-                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                          border: InputBorder.none,
                         ),
-                      ),
+                        const SizedBox(width: 8),
+                        Stack(
+                          children: [
+                            const Icon(Icons.notifications, color: Colors.blue, size: 28),
+                            Positioned(
+                              right: 0,
+                              top: 2,
+                              child: Container(
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.white, width: 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 12),
+                        const CircleAvatar(
+                          radius: 16,
+                          backgroundImage: NetworkImage('https://media.istockphoto.com/id/1682296067/photo/happy-studio-portrait-or-professional-man-real-estate-agent-or-asian-businessman-smile-for.jpg?s=612x612&w=0&k=20&c=9zbG2-9fl741fbTWw5fNgcEEe4ll-JegrGlQQ6m54rg='),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Stack(
-                    children: [
-                      const Icon(Icons.notifications, color: Colors.blue, size: 28),
-                      Positioned(
-                        right: 0,
-                        top: 2,
-                        child: Container(
-                          width: 10,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 1),
-                          ),
-                        ),
-                      ),
-                    ],
+                  // Tab Bar
+                  _LeaveTabBar(
+                    selectedIndex: viewModel.selectedTab,
+                    onTabSelected: (index) {
+                      viewModel.setSelectedTab(index);
+                    },
                   ),
-                  const SizedBox(width: 12),
-                  const CircleAvatar(
-                    radius: 16,
-                    backgroundImage: NetworkImage('https://media.istockphoto.com/id/1682296067/photo/happy-studio-portrait-or-professional-man-real-estate-agent-or-asian-businessman-smile-for.jpg?s=612x612&w=0&k=20&c=9zbG2-9fl741fbTWw5fNgcEEe4ll-JegrGlQQ6m54rg='),
+                  // Tab Content
+                  Expanded(
+                    child: viewModel.selectedTab == 0
+                        ? const DashboardContentScreen()
+                        : const ApplyLeaveScreen(),
                   ),
                 ],
               ),
             ),
-            // Tab Bar
-            _LeaveTabBar(
-              selectedIndex: selectedTab,
-              onTabSelected: (index) {
-                setState(() {
-                  selectedTab = index;
-                });
-              },
-            ),
-            // Tab Content
-            Expanded(
-              child: selectedTab == 0
-                  ? const DashboardContentScreen()
-                  : const ApplyLeaveScreen(),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

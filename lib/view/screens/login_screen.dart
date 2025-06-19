@@ -104,25 +104,26 @@ class LoginScreen extends StatelessWidget {
                               onPressed: viewModel.isLoading
                                   ? null
                                   : () async {
-                                      final error = await viewModel.login(context);
-                                      if (error == null) {
-                                        Navigator.pushReplacementNamed(context, '/home');
-                                      } else {
-                                        showDialog(
-                                          context: context,
-                                          builder: (_) => AlertDialog(
-                                            title: const Text('Login Failed'),
-                                            content: Text(error),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(context),
-                                                child: const Text('OK'),
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      }
-                                    },
+                                final error = await viewModel.login(context);
+                                if (error == null) {
+                                  await Future.delayed(Duration(milliseconds: 200));
+                                  Navigator.pushReplacementNamed(context, '/home');
+                                } else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) => AlertDialog(
+                                      title: const Text('Login Failed'),
+                                      content: Text(error),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(context),
+                                          child: const Text('OK'),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF2196F3),
                                 shape: RoundedRectangleBorder(

@@ -4,6 +4,7 @@ import '../widgets/greetingCard.dart';
 import '../widgets/headerCard.dart';
 import '../widgets/overview_row.dart';
 import '../widgets/task_section.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,12 +22,21 @@ class HomeScreen extends StatelessWidget {
             children:  [
               HeaderCard(),
               SizedBox(height: 10),
-              Text(
-                '"Good Morning,\nHemant Rangarajan"',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[600],
-                ),
+              FutureBuilder<String>(
+                future: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  return prefs.getString('fullName') ?? 'User';
+                }(),
+                builder: (context, snapshot) {
+                  final name = snapshot.data ?? 'User';
+                  return Text(
+                    'Good Morning,\n$name',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[600],
+                    ),
+                  );
+                },
               ),
               SizedBox(height: 10),
               GreetingCard(),

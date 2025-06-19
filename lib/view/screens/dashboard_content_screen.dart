@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import '../../app_colors.dart';
 
 class DashboardContentScreen extends StatelessWidget {
   const DashboardContentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Color blue = const Color(0xFF2196F3);
-    final Color cardBorder = const Color(0xFFE0E0E0);
-    final Color yellow = const Color(0xFFFFF8E1);
-    final Color yellowDark = const Color(0xFFFFC107);
-    final Color textDark = const Color(0xFF222222);
-    final Color textLight = const Color(0xFF757575);
-    final Color cardBg = Colors.white;
+
     final double cardWidth =
         (MediaQuery.of(context).size.width - 16 * 2 - 16) / 2;
 
     return Container(
-      color: const Color(0xFFFFFFFF),
+      color: AppColors.white,
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         children: [
@@ -39,11 +34,11 @@ class DashboardContentScreen extends StatelessWidget {
                     value: '16 days',
                     subtitle: '29 days remaining this year',
                     icon: Icons.sticky_note_2_outlined,
-                    iconColor: blue,
-                    color: cardBg,
+                    iconColor: AppColors.blue,
+                    color: AppColors.cardBg,
                     progress: 16 / 45,
-                    textDark: textDark,
-                    textLight: textLight,
+                    textDark: AppColors.textDark,
+                    textLight: AppColors.textLight,
                   ),
                 ),
                 SizedBox(
@@ -54,11 +49,11 @@ class DashboardContentScreen extends StatelessWidget {
                     value: '92%',
                     subtitle: '29 days remaining this year',
                     icon: Icons.pie_chart_outline,
-                    iconColor: blue,
-                    color: cardBg,
+                    iconColor: AppColors.blue,
+                    color: AppColors.cardBg,
                     progress: 0.92,
-                    textDark: textDark,
-                    textLight: textLight,
+                    textDark: AppColors.textDark,
+                    textLight: AppColors.textLight,
                   ),
                 ),
                 SizedBox(
@@ -69,11 +64,11 @@ class DashboardContentScreen extends StatelessWidget {
                     value: '1',
                     subtitle: '29 days remaining this year',
                     icon: Icons.hourglass_empty,
-                    iconColor: blue,
-                    color: cardBg,
+                    iconColor: AppColors.blue,
+                    color: AppColors.cardBg,
                     progress: 1 / 45,
-                    textDark: textDark,
-                    textLight: textLight,
+                    textDark: AppColors.textDark,
+                    textLight: AppColors.textLight,
                   ),
                 ),
                 SizedBox(
@@ -84,11 +79,11 @@ class DashboardContentScreen extends StatelessWidget {
                     value: '2',
                     subtitle: '29 days remaining this year',
                     icon: Icons.groups_outlined,
-                    iconColor: blue,
-                    color: cardBg,
+                    iconColor: AppColors.blue,
+                    color: AppColors.cardBg,
                     progress: 2 / 45,
-                    textDark: textDark,
-                    textLight: textLight,
+                    textDark: AppColors.textDark,
+                    textLight: AppColors.textLight,
                   ),
                 ),
               ],
@@ -100,9 +95,9 @@ class DashboardContentScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
             child: Container(
               decoration: BoxDecoration(
-                color: cardBg,
+                color: AppColors.cardBg,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: cardBorder),
+                border: Border.all(color: AppColors.cardBorder),
               ),
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -112,11 +107,11 @@ class DashboardContentScreen extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
-                          color: textDark,
+                          color:AppColors.textDark,
                           letterSpacing: 0.1)),
                   const SizedBox(height: 4),
                   Text('Your leave distribution for thr current year',
-                      style: TextStyle(color: textLight, fontSize: 12)),
+                      style: TextStyle(color: AppColors.textLight, fontSize: 12)),
                   const SizedBox(height: 24),
                   // Real Bar Chart
                   SizedBox(
@@ -135,7 +130,7 @@ class DashboardContentScreen extends StatelessWidget {
                               showTitles: true,
                               getTitlesWidget: (double value, TitleMeta meta) {
                                 const style = TextStyle(
-                                  color: Color(0xFF222222),
+                                  color: AppColors.textDark,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 13,
                                 );
@@ -161,7 +156,7 @@ class DashboardContentScreen extends StatelessWidget {
                           BarChartGroupData(x: 0, barRods: [
                             BarChartRodData(
                               toY: 8,
-                              color: blue,
+                              color:AppColors.blue,
                               width: 60,
                               borderRadius: BorderRadius.circular(6),
                             ),
@@ -169,7 +164,7 @@ class DashboardContentScreen extends StatelessWidget {
                           BarChartGroupData(x: 1, barRods: [
                             BarChartRodData(
                               toY: 5,
-                              color: blue,
+                              color: AppColors.blue,
                               width: 60,
                               borderRadius: BorderRadius.circular(6),
                             ),
@@ -177,7 +172,7 @@ class DashboardContentScreen extends StatelessWidget {
                           BarChartGroupData(x: 2, barRods: [
                             BarChartRodData(
                               toY: 4,
-                              color: blue,
+                              color:AppColors.blue,
                               width: 60,
                               borderRadius: BorderRadius.circular(6),
                             ),
@@ -185,7 +180,7 @@ class DashboardContentScreen extends StatelessWidget {
                           BarChartGroupData(x: 3, barRods: [
                             BarChartRodData(
                               toY: 3,
-                              color: blue,
+                              color: AppColors.blue,
                               width: 60,
                               borderRadius: BorderRadius.circular(6),
                             ),
@@ -201,25 +196,25 @@ class DashboardContentScreen extends StatelessWidget {
                         width: 10,
                         height: 10,
                         decoration: BoxDecoration(
-                          color: blue,
+                          color: AppColors.blue,
                           shape: BoxShape.circle,
                         ),
                       ),
                       const SizedBox(width: 6),
                       Text('Leave days taken',
-                          style: TextStyle(color: textLight, fontSize: 14)),
+                          style: TextStyle(color:AppColors.textLight, fontSize: 14)),
                     ],
                   ),
                   const SizedBox(height: 16),
-                  Divider(color: cardBorder, height: 1),
+                  Divider(color: AppColors.cardBorder, height: 1),
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Total days',
-                          style: TextStyle(color: textLight, fontSize: 14)),
+                          style: TextStyle(color: AppColors.textLight, fontSize: 14)),
                       Text('Remaining',
-                          style: TextStyle(color: textLight, fontSize: 14)),
+                          style: TextStyle(color: AppColors.textLight, fontSize: 14)),
                     ],
                   ),
                   Row(
@@ -229,12 +224,12 @@ class DashboardContentScreen extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
-                              color: textDark)),
+                              color: AppColors.textDark)),
                       Text('29',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
-                              color: textDark)),
+                              color: AppColors.textDark)),
                     ],
                   ),
                 ],
@@ -247,9 +242,9 @@ class DashboardContentScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
             child: Container(
               decoration: BoxDecoration(
-                color: cardBg,
+                color: AppColors.cardBg,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: cardBorder),
+                border: Border.all(color: AppColors.cardBorder),
               ),
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -259,10 +254,10 @@ class DashboardContentScreen extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
-                          color: textDark)),
+                          color: AppColors.textDark)),
                   const SizedBox(height: 4),
                   Text('Your scheduled time off',
-                      style: TextStyle(color: textLight, fontSize: 14)),
+                      style: TextStyle(color:AppColors.textLight, fontSize: 14)),
                   const SizedBox(height: 18),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -274,10 +269,10 @@ class DashboardContentScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
-                                  color: textDark)),
+                                  color: AppColors.textDark)),
                           const SizedBox(height: 2),
                           Text('April 22,2025 to Apr 24, 2025 (3 days)',
-                              style: TextStyle(color: textDark, fontSize: 12)),
+                              style: TextStyle(color: AppColors.textDark, fontSize: 12)),
                         ],
                       ),
                       Container(
@@ -290,7 +285,7 @@ class DashboardContentScreen extends StatelessWidget {
                         ),
                         child: Text('Pending',
                             style: TextStyle(
-                                color: textLight,
+                                color: AppColors.textLight,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14)),
                       ),
@@ -302,7 +297,7 @@ class DashboardContentScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.red[50],
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: yellow.withOpacity(0.3)),
+                      border: Border.all(color: AppColors.yellow.withOpacity(0.3)),
                     ),
                     padding: const EdgeInsets.all(14),
                     child: Row(
@@ -317,14 +312,14 @@ class DashboardContentScreen extends StatelessWidget {
                             children: [
                               Text('Pending Approval',
                                   style: TextStyle(
-                                      color: textDark,
+                                      color: AppColors.textDark,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 14)),
                               const SizedBox(height: 2),
                               Text(
                                   'Your leave request is awaiting manager approval.',
                                   style: TextStyle(
-                                      color: textLight, fontSize: 13)),
+                                      color: AppColors.textLight, fontSize: 13)),
                             ],
                           ),
                         ),
