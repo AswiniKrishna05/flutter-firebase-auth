@@ -1,0 +1,180 @@
+import 'package:flutter/material.dart';
+import 'dashboard_content_screen.dart';
+import 'apply_leave_screen.dart';
+
+class LeaveScreen extends StatefulWidget {
+  const LeaveScreen({super.key});
+
+  @override
+  State<LeaveScreen> createState() => _LeaveScreenState();
+}
+
+class _LeaveScreenState extends State<LeaveScreen> {
+  int selectedTab = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final Color blue = const Color(0xFF2196F3);
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Header
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Image.asset('assets/ziya_logo.png', width: 40),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Container(
+                      height: 38,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: const TextField(
+                        decoration: InputDecoration(
+                          hintText: "Search",
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Stack(
+                    children: [
+                      const Icon(Icons.notifications, color: Colors.blue, size: 28),
+                      Positioned(
+                        right: 0,
+                        top: 2,
+                        child: Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 1),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 12),
+                  const CircleAvatar(
+                    radius: 16,
+                    backgroundImage: NetworkImage('https://media.istockphoto.com/id/1682296067/photo/happy-studio-portrait-or-professional-man-real-estate-agent-or-asian-businessman-smile-for.jpg?s=612x612&w=0&k=20&c=9zbG2-9fl741fbTWw5fNgcEEe4ll-JegrGlQQ6m54rg='),
+                  ),
+                ],
+              ),
+            ),
+            // Tab Bar
+            _LeaveTabBar(
+              selectedIndex: selectedTab,
+              onTabSelected: (index) {
+                setState(() {
+                  selectedTab = index;
+                });
+              },
+            ),
+            // Tab Content
+            Expanded(
+              child: selectedTab == 0
+                  ? const DashboardContentScreen()
+                  : const ApplyLeaveScreen(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LeaveTabBar extends StatelessWidget {
+  final int selectedIndex;
+  final Function(int) onTabSelected;
+
+  const _LeaveTabBar({
+    Key? key,
+    required this.selectedIndex,
+    required this.onTabSelected,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Color blue = const Color(0xFF2196F3);
+
+    return Container(
+      color: Colors.white,
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () => onTabSelected(0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: selectedIndex == 0 ? blue.withOpacity(0.08) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                margin: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.dashboard, color: selectedIndex == 0 ? blue : Colors.black54, size: 20),
+                    const SizedBox(width: 6),
+                    Text(
+                      'Dashboard',
+                      style: TextStyle(
+                        color: selectedIndex == 0 ? blue : Colors.black54,
+                        fontWeight: selectedIndex == 0 ? FontWeight.w600 : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () => onTabSelected(1),
+              child: Container(
+                margin: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  color: selectedIndex == 1 ? blue.withOpacity(0.08) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.assignment, color: selectedIndex == 1 ? blue : Colors.black54, size: 20),
+                    const SizedBox(width: 6),
+                    Text(
+                      'Request Leave',
+                      style: TextStyle(
+                        color: selectedIndex == 1 ? blue : Colors.black54,
+                        fontWeight: selectedIndex == 1 ? FontWeight.w600 : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

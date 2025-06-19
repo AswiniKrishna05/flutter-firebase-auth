@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/leave_screen.dart';
 import 'dash_card.dart';
 import '../screens/apply_leave_screen.dart'; // <- Import your target screen
 
@@ -34,7 +35,7 @@ class DashboardGrid extends StatelessWidget {
             if (label == 'Leaves') {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const ApplyLeaveScreen()),
+                MaterialPageRoute(builder: (_) => const LeaveScreen()),
               );
             }
           },
