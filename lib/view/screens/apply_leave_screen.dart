@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'package:provider/provider.dart';
 import '../../view_model/apply_leave_view_model.dart';
 
@@ -25,7 +26,7 @@ class _ApplyLeaveForm extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -33,20 +34,22 @@ class _ApplyLeaveForm extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
+              const SizedBox(height: 20),
+
               const SizedBox(height: 16),
               Text('Apply for Leave', style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
 
               const SizedBox(height: 18),
               // Employee Name
-              const Text('Employee Name', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: Colors.grey)),
+              const Text('Employee Name', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: AppColors.grey)),
               const SizedBox(height: 6),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(4),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: AppColors.black.withOpacity(0.1),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
@@ -55,7 +58,7 @@ class _ApplyLeaveForm extends StatelessWidget {
                 child: TextField(
                   controller: model.nameController,
                   readOnly: true,
-                  style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: Colors.grey),
+                  style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.grey),
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person_outline),
                     border: OutlineInputBorder(
@@ -70,15 +73,15 @@ class _ApplyLeaveForm extends StatelessWidget {
 
               const SizedBox(height: 12),
               // Employee ID
-              const Text('Employee ID', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: Colors.grey)),
+              const Text('Employee ID', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: AppColors.grey)),
               const SizedBox(height: 6),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(4),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: AppColors.black.withOpacity(0.1),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
@@ -87,7 +90,7 @@ class _ApplyLeaveForm extends StatelessWidget {
                 child: TextField(
                   controller: model.idController,
                   readOnly: true,
-                  style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: Colors.grey),
+                  style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.grey),
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.badge_outlined),
                     border: OutlineInputBorder(
@@ -109,15 +112,15 @@ class _ApplyLeaveForm extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('From', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: Colors.grey)),
+                        const Text('From', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: AppColors.grey)),
                         const SizedBox(height: 6),
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppColors.white,
                             borderRadius: BorderRadius.circular(4),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: AppColors.black.withOpacity(0.1),
                                 blurRadius: 6,
                                 offset: const Offset(0, 2),
                               ),
@@ -125,7 +128,7 @@ class _ApplyLeaveForm extends StatelessWidget {
                           ),
                           child: TextFormField(
                             readOnly: true,
-                            style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: Colors.grey),
+                            style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.grey),
                             decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.calendar_today),
                               hintText: 'From Date',
@@ -159,22 +162,22 @@ class _ApplyLeaveForm extends StatelessWidget {
                   Container(
                     width: 20,
                     alignment: Alignment.center,
-                    child: const Icon(Icons.compare_arrows, color: Colors.grey, size: 18),
+                    child: const Icon(Icons.compare_arrows, color: AppColors.grey, size: 18),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('To', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: Colors.grey)),
+                        const Text('To', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: AppColors.grey)),
                         const SizedBox(height: 6),
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppColors.white,
                             borderRadius: BorderRadius.circular(4),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: AppColors.black.withOpacity(0.1),
                                 blurRadius: 6,
                                 offset: const Offset(0, 2),
                               ),
@@ -182,7 +185,7 @@ class _ApplyLeaveForm extends StatelessWidget {
                           ),
                           child: TextFormField(
                             readOnly: true,
-                            style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: Colors.grey),
+                            style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.grey),
                             decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.calendar_today),
                               hintText: 'To Date',
@@ -222,11 +225,11 @@ class _ApplyLeaveForm extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.white,
                         borderRadius: BorderRadius.circular(4),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: AppColors.black.withOpacity(0.1),
                             blurRadius: 6,
                             offset: const Offset(0, 2),
                           ),
@@ -237,7 +240,7 @@ class _ApplyLeaveForm extends StatelessWidget {
                         child: DropdownButtonFormField<String>(
                           value: model.leaveType,
                           items: model.leaveTypes.map((type) {
-                            return DropdownMenuItem(value: type, child: Text(type, style: TextStyle(fontSize: 15, color: Colors.grey)));
+                            return DropdownMenuItem(value: type, child: Text(type, style: TextStyle(fontSize: 15, color: AppColors.grey)));
                           }).toList(),
                           onChanged: null,
                           isExpanded: true,
@@ -260,11 +263,11 @@ class _ApplyLeaveForm extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.white,
                         borderRadius: BorderRadius.circular(4),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: AppColors.black.withOpacity(0.1),
                             blurRadius: 6,
                             offset: const Offset(0, 2),
                           ),
@@ -273,7 +276,7 @@ class _ApplyLeaveForm extends StatelessWidget {
                       child: DropdownButtonFormField<String>(
                         value: model.chooseType,
                         items: model.chooseTypes.map((type) {
-                          return DropdownMenuItem(value: type, child: Text(type, style: TextStyle(fontSize: 15, color: Colors.grey)));
+                          return DropdownMenuItem(value: type, child: Text(type, style: TextStyle(fontSize: 15, color: AppColors.grey)));
                         }).toList(),
                         onChanged: model.setChooseType,
                         isExpanded: true,
@@ -294,15 +297,15 @@ class _ApplyLeaveForm extends StatelessWidget {
 
               const SizedBox(height: 12),
               // Reason
-              const Text('Reason', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: Colors.grey)),
+              const Text('Reason', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: AppColors.grey)),
               const SizedBox(height: 6),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(4),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: AppColors.black.withOpacity(0.1),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
@@ -311,7 +314,7 @@ class _ApplyLeaveForm extends StatelessWidget {
                 child: TextFormField(
                   controller: model.reasonController,
                   maxLines: 4,
-                  style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: Colors.grey),
+                  style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.grey),
                   decoration: const InputDecoration(
                     hintText: 'Text area',
                     border: OutlineInputBorder(
@@ -326,22 +329,22 @@ class _ApplyLeaveForm extends StatelessWidget {
 
               const SizedBox(height: 12),
               // Attachment
-              const Text('Attachment', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: Colors.grey)),
+              const Text('Attachment', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: AppColors.grey)),
               const SizedBox(height: 6),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(4),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: AppColors.black.withOpacity(0.1),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
                   ],
                 ),
                 child: TextFormField(
-                  style: const TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: AppColors.grey),
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.attachment),
                     hintText: 'Attachment(Optional)',
@@ -362,13 +365,13 @@ class _ApplyLeaveForm extends StatelessWidget {
                 height: 48,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: AppColors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: () => model.submitLeaveForm(context),
-                  child: const Text('Submit', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+                  child: const Text('Submit', style: TextStyle(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w600)),
                 ),
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/app_colors.dart';
 import '../../view_model/face_verification_view_model.dart';
 import 'face_capture_screen.dart';
 
@@ -35,7 +36,7 @@ class _FaceVerificationScreenState extends State<FaceVerificationScreen> with Ti
       child: Consumer<FaceVerificationViewModel>(
         builder: (context, vm, child) {
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: AppColors.white,
             body: SafeArea(
               child: Center(
                 child: Padding(
@@ -51,7 +52,7 @@ class _FaceVerificationScreenState extends State<FaceVerificationScreen> with Ti
                       const SizedBox(height: 4),
                       const Text(
                         'Please capture your face',
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        style: TextStyle(fontSize: 16, color: AppColors.grey),
                       ),
                       const SizedBox(height: 80),
                       Center(
@@ -66,7 +67,7 @@ class _FaceVerificationScreenState extends State<FaceVerificationScreen> with Ti
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
                                   boxShadow: const [
-                                    BoxShadow(color: Colors.black12, blurRadius: 6),
+                                    BoxShadow(color: AppColors.black12, blurRadius: 6),
                                   ],
                                 ),
                                 clipBehavior: Clip.hardEdge,
@@ -84,7 +85,7 @@ class _FaceVerificationScreenState extends State<FaceVerificationScreen> with Ti
                                     right: 0,
                                     child: Container(
                                       height: 2,
-                                      color: Colors.blueAccent.withOpacity(0.8),
+                                      color: AppColors.blueAccent.withOpacity(0.8),
                                     ),
                                   );
                                 },
@@ -106,8 +107,8 @@ class _FaceVerificationScreenState extends State<FaceVerificationScreen> with Ti
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            foregroundColor: Colors.white,
+                            backgroundColor: AppColors.blue,
+                            foregroundColor: AppColors.white,
                             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),

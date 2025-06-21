@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/app_colors.dart';
 import '../../view_model/punch_out_success_view_model.dart';
 
 class PunchOutSuccessScreen extends StatefulWidget {
@@ -52,9 +53,9 @@ class _PunchOutSuccessScreenState extends State<PunchOutSuccessScreen> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFFFFFFF),
-                      Color(0xFFFED7A5),
-                      Color(0xFFF98200),
+                      AppColors.white,
+                      AppColors.softPeachyOrange,
+                      AppColors.vibrantOrange,
                     ],
                     stops: [0.2, 0.6, 1.0],
                   ),
@@ -65,7 +66,7 @@ class _PunchOutSuccessScreenState extends State<PunchOutSuccessScreen> {
                     children: [
                       const CircleAvatar(
                         radius: 40,
-                        backgroundColor: Color(0xFFF98200),
+                        backgroundColor: AppColors.vibrantOrange,
                         backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPgDnk5iYyTNOYpBPBjTyLILNeYcINSqs2EQ&s'),
                       ),
                       const SizedBox(height: 16),
@@ -73,7 +74,7 @@ class _PunchOutSuccessScreenState extends State<PunchOutSuccessScreen> {
                         'Punch out successfully at',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Color(0xFFF98200),
+                          color: AppColors.vibrantOrange,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -82,7 +83,7 @@ class _PunchOutSuccessScreenState extends State<PunchOutSuccessScreen> {
                         viewModel.punchOutTime,
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Color(0xFFF98200),
+                          color: AppColors.vibrantOrange,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                         ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:dotted_line/dotted_line.dart';
+import '../../constants/app_colors.dart';
 import 'dashboard_grid.dart';
 
 class OngoingPendingTab extends StatelessWidget {
@@ -14,9 +16,9 @@ class OngoingPendingTab extends StatelessWidget {
           TaskCard(
             title: "UI/UX Design Implementation",
             status: "Ongoing Task",
-            statusColor: Colors.blue,
+            statusColor: AppColors.blue,
             priority: "High",
-            priorityColor: Colors.red,
+            priorityColor: AppColors.red,
             progress: 0.6,
             actionText: "Make as Done",
           ),
@@ -24,9 +26,9 @@ class OngoingPendingTab extends StatelessWidget {
           TaskCard(
             title: "Responsive Design",
             status: "Pending Task",
-            statusColor: Colors.orange,
+            statusColor: AppColors.orange,
             priority: "Medium",
-            priorityColor: Colors.orange,
+            priorityColor: AppColors.orange,
             progress: 0.45,
             actionText: "Start Task",
           ),
@@ -34,9 +36,9 @@ class OngoingPendingTab extends StatelessWidget {
           TaskCard(
             title: "Back-end Development",
             status: "Ongoing Task",
-            statusColor: Colors.blue,
+            statusColor: AppColors.blue,
             priority: "High",
-            priorityColor: Colors.red,
+            priorityColor: AppColors.red,
             progress: 0.75,
             actionText: "Make as Done",
           ),
@@ -44,9 +46,9 @@ class OngoingPendingTab extends StatelessWidget {
           TaskCard(
             title: "Server-Side Logic",
             status: "Pending Task",
-            statusColor: Colors.yellow,
+            statusColor: AppColors.yellow,
             priority: "Low",
-            priorityColor: Colors.green,
+            priorityColor: AppColors.green600,
             progress: 0.25,
             actionText: "Start Task",
           ),
@@ -80,15 +82,8 @@ class TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 5),
-        ],
-      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -101,7 +96,7 @@ class TaskCard extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: Colors.green,
+                    color: AppColors.green,
                   ),
                 ),
               ),
@@ -130,12 +125,10 @@ class TaskCard extends StatelessWidget {
             ),
           ),
 
-          // Dates
           const SizedBox(height: 4),
           const Text("Assigned date: 12-05-2025"),
           const Text("Due date: 12-06-2025"),
 
-          // Priority
           const SizedBox(height: 4),
           Text.rich(
             TextSpan(
@@ -153,7 +146,6 @@ class TaskCard extends StatelessWidget {
             ),
           ),
 
-          // Button
           const SizedBox(height: 12),
           Row(
             children: [
@@ -161,20 +153,30 @@ class TaskCard extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF2196F3),
+                  backgroundColor: AppColors.blue,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6)
-                  )
-                  
+                    borderRadius: BorderRadius.circular(6),
+                  ),
                 ),
-                child: Text(actionText,
-
-                style: TextStyle(
-                  color: Colors.white
-                ),),
+                child: Text(
+                  actionText,
+                  style: const TextStyle(color: AppColors.white),
+                ),
               ),
             ],
           ),
+
+          const SizedBox(height: 16),
+
+          /// ✅ Dotted Divider Only
+          const DottedLine(
+            dashColor: Colors.grey,
+            lineThickness: 1,
+            dashLength: 5,
+            dashGapLength: 4,
+          ),
+
+          const SizedBox(height: 12),
         ],
       ),
     );

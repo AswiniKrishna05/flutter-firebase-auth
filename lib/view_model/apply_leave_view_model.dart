@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/strings.dart';
 
 class ApplyLeaveViewModel extends ChangeNotifier {
   // Auto-filled fields
@@ -22,10 +23,10 @@ class ApplyLeaveViewModel extends ChangeNotifier {
   // Leave type dropdown
   String? leaveType;
   final List<String> leaveTypes = [
-    'Sick Leave',
-    'Casual Leave',
-    'Emergency Leave',
-    'Annual Leave',
+    AppStrings.sickLeave,
+    AppStrings.casualLeave,
+    AppStrings.emergencyLeave,
+    AppStrings.annualLeave,
   ];
 
   void setLeaveType(String? type) {
@@ -36,9 +37,9 @@ class ApplyLeaveViewModel extends ChangeNotifier {
   // Choose type dropdown
   String? chooseType;
   final List<String> chooseTypes = [
-    'Full Day',
-    'Half Day',
-    'Short Leave',
+    AppStrings.fullDay,
+    AppStrings.halfDay,
+    AppStrings.shortLeave,
   ];
 
   void setChooseType(String? type) {
@@ -66,7 +67,7 @@ class ApplyLeaveViewModel extends ChangeNotifier {
   Future<void> submitLeaveForm(BuildContext context) async {
     if (fromDate == null || toDate == null || leaveType == null || reasonController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please fill in all required fields")),
+        SnackBar(content: Text(AppStrings.pleaseFillRequiredFields)),
       );
       return;
     }
@@ -74,7 +75,7 @@ class ApplyLeaveViewModel extends ChangeNotifier {
     // Simulate a successful submission (You can replace this with Firebase/REST API call)
     await Future.delayed(const Duration(seconds: 1));
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Leave application submitted!")),
+      SnackBar(content: Text(AppStrings.leaveApplicationSubmitted)),
     );
 
     // Optionally, clear form

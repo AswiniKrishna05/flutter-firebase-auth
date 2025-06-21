@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/app_colors.dart';
 import '../../view_model/forgot_password_view_model.dart';
+import '../../constants/strings.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -22,7 +24,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     width: 300,
                     height: 300,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF2196F3),
+                      color: AppColors.blue,
                       borderRadius: BorderRadius.only(
                         bottomRight: Radius.circular(300),
                       ),
@@ -36,7 +38,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     width: 200,
                     height: 200,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF43A047),
+                      color: AppColors.green600,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(200),
                       ),
@@ -51,37 +53,37 @@ class ForgotPasswordScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           const SizedBox(height: 60),
-                          const Text(
-                            'Forgot Password',
-                            style: TextStyle(
+                          Text(
+                            AppStrings.forgotPassword,
+                            style: const TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF1A237E),
+                              color: AppColors.indigo900,
                             ),
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            'Enter your registered email address\nto reset your password.',
+                          Text(
+                            AppStrings.forgotPasswordDescription,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
-                              color: Colors.black54,
+                              color: AppColors.black,
                             ),
                           ),
                           const SizedBox(height: 32),
                           TextFormField(
                             controller: viewModel.emailController,
                             decoration: InputDecoration(
-                              hintText: 'Email address',
+                              hintText: AppStrings.emailAddressHint,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                             ),
                             validator: (v) {
-                              if (v == null || v.trim().isEmpty) return 'Enter your email';
+                              if (v == null || v.trim().isEmpty) return AppStrings.errorEmptyField;
                               final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-                              if (!emailRegex.hasMatch(v.trim())) return 'Enter a valid email';
+                              if (!emailRegex.hasMatch(v.trim())) return AppStrings.enterValidEmail;
                               return null;
                             },
                           ),
@@ -93,39 +95,39 @@ class ForgotPasswordScreen extends StatelessWidget {
                               onPressed: viewModel.isSending
                                   ? null
                                   : () async {
-                                      final error = await viewModel.sendResetLink(context);
-                                      if (error == null) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (_) => AlertDialog(
-                                            title: const Text('Reset Link Sent'),
-                                            content: const Text('Reset link sent to your email.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                  Navigator.pushReplacementNamed(context, '/login');
-                                                },
-                                                child: const Text('OK'),
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      } else {
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(content: Text(error)),
-                                        );
-                                      }
-                                    },
+                                final error = await viewModel.sendResetLink(context);
+                                if (error == null) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) => AlertDialog(
+                                      title: Text(AppStrings.resetLinkSent),
+                                      content: Text(AppStrings.resetLinkSentMessage),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            Navigator.pushReplacementNamed(context, '/login');
+                                          },
+                                          child: Text(AppStrings.okButton),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(error)),
+                                  );
+                                }
+                              },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF2196F3),
+                                backgroundColor: AppColors.blue,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                               ),
                               child: viewModel.isSending
-                                  ? const CircularProgressIndicator(color: Colors.white)
-                                  : const Text('Reset Password', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                  ? const CircularProgressIndicator(color: AppColors.white)
+                                  : Text(AppStrings.resetPassword, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                             ),
                           ),
                           const SizedBox(height: 16),
@@ -133,7 +135,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                             onPressed: () {
                               Navigator.pushReplacementNamed(context, '/login');
                             },
-                            child: const Text('Back to Login', style: TextStyle(color: Color(0xFF43A047))),
+                            child: Text(AppStrings.backToLogin, style: const TextStyle(color: AppColors.green600)),
                           ),
                         ],
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/app_colors.dart';
 import 'dashboard_grid.dart';
 
 class TaskMyTab extends StatelessWidget {
@@ -62,13 +63,13 @@ class TaskListItem extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: Colors.green,
+            color: AppColors.green,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           description,
-          style: const TextStyle(fontSize: 14, color: Colors.black87),
+          style: const TextStyle(fontSize: 14, color: AppColors.black),
         ),
         const SizedBox(height: 8),
         Align(
@@ -76,7 +77,7 @@ class TaskListItem extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: AppColors.blue,
               minimumSize: const Size(60, 28),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               shape: RoundedRectangleBorder(
@@ -86,7 +87,7 @@ class TaskListItem extends StatelessWidget {
             child: const Text(
               "Start",
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -101,7 +102,7 @@ class TaskListItem extends StatelessWidget {
 class DottedDivider extends StatelessWidget {
   final Color color;
 
-  const DottedDivider({this.color = Colors.grey, super.key});
+  const DottedDivider({this.color = AppColors.grey, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/constants/app_colors.dart';
 
 class DashCard extends StatelessWidget {
   final String label;
@@ -20,12 +21,12 @@ class DashCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFFEFEFEF)),
+          border: Border.all(color: AppColors.white),
           borderRadius: BorderRadius.circular(14),
-          color: Colors.white,
+          color: AppColors.white,
           boxShadow: const [
             BoxShadow(
-              color: Color(0x11000000),
+              color: AppColors.transparentBlack,
               blurRadius: 4,
               offset: Offset(0, 2),
             ),

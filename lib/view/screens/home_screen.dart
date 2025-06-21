@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/strings.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/greetingCard.dart';
 import '../widgets/headerCard.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 builder: (context, snapshot) {
                   final name = snapshot.data ?? 'User';
                   return Text(
-                    'Good Morning,\n$name',
+                    '${AppStrings.goodMorning}\n$name',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[600],
@@ -42,7 +43,7 @@ class HomeScreen extends StatelessWidget {
               GreetingCard(),
               SizedBox(height: 10),
               Text(
-                'Overview',
+                AppStrings.overview,
                 style: TextStyle(
                   letterSpacing: 1,
                   fontWeight: FontWeight.bold,

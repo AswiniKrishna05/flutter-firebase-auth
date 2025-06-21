@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/app_colors.dart';
+
 class TaskTabBar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onTabSelected;
@@ -45,13 +47,13 @@ class TaskTabBar extends StatelessWidget {
         margin: const EdgeInsets.only(right: 4),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.blue : Colors.white,
+          color: isSelected ? AppColors.blue : AppColors.white,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.grey.shade300),
+          border: Border.all(color: AppColors.bggrey),
           boxShadow: isSelected
               ? [
             BoxShadow(
-              color: Colors.blue.withOpacity(0.2),
+              color: AppColors.blue.withOpacity(0.2),
               blurRadius: 6,
               offset: const Offset(0, 2),
             )
@@ -63,13 +65,13 @@ class TaskTabBar extends StatelessWidget {
             Icon(
               icon,
               size: 20,
-              color: isSelected ? Colors.white : Colors.grey,
+              color: isSelected ? AppColors.white : AppColors.grey,
             ),
             const SizedBox(width: 6),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? Colors.white : Colors.grey,
+                color: isSelected ? AppColors.white : AppColors.grey,
                 fontWeight: FontWeight.w600,
               ),
             ),

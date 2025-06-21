@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../constants/strings.dart';
 
 class HeaderCard extends StatelessWidget {
   const HeaderCard({super.key});
@@ -15,6 +16,7 @@ class HeaderCard extends StatelessWidget {
           child: Stack(
             children: [
               Container(
+
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.blue.shade900, Colors.green],
@@ -34,7 +36,7 @@ class HeaderCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg",
+                            "https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E=",
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -62,8 +64,8 @@ class HeaderCard extends StatelessWidget {
                             );
                           },
                         ),
-                        const Text(
-                          "Full-stack Developer",
+                        Text(
+                          AppStrings.fullStackDeveloper,
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.white70,

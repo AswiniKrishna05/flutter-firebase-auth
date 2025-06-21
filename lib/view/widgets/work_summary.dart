@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'dashboard_grid.dart';
 
 class WorkSummaryTab extends StatelessWidget {
@@ -94,7 +95,7 @@ class SummaryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
-      color: Colors.white,
+      color: AppColors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 150),
@@ -103,7 +104,7 @@ class SummaryCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, size: 28, color: Colors.green[700]),
+              Icon(icon, size: 28, color: AppColors.green),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -111,10 +112,10 @@ class SummaryCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w500,
-                        color: Colors.black87,
+                        color: AppColors.black87,
                       ),
                     ),
                     const SizedBox(height: 6),
@@ -123,7 +124,7 @@ class SummaryCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: AppColors.black,
                       ),
                     ),
                   ],

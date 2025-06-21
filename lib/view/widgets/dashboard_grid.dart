@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../app_colors.dart';
+import '../../constants/app_colors.dart';
 import '../screens/leave_screen.dart';
 import 'dash_card.dart';
-import '../screens/apply_leave_screen.dart'; // <- Import your target screen
+import '../screens/apply_leave_screen.dart';
 
 class DashboardGrid extends StatelessWidget {
   const DashboardGrid({super.key});

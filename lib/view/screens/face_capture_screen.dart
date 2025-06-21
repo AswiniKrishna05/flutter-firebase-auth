@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/app_colors.dart';
 import '../../view_model/face_capture_view_model.dart';
 import 'punch_in_success_screen.dart';
 import 'punch_out_success_screen.dart';
@@ -20,7 +21,7 @@ class FaceCaptureScreen extends StatelessWidget {
               height: double.infinity,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.white, Color(0xFF80D4FF)],
+                  colors: [AppColors.white, AppColors.skyblue],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   stops: [0.70, 1.0],
@@ -49,8 +50,8 @@ class FaceCaptureScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Icon(Icons.camera_alt, color: Colors.black),
+                          backgroundColor: AppColors.white,
+                          child: Icon(Icons.camera_alt, color: AppColors.black),
                         ),
                         const SizedBox(width: 28),
                         GestureDetector(
@@ -73,14 +74,14 @@ class FaceCaptureScreen extends StatelessWidget {
                           },
                           child: const CircleAvatar(
                             radius: 36,
-                            backgroundColor: Colors.blue,
+                            backgroundColor: AppColors.blue,
                             backgroundImage: NetworkImage('https://cdn.vectorstock.com/i/500p/12/39/ok-icon-white-on-the-blue-background-vector-3451239.jpg'),
                           ),
                         ),
                         const SizedBox(width: 28),
                         const CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Icon(Icons.flash_on, color: Colors.black),
+                          backgroundColor: AppColors.white,
+                          child: Icon(Icons.flash_on, color: AppColors.black),
                         ),
                       ],
                     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/app_colors.dart';
+
 class OverviewRow extends StatelessWidget {
   const OverviewRow();
 
@@ -33,9 +35,9 @@ class _OverviewCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 4),
         height: 96,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFFEFEFEF)),
+          border: Border.all(color:  AppColors.white),
           boxShadow: const [
             BoxShadow(
                 color: Color(0x11000000), blurRadius: 4, offset: Offset(0, 2))

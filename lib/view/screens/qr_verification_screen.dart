@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/app_colors.dart';
 import '../../view_model/qr_verification_view_model.dart';
 import 'punch_in_success_screen.dart';
 
@@ -13,7 +14,7 @@ class QrVerificationScreen extends StatelessWidget {
       child: Consumer<QrVerificationViewModel>(
         builder: (context, viewModel, child) {
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: AppColors.white,
             body: SafeArea(
               child: Column(
                 children: [
@@ -40,7 +41,7 @@ class QrVerificationScreen extends StatelessWidget {
                                   'Please Scan your QR Code',
                                   style: TextStyle(
                                     fontSize: 16,
-                                    color: Colors.grey,
+                                    color: AppColors.grey,
                                   ),
                                 )
                               ],
@@ -54,11 +55,11 @@ class QrVerificationScreen extends StatelessWidget {
                             height: 200,
                             padding: const EdgeInsets.all(40),
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AppColors.white,
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black12,
+                                  color: AppColors.black12,
                                   blurRadius: 8,
                                   spreadRadius: 1,
                                 )
@@ -87,7 +88,7 @@ class QrVerificationScreen extends StatelessWidget {
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
+                                backgroundColor: AppColors.blue,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -95,7 +96,7 @@ class QrVerificationScreen extends StatelessWidget {
                               child: const Text(
                                 'Scan QR',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 1,

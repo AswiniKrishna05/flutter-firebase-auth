@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/app_colors.dart';
+
 class SortFilterBar extends StatelessWidget {
   final int selectedSortIndex;
   final Function(int) onSortSelected;
@@ -32,12 +34,12 @@ class SortFilterBar extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
+                color: AppColors.bggrey,
                 shape: BoxShape.circle,
               ),
               child: const Icon(
                 Icons.tune,
-                color: Colors.black,
+                color: AppColors.black,
               ),
             ),
           ],

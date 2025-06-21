@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/app_colors.dart';
 import '../../view_model/login_view_model.dart';
+import '../../constants/strings.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -51,18 +53,18 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           const SizedBox(height: 60),
-                          const Text(
-                            'ZiyaAttend',
-                            style: TextStyle(
+                          Text(
+                            AppStrings.ziyaAttend,
+                            style: const TextStyle(
                               fontSize: 36,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: AppColors.black,
                             ),
                           ),
                           const SizedBox(height: 8),
-                          const Text(
-                            'Smart Attendance Maintainer',
-                            style: TextStyle(
+                          Text(
+                            AppStrings.appSubtitle,
+                            style: const TextStyle(
                               fontSize: 22,
                               color: Color(0xFF43A047),
                               fontWeight: FontWeight.w500,
@@ -72,14 +74,14 @@ class LoginScreen extends StatelessWidget {
                           TextFormField(
                             controller: viewModel.emailOrPhoneController,
                             decoration: InputDecoration(
-                              hintText: 'Email or Mobile Number',
+                              hintText: AppStrings.emailOrMobileHint,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                             ),
                             validator: (v) {
-                              if (v == null || v.trim().isEmpty) return 'Enter email or phone';
+                              if (v == null || v.trim().isEmpty) return AppStrings.errorEmptyField;
                               return null;
                             },
                           ),
@@ -88,13 +90,13 @@ class LoginScreen extends StatelessWidget {
                             controller: viewModel.passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
-                              hintText: 'Password / OTP',
+                              hintText: AppStrings.passwordOtpHint,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                             ),
-                            validator: (v) => v == null || v.isEmpty ? 'Enter password' : null,
+                            validator: (v) => v == null || v.isEmpty ? AppStrings.errorEmptyField : null,
                           ),
                           const SizedBox(height: 24),
                           SizedBox(
@@ -112,12 +114,12 @@ class LoginScreen extends StatelessWidget {
                                   showDialog(
                                     context: context,
                                     builder: (_) => AlertDialog(
-                                      title: const Text('Login Failed'),
+                                      title: Text(AppStrings.loginFailed),
                                       content: Text(error),
                                       actions: [
                                         TextButton(
                                           onPressed: () => Navigator.pop(context),
-                                          child: const Text('OK'),
+                                          child: Text(AppStrings.okButton),
                                         )
                                       ],
                                     ),
@@ -125,14 +127,14 @@ class LoginScreen extends StatelessWidget {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF2196F3),
+                                backgroundColor: AppColors.blue,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                               ),
                               child: viewModel.isLoading
-                                  ? const CircularProgressIndicator(color: Colors.white)
-                                  : const Text('Login', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                  ? const CircularProgressIndicator(color: AppColors.white)
+                                  : Text(AppStrings.loginTitle, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                             ),
                           ),
                           const SizedBox(height: 16),
@@ -143,13 +145,13 @@ class LoginScreen extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.pushNamed(context, '/forgot');
                                 },
-                                child: const Text('Forgot Password', style: TextStyle(color: Color(0xFF2196F3))),
+                                child: Text(AppStrings.forgotPassword, style: const TextStyle(color: AppColors.blue)),
                               ),
                               TextButton(
                                 onPressed: () {
                                   Navigator.pushReplacementNamed(context, '/signup');
                                 },
-                                child: const Text('Sign up', style: TextStyle(color: Color(0xFF43A047))),
+                                child: Text(AppStrings.signupTitle, style: const TextStyle(color: AppColors.green600)),
                               ),
                             ],
                           ),

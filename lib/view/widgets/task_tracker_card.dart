@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
+import '../../constants/app_colors.dart';
 import '../../view_model/task_tracker_view_model.dart';
 
 class TaskTrackerCard extends StatelessWidget {
@@ -37,9 +38,9 @@ class TaskTrackerCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF43A047),
+                        color: AppColors.green600,
                         fontSize: 16,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -48,7 +49,7 @@ class TaskTrackerCard extends StatelessWidget {
                   Text(
                     'Due Date: $dueDate',
                     style: const TextStyle(
-                      color: Colors.grey,
+                      color: AppColors.grey,
                       fontSize: 12,
                     ),
                   ),
@@ -97,22 +98,22 @@ class TaskTrackerCard extends StatelessWidget {
                         "${(progress * 100).round()}%",
                         style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                       ),
-                      progressColor: const Color(0xFF43A047),
-                      backgroundColor: Colors.grey.shade300,
+                      progressColor: AppColors.green600,
+                      backgroundColor: AppColors.bggrey,
                     ),
                     const SizedBox(width: 12),
-                    Icon(Icons.access_time, color: Colors.orange, size: 16),
+                    Icon(Icons.access_time, color: AppColors.orange, size: 16),
                     const SizedBox(width: 2),
                     Text(
                       '"${viewModel.getRemainingDays(dueDate)}"',
-                      style: const TextStyle(color: Colors.orange, fontSize: 12),
+                      style: const TextStyle(color: AppColors.orange, fontSize: 12),
                     ),
                     const SizedBox(width: 12),
-                    const Icon(Icons.edit, size: 16, color: Colors.grey),
+                    const Icon(Icons.edit, size: 16, color: AppColors.grey),
                     const SizedBox(width: 2),
                     Text(
                       'Assigned By\n(optional)',
-                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      style: const TextStyle(fontSize: 12, color: AppColors.grey),
                     ),
                   ],
                 ),
@@ -155,24 +156,24 @@ class TaskTrackerCard extends StatelessWidget {
     Color color;
     switch (label) {
       case 'Not Started':
-        color = Colors.grey;
+        color = AppColors.grey;
         break;
       case 'In Progress':
-        color = Colors.orange;
+        color = AppColors.orange;
         break;
       case 'Completed':
-        color = Colors.green;
+        color = AppColors.green;
         break;
       case 'Overdue':
-        color = Colors.red;
+        color = AppColors.red;
         break;
       default:
-        color = Colors.grey;
+        color = AppColors.grey;
     }
     return Icon(
       Icons.circle,
       size: 10,
-      color: label == selected ? color : Colors.grey.shade300,
+      color: label == selected ? color : AppColors.grey400,
     );
   }
 
@@ -180,23 +181,23 @@ class TaskTrackerCard extends StatelessWidget {
     Color color;
     switch (label) {
       case 'Low':
-        color = Colors.green;
+        color = AppColors.green;
         break;
       case 'Medium':
-        color = Colors.orange;
+        color = AppColors.orange;
         break;
       case 'High':
-        color = Colors.red;
+        color = AppColors.red;
         break;
       default:
-        color = Colors.grey;
+        color = AppColors.grey;
     }
     return Text(
       label,
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 13,
-        color: selected == label ? color : Colors.black,
+        color: selected == label ? color : AppColors.black,
       ),
     );
   }
@@ -207,7 +208,7 @@ class TaskTrackerCard extends StatelessWidget {
         Icon(
           selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
           size: 16,
-          color: selected ? Colors.green : Colors.grey,
+          color: selected ? AppColors.green : AppColors.grey,
         ),
         const SizedBox(width: 2),
         Text(
@@ -215,7 +216,7 @@ class TaskTrackerCard extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 13,
-            color: selected ? Colors.green : Colors.black,
+            color: selected ? AppColors.green : AppColors.black,
           ),
         ),
       ],
@@ -238,7 +239,7 @@ class _DottedLine extends StatelessWidget {
             return Container(
               width: dashWidth,
               height: 1,
-              color: Colors.grey.shade400,
+              color: AppColors.grey400,
             );
           }),
         );

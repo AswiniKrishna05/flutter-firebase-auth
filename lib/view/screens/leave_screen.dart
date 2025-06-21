@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/app_colors.dart';
+import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'dashboard_content_screen.dart';
 import 'apply_leave_screen.dart';
 import 'package:provider/provider.dart';
 import '../../view_model/leave_screen_viewmodel.dart';
+import '../../constants/strings.dart';
 
 class LeaveScreen extends StatelessWidget {
   const LeaveScreen({super.key});
@@ -41,9 +42,9 @@ class LeaveScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: const TextField(
+                            child: TextField(
                               decoration: InputDecoration(
-                                hintText: "Search",
+                                hintText: AppStrings.searchHint,
                                 isDense: true,
                                 contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                                 border: InputBorder.none,
@@ -73,7 +74,7 @@ class LeaveScreen extends StatelessWidget {
                         const SizedBox(width: 12),
                         const CircleAvatar(
                           radius: 16,
-                          backgroundImage: NetworkImage('https://media.istockphoto.com/id/1682296067/photo/happy-studio-portrait-or-professional-man-real-estate-agent-or-asian-businessman-smile-for.jpg?s=612x612&w=0&k=20&c=9zbG2-9fl741fbTWw5fNgcEEe4ll-JegrGlQQ6m54rg='),
+                          backgroundImage: NetworkImage('https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E='),
                         ),
                       ],
                     ),
@@ -135,7 +136,7 @@ class _LeaveTabBar extends StatelessWidget {
                     Icon(Icons.dashboard, color: selectedIndex == 0 ? blue : Colors.black54, size: 20),
                     const SizedBox(width: 6),
                     Text(
-                      'Dashboard',
+                      AppStrings.dashboard,
                       style: TextStyle(
                         color: selectedIndex == 0 ? blue : Colors.black54,
                         fontWeight: selectedIndex == 0 ? FontWeight.w600 : FontWeight.normal,
@@ -162,7 +163,7 @@ class _LeaveTabBar extends StatelessWidget {
                     Icon(Icons.assignment, color: selectedIndex == 1 ? blue : Colors.black54, size: 20),
                     const SizedBox(width: 6),
                     Text(
-                      'Request Leave',
+                      AppStrings.requestLeave,
                       style: TextStyle(
                         color: selectedIndex == 1 ? blue : Colors.black54,
                         fontWeight: selectedIndex == 1 ? FontWeight.w600 : FontWeight.normal,

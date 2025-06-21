@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'package:provider/provider.dart';
 import '../../view_model/punch_in_success_view_model.dart';
 
@@ -54,8 +55,8 @@ class _PunchInSuccessScreenState extends State<PunchInSuccessScreen> {
                     end: Alignment.bottomCenter,
                     stops: [0.55, 2.0],
                     colors: [
-                      Color(0xFFE6F9E8), // Light green
-                      Color(0xFF60EF76), // Darker green
+                      AppColors.verylightgreen, // Light green
+                     AppColors.brightMintGreen, // Darker green
                     ],
                   ),
                 ),
@@ -89,7 +90,7 @@ class _PunchInSuccessScreenState extends State<PunchInSuccessScreen> {
                       "at ${viewModel.currentTime}",
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.green[800],
+                        color: AppColors.green800,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
