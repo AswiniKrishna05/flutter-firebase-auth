@@ -29,9 +29,11 @@ class SignupViewModel extends ChangeNotifier {
       );
 
       UserModel user = UserModel(
+        id: userCred.user!.uid,
         fullName: fullNameController.text.trim(),
         email: emailController.text.trim(),
         phone: phoneController.text.trim(),
+        createdAt: DateTime.now(),
       );
 
       await FirebaseFirestore.instance

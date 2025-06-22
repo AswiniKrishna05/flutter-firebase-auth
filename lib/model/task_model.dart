@@ -1,36 +1,51 @@
-import 'task_model.dart';
+enum TaskStatus {
+  notStarted,
+  inProgress,
+  completed,
+  overdue,
+  cancelled,
+}
 
-class TaskTrackerModel {
+enum TaskPriority {
+  low,
+  medium,
+  high,
+  urgent,
+}
+
+class TaskModel {
   final String id;
   final String title;
   final String description;
+  final String assignedTo;
+  final String assignedBy;
+  final DateTime assignedDate;
   final DateTime dueDate;
-  final double progress;
   final TaskStatus status;
   final TaskPriority priority;
-  final String? assignedBy;
-  final String assignedTo;
-  final DateTime assignedDate;
-  final DateTime? completedDate;
-  final String? notes;
+  final double progress; // 0.0 to 1.0
   final List<String> tags;
   final String? attachment;
+  final String? notes;
+  final DateTime? completedDate;
+  final String? completedBy;
 
-  TaskTrackerModel({
+  TaskModel({
     required this.id,
     required this.title,
     required this.description,
+    required this.assignedTo,
+    required this.assignedBy,
+    required this.assignedDate,
     required this.dueDate,
-    this.progress = 0.0,
     this.status = TaskStatus.notStarted,
     this.priority = TaskPriority.medium,
-    this.assignedBy,
-    required this.assignedTo,
-    required this.assignedDate,
-    this.completedDate,
-    this.notes,
+    this.progress = 0.0,
     this.tags = const [],
     this.attachment,
+    this.notes,
+    this.completedDate,
+    this.completedBy,
   });
 
   Map<String, dynamic> toMap() {
@@ -38,27 +53,30 @@ class TaskTrackerModel {
       'id': id,
       'title': title,
       'description': description,
+      'assignedTo': assignedTo,
+      'assignedBy': assignedBy,
+      'assignedDate': assignedDate.toIso8601String(),
       'dueDate': dueDate.toIso8601String(),
-      'progress': progress,
       'status': status.name,
       'priority': priority.name,
-      'assignedBy': assignedBy,
-      'assignedTo': assignedTo,
-      'assignedDate': assignedDate.toIso8601String(),
-      'completedDate': completedDate?.toIso8601String(),
-      'notes': notes,
+      'progress': progress,
       'tags': tags,
       'attachment': attachment,
+      'notes': notes,
+      'completedDate': completedDate?.toIso8601String(),
+      'completedBy': completedBy,
     };
   }
 
-  factory TaskTrackerModel.fromMap(Map<String, dynamic> map) {
-    return TaskTrackerModel(
+  factory TaskModel.fromMap(Map<String, dynamic> map) {
+    return TaskModel(
       id: map['id'] ?? '',
       title: map['title'] ?? '',
       description: map['description'] ?? '',
+      assignedTo: map['assignedTo'] ?? '',
+      assignedBy: map['assignedBy'] ?? '',
+      assignedDate: DateTime.parse(map['assignedDate']),
       dueDate: DateTime.parse(map['dueDate']),
-      progress: (map['progress'] ?? 0.0).toDouble(),
       status: TaskStatus.values.firstWhere(
         (e) => e.name == map['status'],
         orElse: () => TaskStatus.notStarted,
@@ -67,49 +85,50 @@ class TaskTrackerModel {
         (e) => e.name == map['priority'],
         orElse: () => TaskPriority.medium,
       ),
-      assignedBy: map['assignedBy'],
-      assignedTo: map['assignedTo'] ?? '',
-      assignedDate: DateTime.parse(map['assignedDate']),
+      progress: (map['progress'] ?? 0.0).toDouble(),
+      tags: List<String>.from(map['tags'] ?? []),
+      attachment: map['attachment'],
+      notes: map['notes'],
       completedDate: map['completedDate'] != null 
           ? DateTime.parse(map['completedDate']) 
           : null,
-      notes: map['notes'],
-      tags: List<String>.from(map['tags'] ?? []),
-      attachment: map['attachment'],
+      completedBy: map['completedBy'],
     );
   }
 
-  TaskTrackerModel copyWith({
+  TaskModel copyWith({
     String? id,
     String? title,
     String? description,
+    String? assignedTo,
+    String? assignedBy,
+    DateTime? assignedDate,
     DateTime? dueDate,
-    double? progress,
     TaskStatus? status,
     TaskPriority? priority,
-    String? assignedBy,
-    String? assignedTo,
-    DateTime? assignedDate,
-    DateTime? completedDate,
-    String? notes,
+    double? progress,
     List<String>? tags,
     String? attachment,
+    String? notes,
+    DateTime? completedDate,
+    String? completedBy,
   }) {
-    return TaskTrackerModel(
+    return TaskModel(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
+      assignedTo: assignedTo ?? this.assignedTo,
+      assignedBy: assignedBy ?? this.assignedBy,
+      assignedDate: assignedDate ?? this.assignedDate,
       dueDate: dueDate ?? this.dueDate,
-      progress: progress ?? this.progress,
       status: status ?? this.status,
       priority: priority ?? this.priority,
-      assignedBy: assignedBy ?? this.assignedBy,
-      assignedTo: assignedTo ?? this.assignedTo,
-      assignedDate: assignedDate ?? this.assignedDate,
-      completedDate: completedDate ?? this.completedDate,
-      notes: notes ?? this.notes,
+      progress: progress ?? this.progress,
       tags: tags ?? this.tags,
       attachment: attachment ?? this.attachment,
+      notes: notes ?? this.notes,
+      completedDate: completedDate ?? this.completedDate,
+      completedBy: completedBy ?? this.completedBy,
     );
   }
 
@@ -130,25 +149,4 @@ class TaskTrackerModel {
   int get daysOverdue => isOverdueDate ? DateTime.now().difference(dueDate).inDays : 0;
 
   String get progressPercentage => '${(progress * 100).toInt()}%';
-
-  // Convert to TaskModel
-  TaskModel toTaskModel() {
-    return TaskModel(
-      id: id,
-      title: title,
-      description: description,
-      assignedTo: assignedTo,
-      assignedBy: assignedBy ?? '',
-      assignedDate: assignedDate,
-      dueDate: dueDate,
-      status: status,
-      priority: priority,
-      progress: progress,
-      tags: tags,
-      attachment: attachment,
-      notes: notes,
-      completedDate: completedDate,
-      completedBy: isCompleted ? assignedTo : null,
-    );
-  }
-}
+} 
