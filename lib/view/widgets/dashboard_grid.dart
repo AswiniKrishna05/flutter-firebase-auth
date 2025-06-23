@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/view/screens/attendance_calendar_screen.dart';
 import '../../constants/app_colors.dart';
 import '../screens/leave_screen.dart';
 import 'dash_card.dart';
@@ -38,6 +39,8 @@ class DashboardGrid extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (_) => const LeaveScreen()),
               );
+            } else if(label== 'Attendance'){
+              Navigator.push(context, MaterialPageRoute(builder: (_)=> const AttendanceCalendarScreen()));
             }
           },
           child: DashCard(label: label, icon: icon, colour: colour),
