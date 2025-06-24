@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/view/screens/attendance_calendar_screen.dart';
 import '../../constants/app_colors.dart';
+import '../screens/holiday_list_screen.dart';
 import '../screens/leave_screen.dart';
 import 'dash_card.dart';
 import '../screens/apply_leave_screen.dart';
@@ -41,6 +42,9 @@ class DashboardGrid extends StatelessWidget {
               );
             } else if(label== 'Attendance'){
               Navigator.push(context, MaterialPageRoute(builder: (_)=> const AttendanceCalendarScreen()));
+            }else if (label == 'Holiday List'){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_)=> const HolidayListScreen()));
             }
           },
           child: DashCard(label: label, icon: icon, colour: colour),

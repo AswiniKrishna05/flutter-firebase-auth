@@ -47,6 +47,7 @@ dependencies:
   dotted_border: ^2.0.0
   pie_chart: ^5.4.0
   table_calendar: ^3.2.0
+  marquee: ^2.2.3
 
 
 dev_dependencies:

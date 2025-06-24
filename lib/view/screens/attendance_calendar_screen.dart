@@ -31,9 +31,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 16),
                   _buildCalendarHeader(vm),
-                  const SizedBox(height: 8),
                   _buildCalendarCard(context, vm),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   _buildOverviewAndPieChart(vm),
                   const SizedBox(height: 16),
                   _buildDayDetails(vm),
@@ -48,8 +47,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
 
   Widget _buildCalendarHeader(AttendanceCalendarViewModel vm) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -105,7 +104,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const SizedBox(height: 8),
+          const SizedBox(height: 0),
           TableCalendar(
             focusedDay: vm.focusedDay,
             firstDay: DateTime.utc(2020, 1, 1),
@@ -115,10 +114,13 @@ class AttendanceCalendarScreen extends StatelessWidget {
             onDaySelected: (selectedDay, focusedDay) => vm.selectDay(selectedDay, focusedDay),
             onFormatChanged: vm.onFormatChanged,
             onPageChanged: vm.onPageChanged,
-            daysOfWeekStyle: const DaysOfWeekStyle(
+            daysOfWeekStyle: DaysOfWeekStyle(
+              dowTextFormatter: (date, locale) =>
+                  DateFormat.E(locale).format(date).toUpperCase(), // SUN, MON, etc.
               weekdayStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
               weekendStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
             ),
+
             headerVisible: false,
             calendarStyle: CalendarStyle(
               todayDecoration: const BoxDecoration(
@@ -197,7 +199,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -216,10 +218,24 @@ class AttendanceCalendarScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Overview', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
-          const SizedBox(height: 4),
-          const Text('Total Days : 31', style: TextStyle(color: Colors.black54, fontSize: 14)),
-          const SizedBox(height: 12),
+          Container(
+            margin: const EdgeInsets.only(top: 6, left: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Overview',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                Text(
+                  'Total Days : 31',
+                  style: TextStyle(color: Colors.black54, fontSize: 14),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -229,10 +245,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
               _buildStatBox("Late", late, AppColors.blue),
             ],
           ),
-          const SizedBox(height: 30),
 
            DonutChartWithDays(),
-          const SizedBox(height: 16),
         ],
       ),
     );
@@ -536,7 +550,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
   Widget _buildStatBox(String label, int count, Color color) {
     return Container(
       width: 72,
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -544,7 +558,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
-            blurRadius: 4,
+            blurRadius: 1,
             offset: Offset(0, 2),
           ),
         ],
