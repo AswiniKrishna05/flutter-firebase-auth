@@ -143,11 +143,12 @@ class _ApplyLeaveForm extends StatelessWidget {
                               final picked = await showDatePicker(
                                 context: context,
                                 initialDate: DateTime.now(),
-                                firstDate: DateTime(2020),
+                                firstDate: DateTime.now(), // 👈 Prevents selecting past dates
                                 lastDate: DateTime(2100),
                               );
                               if (picked != null) model.setFromDate(picked);
                             },
+
                             controller: TextEditingController(
                               text: model.fromDate != null
                                   ? "${model.fromDate!.day}/${model.fromDate!.month}/${model.fromDate!.year}"

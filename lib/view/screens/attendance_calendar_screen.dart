@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:dotted_border/dotted_border.dart';
+
+import '../../utils/custom/DonutChartWithDays.dart';
 
 class AttendanceCalendarScreen extends StatelessWidget {
   const AttendanceCalendarScreen({super.key});
@@ -27,11 +30,11 @@ class AttendanceCalendarScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 16),
+                  _buildCalendarHeader(vm),
+                  const SizedBox(height: 8),
                   _buildCalendarCard(context, vm),
                   const SizedBox(height: 16),
-                  _buildOverviewCard(vm),
-                  const SizedBox(height: 5),
-                  _buildPieChart(vm),
+                  _buildOverviewAndPieChart(vm),
                   const SizedBox(height: 16),
                   _buildDayDetails(vm),
                 ],
@@ -43,13 +46,51 @@ class AttendanceCalendarScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildCalendarHeader(AttendanceCalendarViewModel vm) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Color(0xFFE0E0E0),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.chevron_left, size: 28),
+            onPressed: vm.previousMonth,
+          ),
+          Row(
+            children: [
+              Text(
+                DateFormat.yMMMM().format(vm.focusedDay),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              const SizedBox(width: 4),
+              const Icon(Icons.keyboard_arrow_down, size: 22),
+            ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.chevron_right, size: 28),
+            onPressed: vm.nextMonth,
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildCalendarCard(BuildContext context, AttendanceCalendarViewModel vm) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: Color(0xFFE0E0E0),
           width: 1,
@@ -64,40 +105,6 @@ class AttendanceCalendarScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.chevron_left, size: 28),
-                onPressed: vm.previousMonth,
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Color(0xFFE0E0E0),
-                    width: 1,
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      DateFormat.yMMMM().format(vm.focusedDay),
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    const SizedBox(width: 4),
-                    const Icon(Icons.keyboard_arrow_down, size: 22),
-                  ],
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.chevron_right, size: 28),
-                onPressed: vm.nextMonth,
-              ),
-            ],
-          ),
           const SizedBox(height: 8),
           TableCalendar(
             focusedDay: vm.focusedDay,
@@ -167,59 +174,37 @@ class AttendanceCalendarScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOverviewCard(AttendanceCalendarViewModel vm) {
+  Widget _buildOverviewAndPieChart(AttendanceCalendarViewModel vm) {
+    // Hardcoded demo values
+    const int present = 20;
+    const int absent = 3;
+    const int leaves = 2;
+    const int late = 6;
+
+    final dataMap = {
+      "Present": present.toDouble(),
+      "Absent": absent.toDouble(),
+      "Leaves": leaves.toDouble(),
+      "Late": late.toDouble(),
+    }..removeWhere((key, value) => value == 0);
+
+    final colorList = [
+      AppColors.green,
+      AppColors.red,
+      AppColors.orange,
+      AppColors.blue,
+    ];
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: Color(0xFFE0E0E0),
           width: 1,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Text('Overview', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Text('Total Days : 31', style: TextStyle(color: Colors.black54, fontSize: 14)),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildStatBox("Presence", vm.presentCount, AppColors.green),
-              _buildStatBox("Absence", vm.absentCount, AppColors.red),
-              _buildStatBox("Leaves", vm.leaveCount, AppColors.orange),
-              _buildStatBox("Late", vm.lateCount, AppColors.blue),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStatBox(String label, int count, Color color) {
-    return Container(
-      width: 72,
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Color(0xFFE0E0E0), width: 1),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -229,79 +214,26 @@ class AttendanceCalendarScreen extends StatelessWidget {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 14)),
-          const SizedBox(height: 6),
-          Text(
-            count.toString().padLeft(2, '0'),
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: color),
+          const Text('Overview', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+          const SizedBox(height: 4),
+          const Text('Total Days : 31', style: TextStyle(color: Colors.black54, fontSize: 14)),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildStatBox("Presence", present, AppColors.green),
+              _buildStatBox("Absence", absent, AppColors.red),
+              _buildStatBox("Leaves", leaves, AppColors.orange),
+              _buildStatBox("Late", late, AppColors.blue),
+            ],
           ),
+          const SizedBox(height: 30),
+
+           DonutChartWithDays(),
+          const SizedBox(height: 16),
         ],
-      ),
-    );
-  }
-
-  Widget _buildPieChart(AttendanceCalendarViewModel vm) {
-    final dataMap = {
-      "Presence": 20.0, // Hardcoded to match reference
-      "Absence": 3.0,
-      "Leaves": 2.0,
-      "Late": 6.0,
-    };
-
-    final colorList = [
-      Colors.green,  // Presence
-      Colors.red,    // Absence
-      Colors.orange, // Leaves
-      Colors.blue,   // Late
-    ];
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(30),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Color(0xFFE0E0E0)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: PieChart(
-        dataMap: dataMap,
-        colorList: colorList,
-        chartType: ChartType.ring,
-        chartRadius: 120,
-        ringStrokeWidth: 40,
-        centerText: "", // Hardcoded total
-        centerTextStyle: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ),
-        chartValuesOptions: ChartValuesOptions(
-          showChartValues: true,
-          showChartValuesInPercentage: false,
-          showChartValuesOutside: true,
-          decimalPlaces: 0,
-          chartValueStyle: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        legendOptions: LegendOptions(
-          showLegends: false,
-          legendPosition: LegendPosition.bottom,
-          legendTextStyle: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
     );
   }
@@ -328,7 +260,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween, // This will push items to both ends
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Status',
@@ -351,89 +283,182 @@ class AttendanceCalendarScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          Divider(thickness: 1, color: Color(0xFFE0E0E0), height: 32),
+
+          const SizedBox(height: 8),
+          DottedBorder(
+            dashPattern: [4, 4],
+            color: Color(0xFFBDBDBD),
+            strokeWidth: 1,
+            customPath: (size) => Path()
+              ..moveTo(0, 0)
+              ..lineTo(size.width, 0),
+            child: SizedBox(width: double.infinity, height: 1),
+          ),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.check_circle, color: AppColors.green),
-                      const SizedBox(width: 6),
-                      Text('Check-in', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(checkIn, style: TextStyle(color: AppColors.green, fontSize: 16, fontWeight: FontWeight.w500)),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.alarm, color: AppColors.green, size: 22),
+                        const SizedBox(width: 6),
+                        Text('Check-in', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(checkIn, style: TextStyle(color: AppColors.green, fontSize: 13, fontWeight: FontWeight.w500)),
+                  ],
+                ),
               ),
-              Icon(Icons.arrow_forward_ios, size: 20, color: Colors.black26),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.check_circle_outline, color: AppColors.green),
-                      const SizedBox(width: 6),
-                      Text('Check-out', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(checkOut, style: TextStyle(color: AppColors.green, fontSize: 16, fontWeight: FontWeight.w500)),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: DottedBorder(
+                  dashPattern: [4, 4],
+                  color: Color(0xFFBDBDBD),
+                  strokeWidth: 1,
+                  customPath: (size) {
+                    final path = Path();
+                    path.moveTo(0, size.height / 2);
+                    path.lineTo(size.width, size.height / 2);
+                    return path;
+                  },
+                  child: SizedBox(width: 32, height: 24, child: Icon(Icons.arrow_forward, size: 18, color: Color(0xFFBDBDBD))),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.alarm_off, color: AppColors.green, size: 22),
+                        const SizedBox(width: 6),
+                        Text('Check-out', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(checkOut, style: TextStyle(color: AppColors.green, fontSize: 13, fontWeight: FontWeight.w500)),
+                  ],
+                ),
               ),
             ],
           ),
           const SizedBox(height: 16),
           Row(
             children: [
+              // First Box - Work Mode (left-aligned)
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Color(0xFFE0E0E0), width: 1),
-                  ),
-                  child: Column(
-                    children: [
-                      Text('Work Mode', style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
-                      const SizedBox(height: 6),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE8EDFF),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(workMode, style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold)),
+                child: Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                      margin: const EdgeInsets.only(left: 1),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(3),
+                        border: Border.all(color: Color(0xFFE0E0E0), width: 1),
                       ),
-                    ],
-                  ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Work Mode',
+                            style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(height: 6),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFE8EDFF),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              workMode,
+                              style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: Container(
+                        width: 3,
+                        decoration: BoxDecoration(
+                          color: AppColors.blue,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(width: 12),
+
+              const SizedBox(width: 12), // Gap between boxes
+
+              // Spacer to push the second box to the right
+              Spacer(),
+
+              // Second Box - Verification (right-aligned)
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Color(0xFFE0E0E0), width: 1),
-                  ),
-                  child: Column(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Stack(
                     children: [
-                      Text('Verification', style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
-                      const SizedBox(height: 6),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                        margin: const EdgeInsets.only(left: 1),
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFF0D6),
-                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(3),
+                          border: Border.all(color: Color(0xFFE0E0E0), width: 1),
                         ),
-                        child: Text(verification, style: TextStyle(color: AppColors.orange, fontWeight: FontWeight.bold)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Verification',
+                              style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(height: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFFF0D6),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                verification,
+                                style: TextStyle(color: AppColors.orange, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        child: Container(
+                          width: 3,
+                          decoration: BoxDecoration(
+                            color: AppColors.blue,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -441,6 +466,9 @@ class AttendanceCalendarScreen extends StatelessWidget {
               ),
             ],
           ),
+
+
+
           const SizedBox(height: 12),
           Container(
             width: double.infinity,
@@ -448,7 +476,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Color(0xFFE0E0E0), width: 1),
             ),
             child: Column(
@@ -476,7 +504,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Color(0xFFE0E0E0), width: 1),
             ),
             child: Column(
@@ -498,6 +526,36 @@ class AttendanceCalendarScreen extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 40),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatBox(String label, int count, Color color) {
+    return Container(
+      width: 72,
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Color(0xFFE0E0E0), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Text(label, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 14)),
+          const SizedBox(height: 6),
+          Text(
+            count.toString().padLeft(2, '0'),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: color),
           ),
         ],
       ),
