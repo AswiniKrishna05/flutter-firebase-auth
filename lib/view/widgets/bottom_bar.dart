@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../constants/app_colors.dart';
 
 class BottomBar extends StatelessWidget {
@@ -13,8 +12,8 @@ class BottomBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.history_edu_outlined), label: 'History'),
-        BottomNavigationBarItem(icon: Icon(Icons.exit_to_app_sharp), label: 'Leave'),
+        BottomNavigationBarItem(icon: Icon(Icons.history_edu), label: 'History'),
+        BottomNavigationBarItem(icon: Icon(Icons.arrow_circle_right_sharp), label: 'Leave'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
     );

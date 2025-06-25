@@ -45,7 +45,7 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
     DateTime(2025, 6, 16): Colors.red,
     DateTime(2025, 6, 17): Colors.red,
     DateTime(2025, 6, 20): Colors.yellow,
-    DateTime(2025, 6, 25): Colors.white,
+    DateTime(2025, 6, 25): Colors.blue,
   };
 
   @override
@@ -94,7 +94,7 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                              leave.title,
                              style: const TextStyle(
                                fontSize: 14,
-                               fontWeight: FontWeight.bold,
+                               fontWeight: FontWeight.w500,
                                color: AppColors.black,
                              ),
                             ),

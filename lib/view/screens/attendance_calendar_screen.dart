@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/constants/app_colors.dart';
+import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
 import 'package:flutter_firebase_auth/view_model/attendance_calendar_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -41,6 +42,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
             );
           },
         ),
+        bottomNavigationBar: BottomBar(),
       ),
     );
   }
@@ -105,70 +107,73 @@ class AttendanceCalendarScreen extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 0),
-          TableCalendar(
-            focusedDay: vm.focusedDay,
-            firstDay: DateTime.utc(2020, 1, 1),
-            lastDay: DateTime.utc(2030, 12, 31),
-            calendarFormat: vm.calendarFormat,
-            selectedDayPredicate: (day) => isSameDay(vm.selectedDay, day),
-            onDaySelected: (selectedDay, focusedDay) => vm.selectDay(selectedDay, focusedDay),
-            onFormatChanged: vm.onFormatChanged,
-            onPageChanged: vm.onPageChanged,
-            daysOfWeekStyle: DaysOfWeekStyle(
-              dowTextFormatter: (date, locale) =>
-                  DateFormat.E(locale).format(date).toUpperCase(), // SUN, MON, etc.
-              weekdayStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-              weekendStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-            ),
+          SizedBox(
+            height: 280,
+            child: TableCalendar(
+              focusedDay: vm.focusedDay,
+              firstDay: DateTime.utc(2020, 1, 1),
+              lastDay: DateTime.utc(2030, 12, 31),
+              calendarFormat: vm.calendarFormat,
+              selectedDayPredicate: (day) => isSameDay(vm.selectedDay, day),
+              onDaySelected: (selectedDay, focusedDay) => vm.selectDay(selectedDay, focusedDay),
+              onFormatChanged: vm.onFormatChanged,
+              onPageChanged: vm.onPageChanged,
+              daysOfWeekStyle: DaysOfWeekStyle(
+                dowTextFormatter: (date, locale) =>
+                    DateFormat.E(locale).format(date).toUpperCase(), // SUN, MON, etc.
+                weekdayStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                weekendStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+              ),
 
-            headerVisible: false,
-            calendarStyle: CalendarStyle(
-              todayDecoration: const BoxDecoration(
-                color: Color(0xFFCCE7FF),
-                shape: BoxShape.circle,
+              headerVisible: false,
+              calendarStyle: CalendarStyle(
+                todayDecoration: const BoxDecoration(
+                  color: Color(0xFFCCE7FF),
+                  shape: BoxShape.circle,
+                ),
+                selectedDecoration: const BoxDecoration(
+                  color: Color(0xFFCCE7FF),
+                  shape: BoxShape.circle,
+                ),
+                todayTextStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                defaultTextStyle: const TextStyle(fontWeight: FontWeight.w600),
               ),
-              selectedDecoration: const BoxDecoration(
-                color: Color(0xFFCCE7FF),
-                shape: BoxShape.circle,
-              ),
-              todayTextStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              defaultTextStyle: const TextStyle(fontWeight: FontWeight.w600),
-            ),
-            eventLoader: (day) => vm.getEventsForDay(day),
-            calendarBuilders: CalendarBuilders(
-              defaultBuilder: (context, day, focusedDay) {
-                final status = vm.getEventsForDay(day).isNotEmpty ? vm.getEventsForDay(day).first : null;
-                if (status != null) {
+              eventLoader: (day) => vm.getEventsForDay(day),
+              calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context, day, focusedDay) {
+                  final status = vm.getEventsForDay(day).isNotEmpty ? vm.getEventsForDay(day).first : null;
+                  if (status != null) {
+                    return Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: _statusBackgroundColor(status),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '${day.day}',
+                        style: TextStyle(
+                          color: status == 'Late' ? Colors.blue : Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    );
+                  }
+                  return null;
+                },
+                todayBuilder: (context, day, focusedDay) {
                   return Container(
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: _statusBackgroundColor(status),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF5DBBFF),
                       shape: BoxShape.circle,
                     ),
                     child: Text(
                       '${day.day}',
-                      style: TextStyle(
-                        color: status == 'Late' ? Colors.blue : Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   );
-                }
-                return null;
-              },
-              todayBuilder: (context, day, focusedDay) {
-                return Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF5DBBFF),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(
-                    '${day.day}',
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                );
-              },
+                },
+              ),
             ),
           ),
         ],
@@ -541,7 +546,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
         ],
       ),
     );
@@ -589,5 +594,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
       default:
         return Colors.white;
     }
+
   }
+
 }

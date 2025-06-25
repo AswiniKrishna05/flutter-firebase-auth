@@ -6,6 +6,9 @@ import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../widgets/bottom_bar.dart';
+import '../widgets/custom_app_bar.dart';
+
 class HolidayListScreen extends StatelessWidget {
   const HolidayListScreen({super.key});
 
@@ -15,87 +18,10 @@ class HolidayListScreen extends StatelessWidget {
       create: (_) => HolidayListViewModel(),
       child: Scaffold(
         backgroundColor: AppColors.white,
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: AppColors.white,
-          currentIndex: 0,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          type: BottomNavigationBarType.fixed, // <-- Add this line
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.window_rounded), label: 'Holiday'),
-            BottomNavigationBarItem(icon: Icon(Icons.arrow_circle_right), label: 'Profile'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Student'),
-          ],
-        ),
-
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      children: [
-                        Image.asset('assets/ziya_logo.png', width: 40),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Container(
-                            height: 38,
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.black.withOpacity(0.1),
-                                  blurRadius: 6,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: AppStrings.searchHint,
-                                isDense: true,
-                                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Stack(
-                          children: [
-                            const Icon(Icons.notifications, color: Colors.blue, size: 28),
-                            Positioned(
-                              right: 0,
-                              top: 2,
-                              child: Container(
-                                width: 10,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  color: AppColors.red,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: AppColors.white, width: 1),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        const SizedBox(width: 12),
-                        const CircleAvatar(
-                          radius: 16,
-                          backgroundImage: NetworkImage(
-                            'https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E=',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),SizedBox(height: 20,),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        appBar: const CustomAppBar(),
+        body: SingleChildScrollView(
+          child:  Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 26.0, 16.0, 0.0),
                     child: Consumer<HolidayListViewModel>(
                       builder: (context, model, _) {
                         return Column(
@@ -286,12 +212,9 @@ class HolidayListScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                ],
               ),
+        bottomNavigationBar: BottomBar(),
             ),
-          ),
-        ),
-      ),
     );
   }
 
@@ -431,6 +354,7 @@ class _LegendSquare extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Text(label, style: TextStyle(fontSize: 14)),
+
       ],
     );
   }
