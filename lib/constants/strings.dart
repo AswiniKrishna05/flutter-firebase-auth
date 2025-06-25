@@ -123,4 +123,12 @@ class AppStrings {
   // Error Messages
   static const String noUserFoundWithPhone = "No user found with this phone number";
   static const String enteredDetailsIncorrect = "Entered details are incorrect";
+
+  // Leave Status Screen
+  static const String leaveStatusTitle = "Leave Status";
+  static const String todaysTaskTitle = "Today's Task";
+  static const String noTaskAssigned = "No tasks assigned for today.";
+  static const String taskInProgress = "Task In Progress";
+  static const String allTasksCompleted = "All tasks for today are completed!";
+
 }
