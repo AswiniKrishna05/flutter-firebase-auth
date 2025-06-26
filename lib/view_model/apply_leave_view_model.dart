@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 import '../constants/strings.dart';
 
 class ApplyLeaveViewModel extends ChangeNotifier {
@@ -55,11 +56,43 @@ class ApplyLeaveViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Attachment (you can enhance this to hold file paths)
-  String? attachment;
+  // File attachment
+  PlatformFile? selectedFile;
+  String? attachmentPath;
+  String? attachmentName;
 
-  void setAttachment(String? filePath) {
-    attachment = filePath;
+  Future<void> pickFile() async {
+    try {
+      print('File picker started...');
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png'],
+        allowMultiple: false,
+      );
+
+      print('File picker result: $result');
+
+      if (result != null) {
+        selectedFile = result.files.first;
+        attachmentPath = selectedFile!.path;
+        attachmentName = selectedFile!.name;
+        print('File selected: ${selectedFile!.name}');
+        print('File path: ${selectedFile!.path}');
+        print('File size: ${selectedFile!.size}');
+        notifyListeners();
+      } else {
+        print('No file selected');
+      }
+    } catch (e) {
+      print('Error picking file: $e');
+      debugPrint('Error picking file: $e');
+    }
+  }
+
+  void removeFile() {
+    selectedFile = null;
+    attachmentPath = null;
+    attachmentName = null;
     notifyListeners();
   }
 
@@ -87,7 +120,9 @@ class ApplyLeaveViewModel extends ChangeNotifier {
     toDate = null;
     leaveType = null;
     reasonController.clear();
-    attachment = null;
+    selectedFile = null;
+    attachmentPath = null;
+    attachmentName = null;
     notifyListeners();
   }
 

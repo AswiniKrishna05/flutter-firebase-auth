@@ -60,7 +60,6 @@ class AppStrings {
 
   // Leave Management
   static const String applyForLeave = "Apply for Leave";
-  static const String employeeName = "Employee Name";
   static const String employeeId = "Employee ID";
   static const String fromDate = "From Date";
   static const String toDate = "To Date";
@@ -68,8 +67,6 @@ class AppStrings {
   static const String chooseType = "Choose Type";
   static const String reason = "Text area";
   static const String attachment = "Attachment(Optional)";
-  static const String from = "From";
-  static const String to = "To";
 
   // Leave Types
   static const String sickLeave = "Sick Leave";
@@ -79,6 +76,17 @@ class AppStrings {
   static const String fullDay = "Full Day";
   static const String halfDay = "Half Day";
   static const String shortLeave = "Short Leave";
+
+  static const String employeeNameAutoFilled = 'Employee name - auto-filled';
+  static const String employeeIdAutoFilled = 'Employee ID - auto-filled';
+  static const String employeeName = 'Employee Name';
+  static const String to = 'To';
+  static const String fromDateHint = 'From Date';
+  static const String toDateHint = 'To Date';
+  static const String textArea = 'Text area';
+  static const String chooseFile = 'Choose File (Optional)';
+  static const String selectedFile = 'Selected File';
+  static const String submit = 'Submit';
 
   // Task Management
   static const String status = "Status:";
@@ -130,5 +138,20 @@ class AppStrings {
   static const String noTaskAssigned = "No tasks assigned for today.";
   static const String taskInProgress = "Task In Progress";
   static const String allTasksCompleted = "All tasks for today are completed!";
+
+  // Payslip & Salary
+  static const String paidDays = "Paid Days";
+  static const String lopDays = "LOP Days";
+  static const String employeeNetPay = "Employee Net Pay";
+  static const String payslipForMonth = "Payslip for the Month";
+  static const String dateOfJoining = "Date of Joining";
+  static const String payPeriod = "Pay Period";
+  static const String payDate = "Pay Date";
+  static const String pfAc = "PF A/C Number :";
+  static const String uan = "UAN :";
+  static const String earnings = "EARNINGS";
+  static const String amount = "AMOUNT ";
+  static const String employeeSummary = "EMPLOYEE SUMMARY";
+
 
 }

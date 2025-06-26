@@ -4,6 +4,7 @@ import '../../constants/app_colors.dart';
 import '../screens/holiday_list_screen.dart';
 import '../screens/leave_screen.dart';
 import '../screens/leave_status_screen.dart';
+import '../screens/payslip_screen.dart';
 import 'dash_card.dart';
 import '../screens/apply_leave_screen.dart';
 
@@ -51,7 +52,13 @@ class DashboardGrid extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (_) => const LeaveStatusScreen()),
               );
+            }else if (label == 'Payslip') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const PayslipScreen()),
+              );
             }
+
           },
           child: DashCard(label: label, icon: icon, colour: colour),
         );
