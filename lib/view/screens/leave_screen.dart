@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/constants/app_colors.dart';
+import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
 import 'dashboard_content_screen.dart';
 import 'apply_leave_screen.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +47,8 @@ class LeaveScreen extends StatelessWidget {
                               decoration: InputDecoration(
                                 hintText: AppStrings.searchHint,
                                 isDense: true,
-                                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 12),
                                 border: InputBorder.none,
                               ),
                             ),
@@ -55,7 +57,8 @@ class LeaveScreen extends StatelessWidget {
                         const SizedBox(width: 8),
                         Stack(
                           children: [
-                            const Icon(Icons.notifications, color: Colors.blue, size: 28),
+                            const Icon(Icons.notifications,
+                                color: Colors.blue, size: 28),
                             Positioned(
                               right: 0,
                               top: 2,
@@ -65,7 +68,8 @@ class LeaveScreen extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: Colors.red,
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.white, width: 1),
+                                  border:
+                                      Border.all(color: Colors.white, width: 1),
                                 ),
                               ),
                             ),
@@ -74,7 +78,8 @@ class LeaveScreen extends StatelessWidget {
                         const SizedBox(width: 12),
                         const CircleAvatar(
                           radius: 16,
-                          backgroundImage: NetworkImage('https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E='),
+                          backgroundImage: NetworkImage(
+                              'https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E='),
                         ),
                       ],
                     ),
@@ -125,7 +130,9 @@ class _LeaveTabBar extends StatelessWidget {
               onTap: () => onTabSelected(0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: selectedIndex == 0 ? blue.withOpacity(0.08) : Colors.transparent,
+                  color: selectedIndex == 0
+                      ? blue.withOpacity(0.08)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 margin: const EdgeInsets.all(8),
@@ -133,13 +140,17 @@ class _LeaveTabBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.dashboard, color: selectedIndex == 0 ? blue : Colors.black54, size: 20),
+                    Icon(Icons.dashboard,
+                        color: selectedIndex == 0 ? blue : Colors.black54,
+                        size: 20),
                     const SizedBox(width: 6),
                     Text(
                       AppStrings.dashboard,
                       style: TextStyle(
                         color: selectedIndex == 0 ? blue : Colors.black54,
-                        fontWeight: selectedIndex == 0 ? FontWeight.w600 : FontWeight.normal,
+                        fontWeight: selectedIndex == 0
+                            ? FontWeight.w600
+                            : FontWeight.normal,
                       ),
                     ),
                   ],
@@ -154,19 +165,25 @@ class _LeaveTabBar extends StatelessWidget {
                 margin: const EdgeInsets.all(8),
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                  color: selectedIndex == 1 ? blue.withOpacity(0.08) : Colors.transparent,
+                  color: selectedIndex == 1
+                      ? blue.withOpacity(0.08)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.assignment, color: selectedIndex == 1 ? blue : Colors.black54, size: 20),
+                    Icon(Icons.assignment,
+                        color: selectedIndex == 1 ? blue : Colors.black54,
+                        size: 20),
                     const SizedBox(width: 6),
                     Text(
                       AppStrings.requestLeave,
                       style: TextStyle(
                         color: selectedIndex == 1 ? blue : Colors.black54,
-                        fontWeight: selectedIndex == 1 ? FontWeight.w600 : FontWeight.normal,
+                        fontWeight: selectedIndex == 1
+                            ? FontWeight.w600
+                            : FontWeight.normal,
                       ),
                     ),
                   ],

@@ -24,7 +24,8 @@ class PayslipPdfGenerator {
                 child: pw.Opacity(
                   opacity: 0.1,
                   child: pw.Center(
-                    child: pw.Image(watermarkImage, width: 300, height: 300, fit: pw.BoxFit.contain),
+                    child: pw.Image(watermarkImage,
+                        width: 300, height: 300, fit: pw.BoxFit.contain),
                   ),
                 ),
               ),
@@ -46,8 +47,14 @@ class PayslipPdfGenerator {
                             pw.Column(
                               crossAxisAlignment: pw.CrossAxisAlignment.start,
                               children: [
-                                pw.Text('ZiyaAcademy', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold, color: PdfColors.blue)),
-                                pw.Text('KEY-TO SUCCESS', style: pw.TextStyle(fontSize: 12, color: PdfColors.green)),
+                                pw.Text('ZiyaAcademy',
+                                    style: pw.TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: pw.FontWeight.bold,
+                                        color: PdfColors.blue)),
+                                pw.Text('KEY-TO SUCCESS',
+                                    style: pw.TextStyle(
+                                        fontSize: 12, color: PdfColors.green)),
                               ],
                             ),
                           ],
@@ -55,15 +62,20 @@ class PayslipPdfGenerator {
                         pw.Column(
                           crossAxisAlignment: pw.CrossAxisAlignment.end,
                           children: [
-                            pw.Text('Payslip for the Month', style: pw.TextStyle(fontSize: 12, color: PdfColors.grey700)),
-                            pw.Text(payslip.payPeriod, style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+                            pw.Text('Payslip for the Month',
+                                style: pw.TextStyle(
+                                    fontSize: 12, color: PdfColors.grey700)),
+                            pw.Text(payslip.payPeriod,
+                                style: pw.TextStyle(
+                                    fontWeight: pw.FontWeight.bold)),
                           ],
                         ),
                       ],
                     ),
                     pw.SizedBox(height: 12),
                     pw.Divider(),
-                    pw.Text('EMPLOYEE SUMMARY', style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+                    pw.Text('EMPLOYEE SUMMARY',
+                        style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
                     pw.SizedBox(height: 8),
 
                     pw.Row(
@@ -74,10 +86,12 @@ class PayslipPdfGenerator {
                           child: pw.Column(
                             crossAxisAlignment: pw.CrossAxisAlignment.start,
                             children: [
-                              _pdfInfoRow('Employee Name', payslip.employeeName),
+                              _pdfInfoRow(
+                                  'Employee Name', payslip.employeeName),
                               _pdfInfoRow('Designation', payslip.designation),
                               _pdfInfoRow('Employee ID', payslip.employeeId),
-                              _pdfInfoRow('Date of Joining', payslip.dateOfJoining),
+                              _pdfInfoRow(
+                                  'Date of Joining', payslip.dateOfJoining),
                               _pdfInfoRow('Pay Period', payslip.payPeriod),
                               _pdfInfoRow('Pay Date', payslip.payDate),
                             ],
@@ -95,15 +109,24 @@ class PayslipPdfGenerator {
                             child: pw.Column(
                               crossAxisAlignment: pw.CrossAxisAlignment.center,
                               children: [
-                                pw.Text('₹ ${payslip.netPayable.toStringAsFixed(0)}',
-                                    style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold)),
-                                pw.Text('Employee Net Pay', style: pw.TextStyle(fontSize: 10, color: PdfColors.green800)),
+                                pw.Text(
+                                    '₹ ${payslip.netPayable.toStringAsFixed(0)}',
+                                    style: pw.TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: pw.FontWeight.bold)),
+                                pw.Text('Employee Net Pay',
+                                    style: pw.TextStyle(
+                                        fontSize: 10,
+                                        color: PdfColors.green800)),
                                 pw.SizedBox(height: 8),
                                 pw.Row(
-                                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      pw.MainAxisAlignment.spaceBetween,
                                   children: [
-                                    pw.Text('Paid Days: 31', style: pw.TextStyle(fontSize: 9)),
-                                    pw.Text('LOP Days: 0', style: pw.TextStyle(fontSize: 9)),
+                                    pw.Text('Paid Days: 31',
+                                        style: pw.TextStyle(fontSize: 9)),
+                                    pw.Text('LOP Days: 0',
+                                        style: pw.TextStyle(fontSize: 9)),
                                   ],
                                 ),
                               ],
@@ -131,7 +154,8 @@ class PayslipPdfGenerator {
                       },
                       children: [
                         pw.TableRow(
-                          decoration: pw.BoxDecoration(color: PdfColors.grey200),
+                          decoration:
+                              pw.BoxDecoration(color: PdfColors.grey200),
                           children: [
                             _tableCell('EARNINGS', isHeader: true),
                             _tableCell('AMOUNT', isHeader: true),
@@ -153,12 +177,18 @@ class PayslipPdfGenerator {
                         children: [
                           pw.Expanded(
                               flex: 2,
-                              child: pw.Text('Gross Earnings: ₹ ${payslip.grossEarnings.toStringAsFixed(0)}',
-                                  style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 10))),
+                              child: pw.Text(
+                                  'Gross Earnings: ₹ ${payslip.grossEarnings.toStringAsFixed(0)}',
+                                  style: pw.TextStyle(
+                                      fontWeight: pw.FontWeight.bold,
+                                      fontSize: 10))),
                           pw.Expanded(
                               flex: 2,
-                              child: pw.Text('Total Deductions: ₹ ${payslip.totalDeductions.toStringAsFixed(0)}',
-                                  style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 10))),
+                              child: pw.Text(
+                                  'Total Deductions: ₹ ${payslip.totalDeductions.toStringAsFixed(0)}',
+                                  style: pw.TextStyle(
+                                      fontWeight: pw.FontWeight.bold,
+                                      fontSize: 10))),
                         ],
                       ),
                     ),
@@ -205,8 +235,10 @@ class PayslipPdfGenerator {
 
                     pw.Divider(),
                     pw.Center(
-                        child: pw.Text('- This document has been automatically generated by ZiyaAcademy -',
-                            style: pw.TextStyle(fontSize: 10, color: PdfColors.grey))),
+                        child: pw.Text(
+                            '- This document has been automatically generated by ZiyaAcademy -',
+                            style: pw.TextStyle(
+                                fontSize: 10, color: PdfColors.grey))),
                   ],
                 ),
               ),
@@ -216,7 +248,8 @@ class PayslipPdfGenerator {
       ),
     );
 
-    await Printing.layoutPdf(onLayout: (PdfPageFormat format) async => pdf.save());
+    await Printing.layoutPdf(
+        onLayout: (PdfPageFormat format) async => pdf.save());
   }
 
   // Rest of your existing helper methods remain unchanged...
@@ -227,7 +260,10 @@ class PayslipPdfGenerator {
         children: [
           pw.Expanded(child: pw.Text(label, style: pw.TextStyle(fontSize: 10))),
           pw.Text(': '),
-          pw.Expanded(child: pw.Text(value, style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold))),
+          pw.Expanded(
+              child: pw.Text(value,
+                  style: pw.TextStyle(
+                      fontSize: 10, fontWeight: pw.FontWeight.bold))),
         ],
       ),
     );
@@ -241,13 +277,19 @@ class PayslipPdfGenerator {
     List<pw.TableRow> rows = [];
 
     for (int i = 0; i < length; i++) {
-      final eKey = i < payslip.earnings.length ? payslip.earnings.keys.elementAt(i) : '';
+      final eKey =
+          i < payslip.earnings.length ? payslip.earnings.keys.elementAt(i) : '';
       final eAmt = i < payslip.earnings.length ? payslip.earnings[eKey]! : 0;
-      final eYTD = i < payslip.earnings.length ? payslip.earningsYTD[eKey] ?? 0 : 0;
+      final eYTD =
+          i < payslip.earnings.length ? payslip.earningsYTD[eKey] ?? 0 : 0;
 
-      final dKey = i < payslip.deductions.length ? payslip.deductions.keys.elementAt(i) : '';
-      final dAmt = i < payslip.deductions.length ? payslip.deductions[dKey]! : 0;
-      final dYTD = i < payslip.deductions.length ? payslip.deductionsYTD[dKey] ?? 0 : 0;
+      final dKey = i < payslip.deductions.length
+          ? payslip.deductions.keys.elementAt(i)
+          : '';
+      final dAmt =
+          i < payslip.deductions.length ? payslip.deductions[dKey]! : 0;
+      final dYTD =
+          i < payslip.deductions.length ? payslip.deductionsYTD[dKey] ?? 0 : 0;
 
       rows.add(
         pw.TableRow(

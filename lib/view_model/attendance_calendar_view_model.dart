@@ -65,7 +65,8 @@ class AttendanceCalendarViewModel extends ChangeNotifier {
   void selectDate(DateTime date) {
     try {
       selected = attendanceList.firstWhere(
-            (e) => e.date.year == date.year &&
+        (e) =>
+            e.date.year == date.year &&
             e.date.month == date.month &&
             e.date.day == date.day,
       );
@@ -97,7 +98,8 @@ class AttendanceCalendarViewModel extends ChangeNotifier {
 
   List<String> getEventsForDay(DateTime day) {
     final match = attendanceList.firstWhere(
-          (e) => e.date.year == day.year &&
+      (e) =>
+          e.date.year == day.year &&
           e.date.month == day.month &&
           e.date.day == day.day,
       orElse: () => AttendanceCalendarModel(
@@ -116,11 +118,14 @@ class AttendanceCalendarViewModel extends ChangeNotifier {
 
   String? getStatusForDate(DateTime date) {
     try {
-      return attendanceList.firstWhere(
-            (e) => e.date.year == date.year &&
-            e.date.month == date.month &&
-            e.date.day == date.day,
-      ).status;
+      return attendanceList
+          .firstWhere(
+            (e) =>
+                e.date.year == date.year &&
+                e.date.month == date.month &&
+                e.date.day == date.day,
+          )
+          .status;
     } catch (e) {
       return null;
     }

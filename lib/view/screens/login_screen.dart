@@ -24,7 +24,8 @@ class LoginScreen extends StatelessWidget {
                     width: 300,
                     height: 300,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF2196F3),
+                      color: AppColors.primaryBlue
+                      ,
                       borderRadius: BorderRadius.only(
                         bottomRight: Radius.circular(300),
                       ),
@@ -66,7 +67,8 @@ class LoginScreen extends StatelessWidget {
                             AppStrings.appSubtitle,
                             style: const TextStyle(
                               fontSize: 22,
-                              color: Color(0xFF43A047),
+                              color: AppColors.greenShade
+                              ,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

@@ -8,6 +8,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:dotted_border/dotted_border.dart';
 
+import '../../constants/strings.dart';
 import '../../utils/custom/DonutChartWithDays.dart';
 
 class AttendanceCalendarScreen extends StatelessWidget {
@@ -20,7 +21,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(
-          title: const Text('Attendance Calendar', style: TextStyle(color: Colors.black)),
+          title: const Text(AppStrings.attendanceCalendar
+              , style: TextStyle(color: Colors.black)),
           leading: const BackButton(color: Colors.black),
           backgroundColor: Colors.white,
           elevation: 0,
@@ -55,7 +57,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Color(0xFFE0E0E0),
+          color: AppColors.lightGrey
+          ,
           width: 1,
         ),
       ),
@@ -93,7 +96,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Color(0xFFE0E0E0),
+          color: AppColors.lightGrey
+          ,
           width: 1,
         ),
         boxShadow: [
@@ -128,11 +132,13 @@ class AttendanceCalendarScreen extends StatelessWidget {
               headerVisible: false,
               calendarStyle: CalendarStyle(
                 todayDecoration: const BoxDecoration(
-                  color: Color(0xFFCCE7FF),
+                  color: AppColors.lightBlue
+                  ,
                   shape: BoxShape.circle,
                 ),
                 selectedDecoration: const BoxDecoration(
-                  color: Color(0xFFCCE7FF),
+                  color: AppColors.lightBlue
+                  ,
                   shape: BoxShape.circle,
                 ),
                 todayTextStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -152,7 +158,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                       child: Text(
                         '${day.day}',
                         style: TextStyle(
-                          color: status == 'Late' ? Colors.blue : Colors.black,
+                          color: status == AppStrings.late
+                              ? Colors.blue : Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -164,7 +171,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                   return Container(
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF5DBBFF),
+                      color: AppColors.mediumBlue
+                      ,
                       shape: BoxShape.circle,
                     ),
                     child: Text(
@@ -189,10 +197,14 @@ class AttendanceCalendarScreen extends StatelessWidget {
     const int late = 6;
 
     final dataMap = {
-      "Present": present.toDouble(),
-      "Absent": absent.toDouble(),
-      "Leaves": leaves.toDouble(),
-      "Late": late.toDouble(),
+      AppStrings.present
+          : present.toDouble(),
+      AppStrings.absent
+          : absent.toDouble(),
+      AppStrings.leaves
+          : leaves.toDouble(),
+      AppStrings.late
+          : late.toDouble(),
     }..removeWhere((key, value) => value == 0);
 
     final colorList = [
@@ -209,7 +221,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Color(0xFFE0E0E0),
+          color: AppColors.lightGrey
+          ,
           width: 1,
         ),
         boxShadow: [
@@ -229,7 +242,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Overview',
+                  AppStrings.overview
+                  ,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
                 ),
                 Text(
@@ -244,10 +258,14 @@ class AttendanceCalendarScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildStatBox("Presence", present, AppColors.green),
-              _buildStatBox("Absence", absent, AppColors.red),
-              _buildStatBox("Leaves", leaves, AppColors.orange),
-              _buildStatBox("Late", late, AppColors.blue),
+              _buildStatBox(AppStrings.presence
+                  , present, AppColors.green),
+              _buildStatBox(AppStrings.absence
+                  , absent, AppColors.red),
+              _buildStatBox(AppStrings.leaves
+                  , leaves, AppColors.orange),
+              _buildStatBox(AppStrings.late
+                  , late, AppColors.blue),
             ],
           ),
 
@@ -260,13 +278,17 @@ class AttendanceCalendarScreen extends StatelessWidget {
   Widget _buildDayDetails(AttendanceCalendarViewModel vm) {
     // Mock data for demonstration
     final date = DateTime(2025, 6, 18);
-    final status = 'Present';
+    final status = AppStrings.present
+    ;
     final checkIn = '09:30 AM';
     final checkOut = '06:00 PM';
-    final workMode = 'Office';
-    final verification = 'Selfie';
+    final workMode = AppStrings.office
+    ;
+    final verification = AppStrings.selfie
+    ;
     final location = 'Lat: 13.05, Long: 80.24';
-    final notes = 'Worked On UI Bug Fixing';
+    final notes = AppStrings.workedOnUiBugFixing
+    ;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -282,13 +304,15 @@ class AttendanceCalendarScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Status',
+                AppStrings.status
+                ,
                 style: TextStyle(color: Colors.black54, fontSize: 16),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Color(0xFFDAFFDA),
+                  color: AppColors.lightGreen
+                  ,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -306,7 +330,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
           const SizedBox(height: 8),
           DottedBorder(
             dashPattern: [4, 4],
-            color: Color(0xFFBDBDBD),
+            color: AppColors.grey
+            ,
             strokeWidth: 1,
             customPath: (size) => Path()
               ..moveTo(0, 0)
@@ -325,7 +350,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                       children: [
                         Icon(Icons.alarm, color: AppColors.green, size: 22),
                         const SizedBox(width: 6),
-                        Text('Check-in', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                        Text(AppStrings.checkIn
+                            , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                       ],
                     ),
                     const SizedBox(height: 4),
@@ -337,7 +363,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: DottedBorder(
                   dashPattern: [4, 4],
-                  color: Color(0xFFBDBDBD),
+                  color: AppColors.grey
+                  ,
                   strokeWidth: 1,
                   customPath: (size) {
                     final path = Path();
@@ -357,7 +384,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                       children: [
                         Icon(Icons.alarm_off, color: AppColors.green, size: 22),
                         const SizedBox(width: 6),
-                        Text('Check-out', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                        Text(AppStrings.checkOut
+                            , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                       ],
                     ),
                     const SizedBox(height: 4),
@@ -380,20 +408,23 @@ class AttendanceCalendarScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(3),
-                        border: Border.all(color: Color(0xFFE0E0E0), width: 1),
+                        border: Border.all(color: AppColors.lightGrey
+                            , width: 1),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Work Mode',
+                            AppStrings.workMode
+                            ,
                             style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(height: 6),
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFE8EDFF),
+                              color: AppColors.veryLightBlue
+                              ,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -440,20 +471,23 @@ class AttendanceCalendarScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(3),
-                          border: Border.all(color: Color(0xFFE0E0E0), width: 1),
+                          border: Border.all(color:AppColors.lightGrey
+                              , width: 1),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Verification',
+                              AppStrings.verification
+                              ,
                               style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
                             ),
                             const SizedBox(height: 6),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFF0D6),
+                                color: AppColors.lightYellow
+                                ,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
@@ -496,7 +530,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Color(0xFFE0E0E0), width: 1),
+              border: Border.all(color:AppColors.lightGrey
+                  , width: 1),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -505,7 +540,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.location_on, color: Colors.red, size: 20),
                     const SizedBox(width: 8),
-                    Text('Location', style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                    Text(AppStrings.location
+                        , style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ],
                 ),
                 Padding(
@@ -533,7 +569,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.notes, color: Colors.black54, size: 20),
                     const SizedBox(width: 8),
-                    Text('Notes', style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
+                    Text(AppStrings.notes
+                        , style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500)),
                   ],
                 ),
                 Padding(
@@ -559,7 +596,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Color(0xFFE0E0E0), width: 1),
+        border: Border.all(color: AppColors.lightGrey
+            , width: 1),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -583,14 +621,21 @@ class AttendanceCalendarScreen extends StatelessWidget {
 
   static Color _statusBackgroundColor(String status) {
     switch (status) {
-      case 'Present':
-        return const Color(0xFFDAFFDA);
-      case 'Absent':
-        return const Color(0xFFFFD6D6);
-      case 'Leave':
-        return const Color(0xFFFFEACC);
+      case AppStrings.present
+          :
+        return AppColors.lightGreen
+        ;
+      case AppStrings.absent
+          :
+        return  AppColors.lightRed
+        ;
+      case AppStrings.leave
+          :
+        return  AppColors.lightPeach
+        ;
       case 'Late':
-        return const Color(0xFFD6EEFF);
+        return  AppColors.lightSkyBlue
+        ;
       default:
         return Colors.white;
     }

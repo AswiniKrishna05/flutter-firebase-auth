@@ -17,17 +17,23 @@ class LeaveStatusScreen extends StatefulWidget {
 class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
   IconData getLeaveIcon(String title) {
     switch (title) {
-      case 'Leave Taken':
+      case AppStrings.leaveTaken
+          :
         return Icons.insert_chart_outlined;
-      case 'Leave Balance':
+      case AppStrings.leaveBalance
+          :
         return Icons.calendar_today_outlined;
-      case 'Pending Request':
+      case AppStrings.pendingRequest
+          :
         return Icons.hourglass_bottom;
-      case 'Approved Leaves':
+      case AppStrings.approvedLeaves
+          :
         return Icons.check_circle_outline;
-      case 'Rejected Leaves':
+      case AppStrings.rejectedLeaves
+          :
         return Icons.cancel_outlined;
-      case 'Upcoming Leaves':
+      case AppStrings.upcomingLeaves
+          :
         return Icons.event_note;
       default:
         return Icons.info_outline; // fallback icon
@@ -117,14 +123,16 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                         const SizedBox(height: 8),
                         // Description (Hardcoded or Dynamic)
                         Text(
-                          '29 days remaining this month', // You can make this dynamic if needed
+                          AppStrings.twentyNineDaysRemaining
+                          , // You can make this dynamic if needed
                           style: const TextStyle(
                             fontSize: 8,
                             color: Colors.grey,
                           ),
                         ),
                         //optional progress Bar (only for specific cards)
-                        if (leave.title== 'Leave Taken')...[
+                        if (leave.title== AppStrings.leaveTaken
+                        )...[
                           const SizedBox(height: 8,),
                           LinearProgressIndicator(
                             value: 0.7,
@@ -154,13 +162,20 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
-                        Text('Sun', style: TextStyle(color: Colors.red)),
-                        Text('Mon'),
-                        Text('Tue'),
-                        Text('Wed'),
-                        Text('Thu'),
-                        Text('Fri'),
-                        Text('Sat'),
+                        Text(AppStrings.sun
+                            , style: TextStyle(color: Colors.red)),
+                        Text(AppStrings.mon
+                        ),
+                        Text(AppStrings.tue
+                        ),
+                        Text(AppStrings.wed
+                        ),
+                        Text(AppStrings.thu
+                        ),
+                        Text(AppStrings.fri
+                        ),
+                        Text(AppStrings.sat
+                        ),
                       ],
                     ),
                     const SizedBox(height: 10),
@@ -261,25 +276,30 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                     children: const [
                       Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('Date', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
+                        child: Text(AppStrings.date
+                            , style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
                       ),
                       Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('Leave Type', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
+                        child: Text(AppStrings.leaveType
+                            , style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
                       ),
                       Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('Status', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
+                        child: Text(AppStrings.status
+                            , style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
                       ),
                       Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('Reason', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
+                        child: Text(AppStrings.reason_
+                            , style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,)),
                       ),
                     ],
                   ),
-                  _buildLeaveRow('10 June', 'Sick Leave', 'Approved', 'Fever'),
-                  _buildLeaveRow('20 June', 'Casual Leave', 'Pending', 'Family Function'),
-                  _buildLeaveRow('01 July', 'WFH', 'Rejected', 'No backup'),
+                  _buildLeaveRow('10 June', AppStrings.sickLeave
+                      , AppStrings.approved, AppStrings.fever),
+                  _buildLeaveRow('20 June', AppStrings.casualLeave, AppStrings.pending, AppStrings.familyFunction),
+                  _buildLeaveRow('01 July', AppStrings.wfh, AppStrings.rejected, AppStrings.noBackup),
                 ],
               ),
               const SizedBox(height: 20),
@@ -295,12 +315,12 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Leave Overview',
+                      AppStrings.leaveOverview,
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600,letterSpacing: 1),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Your leave distribution for the current year',
+                      AppStrings.leaveDistributionCurrentYear,
                       style: TextStyle(fontSize: 12, color: AppColors.black),
                     ),
                     const SizedBox(height: 20),
@@ -326,13 +346,13 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                                   );
                                   switch (value.toInt()) {
                                     case 0:
-                                      return Text('Q1', style: style);
+                                      return Text(AppStrings.q1, style: style);
                                     case 1:
-                                      return Text('Q2', style: style);
+                                      return Text(AppStrings.q2, style: style);
                                     case 2:
-                                      return Text('Q3', style: style);
+                                      return Text(AppStrings.q3, style: style);
                                     case 3:
-                                      return Text('Q4', style: style);
+                                      return Text(AppStrings.q4, style: style);
                                     default:
                                       return const SizedBox.shrink();
                                   }
@@ -394,7 +414,7 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                           ),
                           const SizedBox(width: 8),
                           const Text(
-                              'Leave days taken',
+                              AppStrings.leaveDaysTaken,
                               style: TextStyle(fontSize: 12),
                             ),
                         ],
@@ -408,12 +428,12 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Text(
-                          'Total days\n20',
+                          AppStrings.totalDays20,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 12),
                         ),
                         Text(
-                          'Remaining\n29',
+                          AppStrings.remaining29,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 12),
                         ),
@@ -435,27 +455,28 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
   }
   String _monthName(int month) {
     List<String> months = [
-      '',
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
+      '', // Index 0, unused
+      AppStrings.january,
+      AppStrings.february,
+      AppStrings.march,
+      AppStrings.april,
+      AppStrings.may,
+      AppStrings.june,
+      AppStrings.july,
+      AppStrings.august,
+      AppStrings.september,
+      AppStrings.october,
+      AppStrings.november,
+      AppStrings.december,
     ];
     return months[month];
   }
+
   TableRow _buildLeaveRow(String date, String type, String status, String reason) {
     Color statusColor;
-    if (status == 'Approved') {
+    if (status == AppStrings.approved) {
       statusColor = Colors.green;
-    } else if (status == 'Pending') {
+    } else if (status == AppStrings.pending) {
       statusColor = Colors.orange;
     } else {
       statusColor = Colors.red;

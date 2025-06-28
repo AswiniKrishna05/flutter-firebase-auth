@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
+import '../../constants/strings.dart';
 import '../../view_model/qr_verification_view_model.dart';
 import 'punch_in_success_screen.dart';
 
@@ -30,7 +31,8 @@ class QrVerificationScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'QR Verification',
+                                  AppStrings.qrVerification
+                                  ,
                                   style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -38,7 +40,8 @@ class QrVerificationScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  'Please Scan your QR Code',
+                                  AppStrings.pleaseScanYourQrCode
+                                  ,
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: AppColors.grey,
@@ -94,7 +97,8 @@ class QrVerificationScreen extends StatelessWidget {
                                 ),
                               ),
                               child: const Text(
-                                'Scan QR',
+                                AppStrings.scanQr
+                                ,
                                 style: TextStyle(
                                   color: AppColors.white,
                                   fontSize: 16,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'package:provider/provider.dart';
+import '../../constants/strings.dart';
 import '../../view_model/punch_in_success_view_model.dart';
 
 class PunchInSuccessScreen extends StatefulWidget {
@@ -78,7 +79,8 @@ class _PunchInSuccessScreenState extends State<PunchInSuccessScreen> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      " Punch in Successfully",
+                      AppStrings.punchInSuccess
+                      ,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.green[800],

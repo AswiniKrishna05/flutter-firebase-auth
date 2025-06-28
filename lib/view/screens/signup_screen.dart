@@ -78,10 +78,12 @@ class SignupScreen extends StatelessWidget {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
                             ),
                             validator: (v) {
-                              if (v == null || v.trim().isEmpty) return AppStrings.errorEmptyField;
+                              if (v == null || v.trim().isEmpty)
+                                return AppStrings.errorEmptyField;
                               return null;
                             },
                           ),
@@ -93,12 +95,15 @@ class SignupScreen extends StatelessWidget {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
                             ),
                             validator: (v) {
-                              if (v == null || v.trim().isEmpty) return AppStrings.errorEmptyField;
-                              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(v)) {
-                                return 'Enter a valid email';
+                              if (v == null || v.trim().isEmpty)
+                                return AppStrings.errorEmptyField;
+                              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                                  .hasMatch(v)) {
+                                return AppStrings.enterValidEmail;
                               }
                               return null;
                             },
@@ -111,12 +116,14 @@ class SignupScreen extends StatelessWidget {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
                             ),
                             validator: (v) {
-                              if (v == null || v.trim().isEmpty) return AppStrings.errorEmptyField;
+                              if (v == null || v.trim().isEmpty)
+                                return AppStrings.errorEmptyField;
                               if (!RegExp(r'^\d{10}$').hasMatch(v)) {
-                                return 'Enter a valid 10-digit phone number';
+                                return AppStrings.enterValidPhoneNumber;
                               }
                               return null;
                             },
@@ -130,9 +137,12 @@ class SignupScreen extends StatelessWidget {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
                             ),
-                            validator: (v) => v == null || v.isEmpty ? AppStrings.errorEmptyField : null,
+                            validator: (v) => v == null || v.isEmpty
+                                ? AppStrings.errorEmptyField
+                                : null,
                           ),
                           const SizedBox(height: 16),
                           TextFormField(
@@ -143,9 +153,12 @@ class SignupScreen extends StatelessWidget {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
                             ),
-                            validator: (v) => v == null || v.isEmpty ? AppStrings.errorEmptyField : null,
+                            validator: (v) => v == null || v.isEmpty
+                                ? AppStrings.errorEmptyField
+                                : null,
                           ),
                           const SizedBox(height: 24),
                           SizedBox(
@@ -155,39 +168,46 @@ class SignupScreen extends StatelessWidget {
                               onPressed: viewModel.isLoading
                                   ? null
                                   : () async {
-                                final error = await viewModel.signup();
-                                if (error == null) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (_) => AlertDialog(
-                                      content: Text(AppStrings.signupSuccess),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                            Navigator.pushReplacementNamed(context, '/login');
-                                          },
-                                          child: Text(AppStrings.okButton),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                } else {
-                                  showDialog(
-                                    context: context,
-                                    builder: (_) => AlertDialog(
-                                      title: Text(AppStrings.signupFailed),
-                                      content: Text(error),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(context),
-                                          child: Text(AppStrings.okButton),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }
-                              },
+                                      final error = await viewModel.signup();
+                                      if (error == null) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (_) => AlertDialog(
+                                            content:
+                                                Text(AppStrings.signupSuccess),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  Navigator
+                                                      .pushReplacementNamed(
+                                                          context, '/login');
+                                                },
+                                                child:
+                                                    Text(AppStrings.okButton),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (_) => AlertDialog(
+                                            title:
+                                                Text(AppStrings.signupFailed),
+                                            content: Text(error),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.pop(context),
+                                                child:
+                                                    Text(AppStrings.okButton),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      }
+                                    },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.blue,
                                 shape: RoundedRectangleBorder(
@@ -195,20 +215,27 @@ class SignupScreen extends StatelessWidget {
                                 ),
                               ),
                               child: viewModel.isLoading
-                                  ? const CircularProgressIndicator(color: AppColors.white)
-                                  : Text(AppStrings.signupTitle, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                  ? const CircularProgressIndicator(
+                                      color: AppColors.white)
+                                  : Text(AppStrings.signupTitle,
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold)),
                             ),
                           ),
                           const SizedBox(height: 16),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('Already have an account? '),
+                              const Text(AppStrings.alreadyHaveAnAccount),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushReplacementNamed(context, '/login');
+                                  Navigator.pushReplacementNamed(
+                                      context, '/login');
                                 },
-                                child: Text(AppStrings.loginTitle, style: const TextStyle(color: AppColors.green600)),
+                                child: Text(AppStrings.loginTitle,
+                                    style: const TextStyle(
+                                        color: AppColors.green600)),
                               ),
                             ],
                           ),

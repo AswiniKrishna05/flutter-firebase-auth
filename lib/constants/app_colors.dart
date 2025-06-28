@@ -17,9 +17,9 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color bgWhite = Color(0xFFFFFFFF);
   static const Color black = Colors.black87;
-  static const Color green600  = Color(0xFF43A047);
-  static const Color grey  = Colors.grey;
-  static const Color liteGrey  = Color(0xFFB5B6B8);
+  static const Color green600 = Color(0xFF43A047);
+  static const Color grey = Colors.grey;
+  static const Color liteGrey = Color(0xFFB5B6B8);
   static const Color bggrey = Color(0xFFE0E0E0);
   static const Color buttongrey = Color(0xB5B6B8FF);
   static const Color skyblue = Color(0xFF80D4FF);
@@ -34,5 +34,15 @@ class AppColors {
   static const Color transparentBlack = Color(0x11000000);
   static const Color grey400 = Color(0xFFBDBDBD);
   static const Color grey100 = Color(0xFFF5F5F5);
+  static const Color lightGrey = Color(0xFFE0E0E0);
+  static const Color lightBlue = Color(0xFFCCE7FF);
+  static const Color mediumBlue = Color(0xFF5DBBFF);
+  static const Color lightGreen = Color(0xFFDAFFDA);
+  static const Color veryLightBlue = Color(0xFFE8EDFF);
+  static const Color lightYellow = Color(0xFFFFF0D6);
+  static const Color lightRed = Color(0xFFFFD6D6);
+  static const Color lightPeach = Color(0xFFFFEACC);
+  static const Color lightSkyBlue = Color(0xFFD6EEFF);
+  static const Color primaryBlue = Color(0xFF2196F3);
+  static const Color greenShade = Color(0xFF43A047);
 }
-

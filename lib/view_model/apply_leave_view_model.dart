@@ -98,7 +98,10 @@ class ApplyLeaveViewModel extends ChangeNotifier {
 
   // Submit function
   Future<void> submitLeaveForm(BuildContext context) async {
-    if (fromDate == null || toDate == null || leaveType == null || reasonController.text.isEmpty) {
+    if (fromDate == null ||
+        toDate == null ||
+        leaveType == null ||
+        reasonController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(AppStrings.pleaseFillRequiredFields)),
       );

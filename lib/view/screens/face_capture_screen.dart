@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
+import '../../constants/strings.dart';
 import '../../view_model/face_capture_view_model.dart';
 import 'punch_in_success_screen.dart';
 import 'punch_out_success_screen.dart';
@@ -31,7 +32,8 @@ class FaceCaptureScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   const Text(
-                    'Center your face',
+                    AppStrings.centerYourFace
+                    ,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -39,7 +41,8 @@ class FaceCaptureScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'point your face right at the box,\nthen take a photo',
+                    AppStrings.pointFaceAtBox
+                    ,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14),
                   ),

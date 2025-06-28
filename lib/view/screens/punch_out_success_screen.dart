@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
+import '../../constants/strings.dart';
 import '../../view_model/punch_out_success_view_model.dart';
 
 class PunchOutSuccessScreen extends StatefulWidget {
@@ -71,7 +72,8 @@ class _PunchOutSuccessScreenState extends State<PunchOutSuccessScreen> {
                       ),
                       const SizedBox(height: 16),
                       const Text(
-                        'Punch out successfully at',
+                        AppStrings.punchOutSuccessAt
+                        ,
                         style: TextStyle(
                           fontSize: 16,
                           color: AppColors.vibrantOrange,

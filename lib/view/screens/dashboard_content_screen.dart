@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../constants/app_colors.dart';
+import '../../constants/strings.dart';
 
 class DashboardContentScreen extends StatelessWidget {
   const DashboardContentScreen({super.key});
@@ -30,9 +31,12 @@ class DashboardContentScreen extends StatelessWidget {
                   width: cardWidth,
                   height: 130,
                   child: _StatCard(
-                    title: 'Total Leave Taken',
-                    value: '16 days',
-                    subtitle: '29 days remaining this year',
+                    title:AppStrings.totalLeaveTaken
+                    ,
+                    value: AppStrings.sixteenDays
+                    ,
+                    subtitle: AppStrings.twentyNineDaysRemainingThisYear
+                    ,
                     icon: Icons.sticky_note_2_outlined,
                     iconColor: AppColors.blue,
                     color: AppColors.cardBg,
@@ -45,9 +49,11 @@ class DashboardContentScreen extends StatelessWidget {
                   width: cardWidth,
                   height: 130,
                   child: _StatCard(
-                    title: 'Approval Rate',
+                    title: AppStrings.approvalRate
+                    ,
                     value: '92%',
-                    subtitle: '29 days remaining this year',
+                    subtitle: AppStrings.twentyNineDaysRemainingThisYear
+                    ,
                     icon: Icons.pie_chart_outline,
                     iconColor: AppColors.blue,
                     color: AppColors.cardBg,
@@ -60,9 +66,11 @@ class DashboardContentScreen extends StatelessWidget {
                   width: cardWidth,
                   height: 130,
                   child: _StatCard(
-                    title: 'Pending Request',
+                    title: AppStrings.pendingRequest
+                    ,
                     value: '1',
-                    subtitle: '29 days remaining this year',
+                    subtitle: AppStrings.twentyNineDaysRemainingThisYear
+                    ,
                     icon: Icons.hourglass_empty,
                     iconColor: AppColors.blue,
                     color: AppColors.cardBg,
@@ -75,9 +83,11 @@ class DashboardContentScreen extends StatelessWidget {
                   width: cardWidth,
                   height: 130,
                   child: _StatCard(
-                    title: 'Team Member\non Leave',
+                    title: AppStrings.teamMemberOnLeave
+                    ,
                     value: '2',
-                    subtitle: '29 days remaining this year',
+                    subtitle: AppStrings.twentyNineDaysRemainingThisYear
+                    ,
                     icon: Icons.groups_outlined,
                     iconColor: AppColors.blue,
                     color: AppColors.cardBg,
@@ -103,14 +113,16 @@ class DashboardContentScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Leave Overview',
+                  Text(AppStrings.leaveOverview
+                      ,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                           color:AppColors.textDark,
                           letterSpacing: 0.1)),
                   const SizedBox(height: 4),
-                  Text('Your leave distribution for thr current year',
+                  Text(AppStrings.leaveDistributionCurrentYear
+                      ,
                       style: TextStyle(color: AppColors.textLight, fontSize: 12)),
                   const SizedBox(height: 24),
                   // Real Bar Chart
@@ -201,7 +213,8 @@ class DashboardContentScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 6),
-                      Text('Leave days taken',
+                      Text(AppStrings.leaveDaysTaken
+                          ,
                           style: TextStyle(color:AppColors.textLight, fontSize: 14)),
                     ],
                   ),
@@ -211,9 +224,11 @@ class DashboardContentScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Total days',
+                      Text(AppStrings.totalDays
+                          ,
                           style: TextStyle(color: AppColors.textLight, fontSize: 14)),
-                      Text('Remaining',
+                      Text(AppStrings.remaining
+                          ,
                           style: TextStyle(color: AppColors.textLight, fontSize: 14)),
                     ],
                   ),
@@ -250,13 +265,15 @@ class DashboardContentScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Upcoming Leave',
+                  Text(AppStrings.upcomingLeave
+                      ,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                           color: AppColors.textDark)),
                   const SizedBox(height: 4),
-                  Text('Your scheduled time off',
+                  Text(AppStrings.yourScheduledTimeOff
+                      ,
                       style: TextStyle(color:AppColors.textLight, fontSize: 14)),
                   const SizedBox(height: 18),
                   Row(
@@ -265,7 +282,8 @@ class DashboardContentScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Annual Leave',
+                          Text(AppStrings.annualLeave
+                              ,
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
@@ -283,7 +301,8 @@ class DashboardContentScreen extends StatelessWidget {
                           border: Border.all(color: Colors.black26),
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Text('Pending',
+                        child: Text(AppStrings.pending
+                            ,
                             style: TextStyle(
                                 color: AppColors.textLight,
                                 fontWeight: FontWeight.w600,
@@ -310,14 +329,16 @@ class DashboardContentScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Pending Approval',
+                              Text(AppStrings.pendingApproval
+                                  ,
                                   style: TextStyle(
                                       color: AppColors.textDark,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 14)),
                               const SizedBox(height: 2),
                               Text(
-                                  'Your leave request is awaiting manager approval.',
+                                  AppStrings.leaveRequestAwaitingApproval
+                                  ,
                                   style: TextStyle(
                                       color: AppColors.textLight, fontSize: 13)),
                             ],
@@ -400,7 +421,8 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(subtitle, style: TextStyle(fontSize: 10, color: textLight)),
           const SizedBox(height: 8),
-          title == 'Total Leave Taken'
+          title == AppStrings.totalLeaveTaken
+
               ? LinearProgressIndicator(
                   value: progress,
                   backgroundColor: iconColor.withOpacity(0.15),

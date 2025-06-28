@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
+import '../../constants/strings.dart';
 import '../../view_model/face_verification_view_model.dart';
 import 'face_capture_screen.dart';
 
@@ -46,12 +47,14 @@ class _FaceVerificationScreenState extends State<FaceVerificationScreen> with Ti
                     children: [
                       const SizedBox(height: 30),
                       const Text(
-                        'Face Verification',
+                        AppStrings.faceVerification
+                        ,
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        'Please capture your face',
+                        AppStrings.pleaseCaptureYourFace
+                        ,
                         style: TextStyle(fontSize: 16, color: AppColors.grey),
                       ),
                       const SizedBox(height: 80),
@@ -115,7 +118,8 @@ class _FaceVerificationScreenState extends State<FaceVerificationScreen> with Ti
                             ),
                           ),
                           child: const Text(
-                            'Take Photo',
+                            AppStrings.takePhoto
+                            ,
                             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
