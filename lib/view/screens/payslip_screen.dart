@@ -520,7 +520,7 @@ class PayslipScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       child: Column(
                         children: [
-                          buildHistoryRow(AppStrings.month, AppStrings.netPay,
+                          _buildHistoryRow(AppStrings.month, AppStrings.netPay,
                               AppStrings.status, AppStrings.action,
                               isHeader: true),
                           ...List.generate(model.payslipHistory.length, (i) {
@@ -538,7 +538,7 @@ class PayslipScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(6),
                                       )
                                     : null,
-                                child: buildHistoryRow(
+                                child: _buildHistoryRow(
                                   payslip.payPeriod,
                                   "₹${payslip.netPayable.toStringAsFixed(0)}",
                                   "✅Generated",
@@ -563,6 +563,50 @@ class PayslipScreen extends StatelessWidget {
           },
         ),
         bottomNavigationBar: BottomBar(),
+      ),
+    );
+  }
+
+  Widget _buildHistoryRow(
+      String month, String pay, String status, String action,
+      {bool isHeader = false, VoidCallback? onDownload}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+              child: Text(month,
+                  style: TextStyle(
+                      fontWeight:
+                          isHeader ? FontWeight.bold : FontWeight.normal,
+                      fontSize: 11))),
+          Expanded(
+              child: Text(pay,
+                  style: TextStyle(
+                      fontWeight:
+                          isHeader ? FontWeight.bold : FontWeight.normal,
+                      fontSize: 11))),
+          Expanded(
+              child: Text(status,
+                  style: TextStyle(
+                      fontWeight:
+                          isHeader ? FontWeight.bold : FontWeight.normal,
+                      fontSize: 11))),
+          Expanded(
+            child: isHeader
+                ? Text(action,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11))
+                : GestureDetector(
+                    onTap: onDownload,
+                    child: Text(action,
+                        style: const TextStyle(
+                            color: Colors.blue,
+                            fontSize: 11,
+                            decoration: TextDecoration.underline)),
+                  ),
+          ),
+        ],
       ),
     );
   }
