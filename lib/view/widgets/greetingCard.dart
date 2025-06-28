@@ -18,7 +18,7 @@ class _GreetingCardState extends State<GreetingCard> {
   @override
   void initState() {
     super.initState();
-    loadPunchState(); // Load saved state on startup
+    loadPunchState();
   }
 
   Future<void> loadPunchState() async {
@@ -45,8 +45,15 @@ class _GreetingCardState extends State<GreetingCard> {
       isPunchedIn = true;
       punchInTime = DateTime.now();
     });
-    savePunchState(); // ✅ Save state after punch in
+    savePunchState();
     showPunchInTypeDialog(context);
+
+    // Navigate to success screen with punchInTime
+    Navigator.pushNamed(
+      context,
+      '/punchInSuccess',
+      arguments: punchInTime,
+    );
   }
 
   void handlePunchOut(BuildContext context) {
@@ -54,7 +61,7 @@ class _GreetingCardState extends State<GreetingCard> {
       isPunchedIn = false;
       punchInTime = null;
     });
-    savePunchState(); // ✅ Save state after punch out
+    savePunchState();
     showCheckoutDialog(context);
   }
 
@@ -134,17 +141,16 @@ class _GreetingCardState extends State<GreetingCard> {
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () => handlePunchIn(context),
+                    onPressed: isPunchedIn
+                        ? null
+                        : () => handlePunchIn(context),
                     icon: const Icon(Icons.login),
                     label: const Text("Punch In"),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 14),
-                      backgroundColor: !isPunchedIn
-                          ? Colors.grey[300]
-                          : Colors.blue,
-                      foregroundColor: !isPunchedIn
-                          ? Colors.white
-                          : Colors.black54,
+                      backgroundColor:
+                      !isPunchedIn ? Colors.blue : Colors.grey[300],
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -154,17 +160,16 @@ class _GreetingCardState extends State<GreetingCard> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () => handlePunchOut(context),
+                    onPressed: isPunchedIn
+                        ? () => handlePunchOut(context)
+                        : null,
                     icon: const Icon(Icons.logout),
                     label: const Text("Punch Out"),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 14),
-                      backgroundColor: isPunchedIn
-                          ? Colors.grey[300]
-                          : Colors.blue,
-                      foregroundColor: isPunchedIn
-                          ? Colors.white
-                          : Colors.black54,
+                      backgroundColor:
+                      isPunchedIn ? Colors.blue : Colors.grey[300],
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),

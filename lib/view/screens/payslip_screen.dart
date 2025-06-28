@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../utils/pdf_generator.dart';
 import '../../view_model/payslip_view_model.dart';
 import '../../constants/strings.dart';
+import '../row/row.dart';
 
 class PayslipScreen extends StatelessWidget {
   const PayslipScreen({super.key});
@@ -97,17 +98,17 @@ class PayslipScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _PayslipInfoRow(
+                              PayslipInfoRow(
                                   AppStrings.employeeName, p.employeeName),
-                              _PayslipInfoRow(
+                              PayslipInfoRow(
                                   AppStrings.fullStackDeveloper, p.designation),
-                              _PayslipInfoRow(
+                              PayslipInfoRow(
                                   AppStrings.employeeId, p.employeeId),
-                              _PayslipInfoRow(
+                              PayslipInfoRow(
                                   AppStrings.dateOfJoining, p.dateOfJoining),
-                              _PayslipInfoRow(
+                              PayslipInfoRow(
                                   AppStrings.payPeriod, p.payPeriod),
-                              _PayslipInfoRow(AppStrings.payDate, p.payDate),
+                              PayslipInfoRow(AppStrings.payDate, p.payDate),
                             ],
                           ),
                         ),
@@ -221,8 +222,8 @@ class PayslipScreen extends StatelessWidget {
                                     spacing: 8,
                                     direction: Axis.horizontal,
                                     children: const [
-                                      _BoxInfoRow(AppStrings.paidDays, "31"),
-                                      _BoxInfoRow(AppStrings.lopDays, "0"),
+                                      BoxInfoRow(AppStrings.paidDays, "31"),
+                                      BoxInfoRow(AppStrings.lopDays, "0"),
                                     ],
                                   ),
                                 ),
@@ -519,7 +520,7 @@ class PayslipScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       child: Column(
                         children: [
-                          _buildHistoryRow(AppStrings.month, AppStrings.netPay,
+                          buildHistoryRow(AppStrings.month, AppStrings.netPay,
                               AppStrings.status, AppStrings.action,
                               isHeader: true),
                           ...List.generate(model.payslipHistory.length, (i) {
@@ -537,7 +538,7 @@ class PayslipScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(6),
                                       )
                                     : null,
-                                child: _buildHistoryRow(
+                                child: buildHistoryRow(
                                   payslip.payPeriod,
                                   "₹${payslip.netPayable.toStringAsFixed(0)}",
                                   "✅Generated",
@@ -565,103 +566,5 @@ class PayslipScreen extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildHistoryRow(
-      String month, String pay, String status, String action,
-      {bool isHeader = false, VoidCallback? onDownload}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-              child: Text(month,
-                  style: TextStyle(
-                      fontWeight:
-                          isHeader ? FontWeight.bold : FontWeight.normal,
-                      fontSize: 11))),
-          Expanded(
-              child: Text(pay,
-                  style: TextStyle(
-                      fontWeight:
-                          isHeader ? FontWeight.bold : FontWeight.normal,
-                      fontSize: 11))),
-          Expanded(
-              child: Text(status,
-                  style: TextStyle(
-                      fontWeight:
-                          isHeader ? FontWeight.bold : FontWeight.normal,
-                      fontSize: 11))),
-          Expanded(
-            child: isHeader
-                ? Text(action,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11))
-                : GestureDetector(
-                    onTap: onDownload,
-                    child: Text(action,
-                        style: const TextStyle(
-                            color: Colors.blue,
-                            fontSize: 11,
-                            decoration: TextDecoration.underline)),
-                  ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
-class _PayslipInfoRow extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const _PayslipInfoRow(this.label, this.value);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        children: [
-          Expanded(
-              child: Text(label,
-                  style: const TextStyle(
-                      color: AppColors.textLight, fontSize: 12))),
-          const Text(" : "),
-          Expanded(
-              child: Text(value,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 12))),
-        ],
-      ),
-    );
-  }
-}
-
-class _BoxInfoRow extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const _BoxInfoRow(this.label, this.value);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(label,
-              style: const TextStyle(fontSize: 11, color: AppColors.textLight)),
-          const SizedBox(width: 4),
-          const Text(":",
-              style: TextStyle(fontSize: 11, color: AppColors.textLight)),
-          const SizedBox(width: 4),
-          Text(value,
-              style:
-                  const TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
-        ],
-      ),
-    );
-  }
-}

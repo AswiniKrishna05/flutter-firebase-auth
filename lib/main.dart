@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_firebase_auth/view/screens/forgot_password_screen.dart';
 import 'package:flutter_firebase_auth/view/screens/home_screen.dart';
 import 'package:flutter_firebase_auth/view/screens/login_screen.dart';
 import 'package:flutter_firebase_auth/view/screens/signup_screen.dart';
+import 'package:flutter_firebase_auth/view_model/punch_in_success_view_model.dart'; // ✅ Import ViewModel
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(const AppProvider()); // ✅ Wrap MyApp with MultiProvider
+}
+
+class AppProvider extends StatelessWidget {
+  const AppProvider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => PunchInSuccessViewModel()), // ✅ Global Provider
+      ],
+      child: const MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Firebase Auth',
       debugShowCheckedModeBanner: false,
-      home: const AuthGate(), // New entry point
+      home: const AuthGate(),
       routes: {
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignupScreen(),
@@ -31,8 +47,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//  AuthGate checks if the user is logged in or not
-
+// AuthGate remains the same
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
