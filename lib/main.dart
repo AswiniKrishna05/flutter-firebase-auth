@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_firebase_auth/view_model/report_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_firebase_auth/view/screens/forgot_password_screen.dart';
 import 'package:flutter_firebase_auth/view/screens/home_screen.dart';
@@ -21,7 +22,9 @@ class AppProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => PunchInSuccessViewModel()), // ✅ Global Provider
+        ChangeNotifierProvider(create: (_) => PunchInSuccessViewModel()),
+        ChangeNotifierProvider(create: (_) => ReportViewModel()),
+
       ],
       child: const MyApp(),
     );
