@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/strings.dart';
+import '../dialogs/SearchDialog.dart';
+ // Make sure to import your dialog
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Function(String)? onSearch;
@@ -15,31 +17,52 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  String _searchText = '';
   final List<String> _recentSearches = [];
   final TextEditingController _controller = TextEditingController();
-  bool _showSearchIcon = false;
 
-  void _handleSearch(String value) {
-    setState(() {
-      _searchText = value;
-      _showSearchIcon = value.isNotEmpty;
-    });
-    if (widget.onSearch != null) {
-      widget.onSearch!(value);
-    }
-  }
-
-  void _addSearchItem() {
-    if (_searchText.isNotEmpty && !_recentSearches.contains(_searchText)) {
+  void _addSearchItem(String search) {
+    if (search.isNotEmpty && !_recentSearches.contains(search)) {
       setState(() {
-        _recentSearches.insert(0, _searchText);
-        _controller.clear();
-        _searchText = '';
-        _showSearchIcon = false;
+        _recentSearches.insert(0, search);
       });
     }
+    _controller.text = search;
+    if (widget.onSearch != null) {
+      widget.onSearch!(search);
+    }
   }
+
+  Future<void> _openSearchDialog() async {
+    final result = await showGeneralDialog<String>(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: 'Search',
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Align(
+          alignment: Alignment.topCenter,
+          child: SearchDialog(
+            initialHistory: _recentSearches,
+          ),
+        );
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        final curvedValue = Curves.easeInOut.transform(animation.value);
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, -1),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOut)),
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 300),
+    );
+
+    if (result != null && result.isNotEmpty) {
+      _addSearchItem(result);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,40 +76,41 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 Image.asset('assets/ziya_logo.png', width: 40),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Container(
-                    height: 38,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(4),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.black.withOpacity(0.1),
-                          blurRadius: 6,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _controller,
-                            onChanged: _handleSearch,
-                            decoration: const InputDecoration(
-                              hintText: AppStrings.searchHint,
-                              isDense: true,
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 8, horizontal: 12),
-                              border: InputBorder.none,
+                  child: GestureDetector(
+                    onTap: _openSearchDialog,
+                    child: Container(
+                      height: 38,
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(4),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.black.withOpacity(0.1),
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.search, size: 20, color: Colors.grey),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              _controller.text.isEmpty
+                                  ? AppStrings.searchHint
+                                  : _controller.text,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: _controller.text.isEmpty ? Colors.grey : Colors.black,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ),
-                        if (_showSearchIcon)
-                          IconButton(
-                            icon: const Icon(Icons.search, size: 20),
-                            onPressed: _addSearchItem,
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -120,43 +144,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
             ),
           ),
         ),
-
-        // Recent Searches Section
-        if (_recentSearches.isNotEmpty)
-          Container(
-            constraints: const BoxConstraints(maxHeight: 150), // Limit height
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Your Recent Searches',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 14),
-                ),
-                const SizedBox(height: 8),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _recentSearches.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      leading: const Icon(Icons.history, size: 18),
-                      title: Text(_recentSearches[index],
-                          style: const TextStyle(fontSize: 14)),
-                      onTap: () {
-                        // You can trigger search on tap
-                        if (widget.onSearch != null) {
-                          widget.onSearch!(_recentSearches[index]);
-                        }
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
       ],
     );
   }
