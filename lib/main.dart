@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_firebase_auth/view/screens/main_screen.dart';
+import 'package:flutter_firebase_auth/view_model/notification_view_model.dart';
 import 'package:flutter_firebase_auth/view_model/report_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_firebase_auth/view/screens/forgot_password_screen.dart';
@@ -12,7 +14,7 @@ import 'package:flutter_firebase_auth/view_model/punch_in_success_view_model.dar
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const AppProvider()); // ✅ Wrap MyApp with MultiProvider
+  runApp(const AppProvider()); //  Wrap MyApp with MultiProvider
 }
 
 class AppProvider extends StatelessWidget {
@@ -24,6 +26,7 @@ class AppProvider extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => PunchInSuccessViewModel()),
         ChangeNotifierProvider(create: (_) => ReportViewModel()),
+        ChangeNotifierProvider(create: (_) => NotificationViewModel()),
 
       ],
       child: const MyApp(),
@@ -64,7 +67,7 @@ class AuthGate extends StatelessWidget {
             body: Center(child: CircularProgressIndicator()),
           );
         } else if (snapshot.hasData) {
-          return const HomeScreen(); // User is logged in
+          return const MainScreen(); // User is logged in
         } else {
           return const LoginScreen(); // User not logged in
         }

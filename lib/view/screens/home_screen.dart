@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(10),

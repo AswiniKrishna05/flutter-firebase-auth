@@ -450,7 +450,10 @@ class _LeaveStatusScreenState extends State<LeaveStatusScreen> {
 
         ),
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: BottomBar(
+        currentIndex: 0, // Example: set the selected tab index
+        onTap: (index) {}, // Example: empty function if not using tab switching
+      ),
     );
   }
   String _monthName(int month) {

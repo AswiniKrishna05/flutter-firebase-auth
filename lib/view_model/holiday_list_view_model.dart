@@ -9,7 +9,12 @@ class HolidayListViewModel extends ChangeNotifier {
     Holiday(date: DateTime(2025, 6, 25), title: 'Holiday 4', type: 'Company'),
   ];
 
-  DateTime _focusedDay = DateTime.now();
+  static final DateTime firstDay = DateTime.utc(2025, 6, 1);
+  static final DateTime lastDay = DateTime.utc(2025, 6, 30);
+
+  DateTime _focusedDay = DateTime.now().isBefore(firstDay)
+      ? firstDay
+      : (DateTime.now().isAfter(lastDay) ? lastDay : DateTime.now());
 
   List<Holiday> get holidays => _holidays;
   DateTime get focusedDay => _focusedDay;
@@ -23,7 +28,13 @@ class HolidayListViewModel extends ChangeNotifier {
   }
 
   void setFocusedDay(DateTime day) {
-    _focusedDay = day;
+    if (day.isBefore(firstDay)) {
+      _focusedDay = firstDay;
+    } else if (day.isAfter(lastDay)) {
+      _focusedDay = lastDay;
+    } else {
+      _focusedDay = day;
+    }
     notifyListeners();
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../constants/app_colors.dart';
 import '../../constants/strings.dart';
+import '../screens/notification_screen.dart';
 
 class HeaderCard extends StatelessWidget {
   const HeaderCard({super.key});
@@ -16,7 +18,6 @@ class HeaderCard extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.blue.shade900, Colors.green],
@@ -40,9 +41,9 @@ class HeaderCard extends StatelessWidget {
                           ),
                           fit: BoxFit.cover,
                         ),
+                        shape: BoxShape.circle,
                       ),
                     ),
-
                     const SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +57,7 @@ class HeaderCard extends StatelessWidget {
                             final name = snapshot.data ?? 'User';
                             return Text(
                               name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -64,7 +65,7 @@ class HeaderCard extends StatelessWidget {
                             );
                           },
                         ),
-                        Text(
+                        const Text(
                           AppStrings.fullStackDeveloper,
                           style: TextStyle(
                             fontSize: 12,
@@ -88,20 +89,53 @@ class HeaderCard extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 2,
-              )
-            ],
-          ),
-          padding: const EdgeInsets.all(6),
-          child: const Icon(Icons.notification_add, color: Colors.white),
+        // Notification Bell with Red Dot
+    GestureDetector(
+     onTap: () {
+      Navigator.push(
+        context,
+       MaterialPageRoute(
+          builder: (context) => const NotificationScreen(),
         ),
+      );
+    },
+    child:
+        Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 2,
+                  )
+                ],
+              ),
+              padding: const EdgeInsets.all(6),
+              child: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+
+                size: 28,
+              ),
+            ),
+            Positioned(
+              right: 4,
+              top: 4,
+              child: Container(
+                width: 10,
+                height: 10,
+                decoration: BoxDecoration(
+                  color: AppColors.red,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.white, width: 1),
+                ),
+              ),
+            )
+          ],
+        ),)
       ],
     );
   }

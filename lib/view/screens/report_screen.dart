@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/utils/shared/widgets/reusable_card.dart';
 import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
 import 'package:flutter_firebase_auth/view/widgets/custom_app_bar.dart';
+import 'package:flutter_firebase_auth/view/widgets/screen_header.dart';
+import 'package:flutter_firebase_auth/view/widgets/summary_grid.dart';
+import 'package:flutter_firebase_auth/view/widgets/section_header.dart';
+import 'package:flutter_firebase_auth/view/widgets/legend_row.dart';
 import 'package:provider/provider.dart';
 import '../../utils/shared/widgets/reusable_line_chart.dart';
 import '../../utils/shared/widgets/reusable_table.dart';
@@ -24,49 +28,27 @@ class ReportScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.arrow_back, color: Colors.black,size: 18,),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                      SizedBox(width: 2),
-                      Text(
-                        'Reports',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  GridView.count(
-                    crossAxisCount: 2,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    crossAxisSpacing: 4,
-                    mainAxisSpacing: 4,
-                    childAspectRatio: 1.1,
-                    children: [
-                      buildSummaryCard(
+                  const ScreenHeader(title: 'Reports'),
+                  const SizedBox(height: 8),
+                  SummaryGrid(
+                    cards: [
+                      const SummaryCardData(
                         title: 'Total Working Days\n(This Month)',
                         value: '22 days',
                         icon: Icons.calendar_today,
                       ),
-                      buildSummaryCard(
+                      const SummaryCardData(
                         title: 'Total Hours Worked',
                         value: '145 hrs',
                         icon: Icons.hourglass_bottom,
                       ),
-                      buildSummaryCard(
+                      const SummaryCardData(
                         title: 'Tasks Completed',
                         value: '35',
                         icon: Icons.check_circle_outline,
                         subtitle: 'this month',
                       ),
-                      buildSummaryCard(
+                      const SummaryCardData(
                         title: 'Average Daily Hours',
                         value: '6.6',
                         icon: Icons.access_alarm,
@@ -74,44 +56,18 @@ class ReportScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'Daily Clock-In/Out Log',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  const SectionHeader(
+                    title: 'Daily Clock-In/Out Log',
+                    fontSize: 12,
+                    padding: EdgeInsets.only(top: 24, bottom: 12),
                   ),
-                  const SizedBox(height: 12),
                   ReusableTable(logs: vm.attendanceLogs),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'Attendance',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Row(
-                        children: [
-                          Container(width: 14, height: 14, decoration: BoxDecoration(color: Colors.green, shape: BoxShape.rectangle)),
-                          const SizedBox(width: 4),
-                          const Text('Present', style: TextStyle(fontWeight: FontWeight.w600)),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-                      Row(
-                        children: [
-                          Container(width: 14, height: 14, decoration: BoxDecoration(color: Colors.red, shape: BoxShape.rectangle)),
-                          const SizedBox(width: 4),
-                          const Text('Absence', style: TextStyle(fontWeight: FontWeight.w600)),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-                      Row(
-                        children: [
-                          Container(width: 14, height: 14, decoration: BoxDecoration(color: Colors.lightBlue, shape: BoxShape.rectangle)),
-                          const SizedBox(width: 4),
-                          const Text('Avg hrs', style: TextStyle(fontWeight: FontWeight.w600)),
-                        ],
-                      ),
+                  const SectionHeader(title: 'Attendance'),
+                  LegendRow(
+                    items: const [
+                      LegendItem(label: 'Present', color: Colors.green),
+                      LegendItem(label: 'Absence', color: Colors.red),
+                      LegendItem(label: 'Avg hrs', color: Colors.lightBlue),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -126,64 +82,10 @@ class ReportScreen extends StatelessWidget {
             );
           },
         ),
-        bottomNavigationBar: BottomBar(),
-      ),
-    );
-  }
-
-  Widget buildSummaryCard({
-    required String title,
-    required String value,
-    required IconData icon,
-    String? subtitle,
-  }) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey[200]!),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.grey[700],
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  value,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    color: Colors.black,
-                  ),
-                ),
-                if (subtitle != null)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2),
-                    child: Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          Icon(icon, color: Colors.lightBlue, size: 28),
-        ],
+        bottomNavigationBar: BottomBar(
+          currentIndex: 0, // Example: set the selected tab index
+          onTap: (index) {}, // Example: empty function if not using tab switching
+        ),
       ),
     );
   }

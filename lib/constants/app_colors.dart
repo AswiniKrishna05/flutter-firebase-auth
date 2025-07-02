@@ -45,4 +45,6 @@ class AppColors {
   static const Color lightSkyBlue = Color(0xFFD6EEFF);
   static const Color primaryBlue = Color(0xFF2196F3);
   static const Color greenShade = Color(0xFF43A047);
+  static const Color gold = Color(0xFFFFD700);
+
 }

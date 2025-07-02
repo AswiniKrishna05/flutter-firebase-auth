@@ -44,7 +44,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
             );
           },
         ),
-        bottomNavigationBar: BottomBar(),
+        bottomNavigationBar: BottomBar(currentIndex: 0,
+          onTap: (int value) {  },),
       ),
     );
   }

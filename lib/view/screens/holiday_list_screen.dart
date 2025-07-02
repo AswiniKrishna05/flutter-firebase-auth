@@ -240,7 +240,10 @@ class HolidayListScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BottomBar(),
+        bottomNavigationBar: BottomBar(
+          currentIndex: 0, // Example: set the selected tab index
+          onTap: (index) {}, // Example: empty function if not using tab switching
+        ),
       ),
     );
   }
