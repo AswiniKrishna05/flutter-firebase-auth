@@ -49,7 +49,7 @@ class SummaryCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: titleSize ?? 13,
                     color: Colors.grey[700],
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -57,7 +57,7 @@ class SummaryCard extends StatelessWidget {
                   value,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: valueSize ?? 22,
+                    fontSize: valueSize ?? 20,
                     color: Colors.black,
                   ),
                 ),
@@ -68,17 +68,18 @@ class SummaryCard extends StatelessWidget {
                       subtitle!,
                       style: TextStyle(
                         fontSize: subtitleSize ?? 12,
-                        color: Colors.grey[500],
+                        color: Colors.black,
                       ),
                     ),
                   ),
               ],
             ),
           ),
+          const SizedBox(width: 16),
           Icon(
             icon,
             color: iconColor ?? Colors.lightBlue,
-            size: iconSize ?? 28,
+            size: iconSize ?? 24,
           ),
         ],
       ),

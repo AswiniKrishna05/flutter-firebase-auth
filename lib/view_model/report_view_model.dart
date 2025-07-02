@@ -20,6 +20,7 @@ class ReportViewModel extends ChangeNotifier {
   final List<double> _absentData = [5.5, 6, 6.5, 5.8, 6.2, 6, 6.3, 6.1, 6.4, 6, 6.2, 6.1];
   final List<double> _avgHoursData = [6.5, 7, 6, 7.5, 6.8, 7, 6.5, 7, 6, 7, 6.5, 7];
 
+
   // ✅ Public Getters
   List<double> get presentData => _presentData;
   List<double> get absentData => _absentData;

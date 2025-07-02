@@ -29,10 +29,10 @@ class LegendRow extends StatelessWidget {
                 shape: BoxShape.rectangle,
               ),
             ),
-            const SizedBox(width: 4),
+            const SizedBox(width: 8),
             Text(
               item.label,
-              style: textStyle ?? const TextStyle(fontWeight: FontWeight.w600),
+              style: textStyle ?? const TextStyle(fontWeight: FontWeight.w600,letterSpacing: 1,fontSize: 13),
             ),
             if (!isLast) SizedBox(width: spacing),
           ],

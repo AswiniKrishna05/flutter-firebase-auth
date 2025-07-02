@@ -32,7 +32,7 @@ class ProfileHeader extends StatelessWidget {
         // Name and Designation
         Positioned(
           bottom: 20,
-          left: 130,
+          left: 150,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
@@ -41,6 +41,7 @@ class ProfileHeader extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
+                  letterSpacing: 1,
                   color: Colors.blue,
                 ),
               ),
@@ -49,6 +50,8 @@ class ProfileHeader extends StatelessWidget {
                 'Full-stack Developer',
                 style: TextStyle(
                   fontSize: 14,
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.w200,
                   color: Colors.white,
                 ),
               ),

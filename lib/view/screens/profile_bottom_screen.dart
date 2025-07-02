@@ -35,8 +35,8 @@ class ProfileBottomScreen extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 4.0),
                         child: DottedLine(
-                          dashLength: 4,
-                          dashGapLength: 4,
+                          dashLength: 2,
+                          dashGapLength: 2,
                           lineThickness: 1,
                           dashColor: Colors.black12,
                         ),
@@ -45,8 +45,8 @@ class ProfileBottomScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
                         child: DottedLine(
-                          dashLength: 4,
-                          dashGapLength: 4,
+                          dashLength: 2,
+                          dashGapLength: 2,
                           lineThickness: 1,
                           dashColor: Colors.black12,
                         ),
@@ -55,8 +55,8 @@ class ProfileBottomScreen extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 4.0),
                         child: DottedLine(
-                          dashLength: 4,
-                          dashGapLength: 4,
+                          dashLength: 2,
+                          dashGapLength: 2,
                           lineThickness: 1,
                           dashColor: Colors.black12,
                         ),
@@ -71,11 +71,10 @@ class ProfileBottomScreen extends StatelessWidget {
 
               // Illustration Image
               Image.asset(
-                'assets/group.jpeg',
+                'assets/group.png',
                 height: 250,
               ),
 
-              const SizedBox(height: 20),
 
               // Start Work Button
               Padding(
@@ -102,7 +101,7 @@ class ProfileBottomScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
             ],
           ),
         ),
@@ -121,11 +120,12 @@ class ProfileBottomScreen extends StatelessWidget {
               label,
               style: const TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
           const Text(':'),
+          const SizedBox(width: 20),
           Expanded(
             flex: 3,
             child: Text(

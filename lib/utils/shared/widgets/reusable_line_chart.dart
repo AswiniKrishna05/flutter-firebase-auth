@@ -66,6 +66,7 @@ class ReusableLineChart extends StatelessWidget {
     );
   }
 
+
   LineChartBarData _buildLineBarData(List<double> data, Color color) {
     return LineChartBarData(
       spots: data.asMap().entries.map((e) => FlSpot(e.key.toDouble(), e.value)).toList(),
@@ -74,6 +75,11 @@ class ReusableLineChart extends StatelessWidget {
       barWidth: 2,
       isStrokeCapRound: true,
       belowBarData: BarAreaData(show: false),
+      shadow: Shadow(
+        color: Colors.grey.withOpacity(0.7), // Shadow color
+        blurRadius: 3, // Shadow blur
+        offset: Offset(6, 6), // Shadow position
+      ),
       dotData: FlDotData(
         show: true,
         getDotPainter: (spot, percent, barData, index) {
@@ -87,4 +93,6 @@ class ReusableLineChart extends StatelessWidget {
       ),
     );
   }
+
 }
+
