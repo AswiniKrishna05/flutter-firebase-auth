@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/strings.dart';
 import '../../view_model/notification_view_model.dart';
 import 'notification_tile.dart';
 
@@ -35,7 +36,8 @@ class NotificationScreen extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    "Notification",
+                    AppStrings.notification
+                    ,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),

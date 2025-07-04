@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../constants/strings.dart';
 import '../../view_model/profile_view_model.dart';
 import '../widgets/profile_header.dart';
 import '../../view/row/row.dart';
@@ -47,7 +48,8 @@ class _ProfileBottomScreenState extends State<ProfileBottomScreen> {
                             ),
                             child: Column(
                               children: [
-                                PayslipInfoRow('Name', viewModel.employeeName),
+                                PayslipInfoRow(AppStrings.name
+                                    , viewModel.employeeName),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: DottedLine(
@@ -57,7 +59,8 @@ class _ProfileBottomScreenState extends State<ProfileBottomScreen> {
                                     dashColor: Colors.black12,
                                   ),
                                 ),
-                                PayslipInfoRow('Employee ID', viewModel.employeeId),
+                                PayslipInfoRow(AppStrings.employeeId
+                                    , viewModel.employeeId),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                                   child: DottedLine(
@@ -67,7 +70,8 @@ class _ProfileBottomScreenState extends State<ProfileBottomScreen> {
                                     dashColor: Colors.black12,
                                   ),
                                 ),
-                                PayslipInfoRow('Designation', viewModel.designation),
+                                PayslipInfoRow(AppStrings.designation
+                                    , viewModel.designation),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: DottedLine(
@@ -77,7 +81,8 @@ class _ProfileBottomScreenState extends State<ProfileBottomScreen> {
                                     dashColor: Colors.black12,
                                   ),
                                 ),
-                                PayslipInfoRow('Department', viewModel.department),
+                                PayslipInfoRow(AppStrings.department
+                                    , viewModel.department),
                               ],
                             ),
                           ),
@@ -111,7 +116,8 @@ class _ProfileBottomScreenState extends State<ProfileBottomScreen> {
                                       ),
                                     )
                                   : const Text(
-                                      'Start work',
+                                AppStrings.startWork
+                                ,
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.white,

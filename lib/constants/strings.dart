@@ -297,4 +297,35 @@ class AppStrings {
   static const String punchOutSuccessAt = 'Punch out successfully at';
   static const String scanQr = 'Scan QR';
   static const String pleaseScanYourQrCode = 'Please Scan your QR Code';
+
+  // Reports
+
+  static const String reports = 'Reports';
+  static const String totalWorkingDays = 'Total Working Days\n(This Month)';
+  static const String workingDaysCount = '22 days';
+  static const String totalHoursWorked = 'Total Hours Worked';
+  static const String totalHoursWorkedCount = '145 hrs';
+  static const String tasksCompleted = 'Tasks Completed';
+  static const String tasksCompletedCount = '35';
+  static const String averageDailyHours = 'Average Daily Hours';
+  static const String averageDailyHoursCount = '6.6';
+  static const String hoursPerDay = 'hrs/day';
+  static const String dailyClockInOutLog = 'Daily Clock-In/Out Log';
+  static const String avgHours = 'Avg hrs';
+  static const String attendance = 'Attendance';
+
+  // profile screen
+  static const String thisMonth = 'this month';
+  static const String startWork = 'Start work';
+  static const String name = 'Name';
+  static const String designation = 'Designation';
+  static const String department = 'Department';
+  static const String notification = 'Notification';
+
+// notification
+
+  static const String error = 'error';
+  static const String warning = 'warning';
+  static const String success = 'success';
+
 }

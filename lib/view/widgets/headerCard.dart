@@ -41,7 +41,6 @@ class HeaderCard extends StatelessWidget {
                           ),
                           fit: BoxFit.cover,
                         ),
-                        shape: BoxShape.circle,
                       ),
                     ),
                     const SizedBox(width: 10),

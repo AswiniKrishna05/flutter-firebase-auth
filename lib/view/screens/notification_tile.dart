@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/strings.dart';
 import '../../model/notification_model.dart';
 
 class NotificationTile extends StatelessWidget {
@@ -8,11 +9,14 @@ class NotificationTile extends StatelessWidget {
 
   Color _getColor(String type) {
     switch (type) {
-      case 'error':
+      case AppStrings.error
+          :
         return Colors.red;
-      case 'warning':
+      case AppStrings.warning
+          :
         return Colors.orange;
-      case 'success':
+      case AppStrings.success
+          :
         return Colors.green;
       default:
         return Colors.blue;
@@ -21,11 +25,13 @@ class NotificationTile extends StatelessWidget {
 
   IconData _getIcon(String type) {
     switch (type) {
-      case 'error':
+      case AppStrings.error
+          :
         return Icons.close;
-      case 'warning':
+      case AppStrings.warning
+          :
         return Icons.access_time;
-      case 'success':
+      case AppStrings.success:
         return Icons.check;
       default:
         return Icons.notifications;
