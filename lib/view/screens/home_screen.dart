@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/strings.dart';
+import '../../utils/constants/strings.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/greetingCard.dart';
 import '../widgets/headerCard.dart';

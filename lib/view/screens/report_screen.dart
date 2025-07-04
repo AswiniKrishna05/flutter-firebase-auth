@@ -6,7 +6,7 @@ import 'package:flutter_firebase_auth/view/widgets/summary_grid.dart';
 import 'package:flutter_firebase_auth/view/widgets/section_header.dart';
 import 'package:flutter_firebase_auth/view/widgets/legend_row.dart';
 import 'package:provider/provider.dart';
-import '../../constants/strings.dart';
+import '../../utils/constants/strings.dart';
 import '../../utils/shared/widgets/reusable_line_chart.dart';
 import '../../utils/shared/widgets/reusable_table.dart';
 import '../../view_model/report_view_model.dart';

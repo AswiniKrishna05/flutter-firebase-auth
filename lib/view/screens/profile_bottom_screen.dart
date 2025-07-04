@@ -1,7 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../constants/strings.dart';
+import '../../utils/constants/strings.dart';
 import '../../view_model/profile_view_model.dart';
 import '../widgets/profile_header.dart';
 import '../../view/row/row.dart';

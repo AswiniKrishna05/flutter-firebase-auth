@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../../constants/app_colors.dart';
-import '../../constants/strings.dart';
+import '../../utils/constants/app_colors.dart';
+import '../../utils/constants/strings.dart';
 
 class DashboardContentScreen extends StatelessWidget {
   const DashboardContentScreen({super.key});

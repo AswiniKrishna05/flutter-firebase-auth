@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
+import '../../utils/constants/app_colors.dart';
+import '../../utils/constants/strings.dart';
 import 'dashboard_content_screen.dart';
 import 'apply_leave_screen.dart';
 import 'package:provider/provider.dart';
 import '../../view_model/leave_screen_viewmodel.dart';
-import '../../constants/strings.dart';
 
 class LeaveScreen extends StatelessWidget {
   const LeaveScreen({super.key});

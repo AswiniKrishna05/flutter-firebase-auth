@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 
 class TaskTabBar extends StatelessWidget {
   final int selectedIndex;

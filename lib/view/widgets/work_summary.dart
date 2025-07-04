@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 import 'dashboard_grid.dart';
 
 class WorkSummaryTab extends StatelessWidget {

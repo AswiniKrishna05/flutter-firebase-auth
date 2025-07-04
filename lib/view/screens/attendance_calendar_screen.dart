@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
 import 'package:flutter_firebase_auth/view_model/attendance_calendar_view_model.dart';
 import 'package:provider/provider.dart';
@@ -7,8 +6,8 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:dotted_border/dotted_border.dart';
-
-import '../../constants/strings.dart';
+import '../../utils/constants/app_colors.dart';
+import '../../utils/constants/strings.dart';
 import '../../utils/custom/DonutChartWithDays.dart';
 
 class AttendanceCalendarScreen extends StatelessWidget {

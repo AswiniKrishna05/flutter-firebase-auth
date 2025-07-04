@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 import 'screen_header.dart';
 import 'summary_grid.dart';
 import 'section_header.dart';
 import 'legend_row.dart';
 
-/// This file demonstrates how to use the reusable components
-/// across different screens in your app.
-/// 
-/// You can copy and adapt these examples for your other screens.
 
 class ComponentUsageExamples {
   
-  /// Example 1: Dashboard Screen with Summary Cards
+  ///  Dashboard Screen with Summary Cards
   static Widget buildDashboardExample() {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
@@ -75,8 +71,7 @@ class ComponentUsageExamples {
               fontSize: 16,
               padding: EdgeInsets.only(top: 32, bottom: 16),
             ),
-            
-            // Your content here...
+
             const Text('Activity list would go here'),
             
             const SectionHeader(
@@ -260,25 +255,3 @@ class ComponentUsageExamples {
     );
   }
 }
-
-/// Usage Instructions:
-/// 
-/// 1. Import the components in your screen file:
-///    import 'package:flutter_firebase_auth/view/widgets/screen_header.dart';
-///    import 'package:flutter_firebase_auth/view/widgets/summary_grid.dart';
-///    import 'package:flutter_firebase_auth/view/widgets/section_header.dart';
-///    import 'package:flutter_firebase_auth/view/widgets/legend_row.dart';
-/// 
-/// 2. Replace your existing widgets with the reusable components:
-///    - Replace custom headers with ScreenHeader
-///    - Replace summary card grids with SummaryGrid
-///    - Replace section titles with SectionHeader
-///    - Replace chart legends with LegendRow
-/// 
-/// 3. Customize the components using their parameters:
-///    - Colors, sizes, spacing, etc.
-///    - All components are highly customizable
-/// 
-/// 4. Your existing logic and data remain unchanged!
-///    - Just pass your data to the components
-///    - No changes to your ViewModels or business logic 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/strings.dart';
 import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
 import 'package:table_calendar/table_calendar.dart';
-import '../../constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
+import '../../utils/constants/strings.dart';
 import '../../view_model/leave_status_view_model.dart';
 import '../widgets/custom_app_bar.dart';
 import 'package:fl_chart/fl_chart.dart';

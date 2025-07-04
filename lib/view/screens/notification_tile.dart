@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../constants/strings.dart';
 import '../../model/notification_model.dart';
+import '../../utils/constants/strings.dart';
 
 class NotificationTile extends StatelessWidget {
   final NotificationModel notification;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 
 class DashCard extends StatelessWidget {
   final String label;

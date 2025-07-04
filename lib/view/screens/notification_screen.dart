@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../constants/strings.dart';
+import '../../utils/constants/strings.dart';
 import '../../view_model/notification_view_model.dart';
 import 'notification_tile.dart';
 

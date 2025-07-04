@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
-import '../../constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 import '../../view_model/task_tracker_view_model.dart';
 
 class TaskTrackerCard extends StatelessWidget {

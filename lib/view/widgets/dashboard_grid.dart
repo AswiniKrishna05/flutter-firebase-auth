@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/view/screens/attendance_calendar_screen.dart';
-import '../../constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 import '../screens/holiday_list_screen.dart';
 import '../screens/leave_screen.dart';
 import '../screens/leave_status_screen.dart';

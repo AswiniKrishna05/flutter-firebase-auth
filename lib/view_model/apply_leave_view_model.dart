@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import '../constants/strings.dart';
+import '../utils/constants/strings.dart';
 
 class ApplyLeaveViewModel extends ChangeNotifier {
   // Auto-filled fields

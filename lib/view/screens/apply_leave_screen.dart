@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'package:provider/provider.dart';
-import '../../constants/strings.dart';
+import '../../utils/constants/app_colors.dart';
+import '../../utils/constants/strings.dart';
 import '../../view_model/apply_leave_view_model.dart';
 
 class ApplyLeaveScreen extends StatelessWidget {

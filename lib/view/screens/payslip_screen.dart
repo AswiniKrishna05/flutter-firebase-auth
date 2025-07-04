@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/app_colors.dart';
 import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
 import 'package:flutter_firebase_auth/view/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
+import '../../utils/constants/app_colors.dart';
+import '../../utils/constants/strings.dart';
 import '../../utils/pdf_generator.dart';
 import '../../view_model/payslip_view_model.dart';
-import '../../constants/strings.dart';
 import '../row/row.dart';
 
 class PayslipScreen extends StatelessWidget {

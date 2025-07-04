@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
-import '../../constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 import 'dashboard_grid.dart';
 
 class OngoingPendingTab extends StatelessWidget {

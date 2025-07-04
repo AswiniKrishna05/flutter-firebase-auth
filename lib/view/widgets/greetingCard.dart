@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../constants/app_colors.dart';
+import '../../utils/constants/app_colors.dart';
 import '../dialogs/checkin_dialog.dart';
 import '../dialogs/checkout_dialog.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/constants/app_colors.dart';
-import 'package:flutter_firebase_auth/constants/strings.dart';
 import 'package:flutter_firebase_auth/view_model/holiday_list_view_model.dart';
 import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../utils/constants/app_colors.dart';
+import '../../utils/constants/strings.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/custom_app_bar.dart';
 
