@@ -23,7 +23,7 @@ class _PunchInSuccessScreenState extends State<PunchInSuccessScreen> {
   void _goHome() {
     if (!_navigated && mounted) {
       _navigated = true;
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      Navigator.of(context).popUntil((route) => route.isFirst);
     }
   }
 

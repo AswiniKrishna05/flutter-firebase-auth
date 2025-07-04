@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth/utils/shared/widgets/reusable_card.dart';
 import 'package:flutter_firebase_auth/view/widgets/bottom_bar.dart';
 import 'package:flutter_firebase_auth/view/widgets/custom_app_bar.dart';
 import 'package:flutter_firebase_auth/view/widgets/screen_header.dart';
@@ -83,8 +82,8 @@ class ReportScreen extends StatelessWidget {
           },
         ),
         bottomNavigationBar: BottomBar(
-          currentIndex: 0, // Example: set the selected tab index
-          onTap: (index) {}, // Example: empty function if not using tab switching
+          currentIndex: 0,
+          onTap: (index) {},
         ),
       ),
     );

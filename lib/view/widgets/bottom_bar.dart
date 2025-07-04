@@ -22,8 +22,10 @@ class BottomBar extends StatelessWidget {
       onTap: onTap, // This will notify the MainScreen when an item is tapped
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.history_edu), label: 'History'),
-        BottomNavigationBarItem(icon: Icon(Icons.arrow_circle_right_sharp), label: 'Leave'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.history_edu), label: 'History'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.arrow_circle_right_sharp), label: 'Leave'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
     );

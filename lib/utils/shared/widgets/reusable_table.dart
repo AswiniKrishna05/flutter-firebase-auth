@@ -30,7 +30,6 @@ class ReusableTable extends StatelessWidget {
       child: Column(
         children: [
           _buildTableHeader(),
-          // 👉 Start dotted lines immediately after the header
           ...logs.asMap().entries.map((entry) {
             final index = entry.key;
             final log = entry.value;

@@ -72,7 +72,6 @@ class _SearchDialogState extends State<SearchDialog> {
                       children: [
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 12),
-                          child: Icon(Icons.search, color: Colors.grey),
                         ),
                         Expanded(
                           child: TextField(

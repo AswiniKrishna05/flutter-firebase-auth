@@ -102,3 +102,46 @@ Widget buildHistoryRow(
     ),
   );
 }
+Widget _buildHistoryRow(
+    String month, String pay, String status, String action,
+    {bool isHeader = false, VoidCallback? onDownload}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+            child: Text(month,
+                style: TextStyle(
+                    fontWeight:
+                    isHeader ? FontWeight.bold : FontWeight.normal,
+                    fontSize: 11))),
+        Expanded(
+            child: Text(pay,
+                style: TextStyle(
+                    fontWeight:
+                    isHeader ? FontWeight.bold : FontWeight.normal,
+                    fontSize: 11))),
+        Expanded(
+            child: Text(status,
+                style: TextStyle(
+                    fontWeight:
+                    isHeader ? FontWeight.bold : FontWeight.normal,
+                    fontSize: 11))),
+        Expanded(
+          child: isHeader
+              ? Text(action,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11))
+              : GestureDetector(
+            onTap: onDownload,
+            child: Text(action,
+                style: const TextStyle(
+                    color: Colors.blue,
+                    fontSize: 11,
+                    decoration: TextDecoration.underline)),
+          ),
+        ),
+      ],
+    ),
+  );
+}

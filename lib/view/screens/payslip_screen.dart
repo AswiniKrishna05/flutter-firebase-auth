@@ -25,8 +25,8 @@ class PayslipScreen extends StatelessWidget {
             return Stack(children: [
               // Watermark Image
               Positioned(
-                top: 270, // Optional: adjust position
-                left: 100, // Optional: adjust position
+                top: 270,
+                left: 100,
                 child: Opacity(
                   opacity: 0.1, // Low opacity for watermark effect
                   child: Image.asset(
@@ -260,8 +260,7 @@ class PayslipScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 24),
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.grey400),
@@ -520,7 +519,7 @@ class PayslipScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       child: Column(
                         children: [
-                          _buildHistoryRow(AppStrings.month, AppStrings.netPay,
+                          buildHistoryRow(AppStrings.month, AppStrings.netPay,
                               AppStrings.status, AppStrings.action,
                               isHeader: true),
                           ...List.generate(model.payslipHistory.length, (i) {
@@ -538,7 +537,7 @@ class PayslipScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(6),
                                       )
                                     : null,
-                                child: _buildHistoryRow(
+                                child: buildHistoryRow(
                                   payslip.payPeriod,
                                   "₹${payslip.netPayable.toStringAsFixed(0)}",
                                   "✅Generated",
@@ -566,50 +565,6 @@ class PayslipScreen extends StatelessWidget {
           currentIndex: 0, // Example: set the selected tab index
           onTap: (index) {}, // Example: empty function if not using tab switching
         ),
-      ),
-    );
-  }
-
-  Widget _buildHistoryRow(
-      String month, String pay, String status, String action,
-      {bool isHeader = false, VoidCallback? onDownload}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-              child: Text(month,
-                  style: TextStyle(
-                      fontWeight:
-                          isHeader ? FontWeight.bold : FontWeight.normal,
-                      fontSize: 11))),
-          Expanded(
-              child: Text(pay,
-                  style: TextStyle(
-                      fontWeight:
-                          isHeader ? FontWeight.bold : FontWeight.normal,
-                      fontSize: 11))),
-          Expanded(
-              child: Text(status,
-                  style: TextStyle(
-                      fontWeight:
-                          isHeader ? FontWeight.bold : FontWeight.normal,
-                      fontSize: 11))),
-          Expanded(
-            child: isHeader
-                ? Text(action,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11))
-                : GestureDetector(
-                    onTap: onDownload,
-                    child: Text(action,
-                        style: const TextStyle(
-                            color: Colors.blue,
-                            fontSize: 11,
-                            decoration: TextDecoration.underline)),
-                  ),
-          ),
-        ],
       ),
     );
   }

@@ -16,7 +16,7 @@ class NotificationScreen extends StatelessWidget {
         children: [
           // Close Icon at maximum top-right
           Positioned(
-            top: 28, // Safe distance from status bar
+            top: 28,
             right: 16,
             child: IconButton(
               icon: const Icon(Icons.close, color: Colors.black, size: 20),
