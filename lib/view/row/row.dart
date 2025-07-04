@@ -46,13 +46,13 @@ class PayslipInfoRow extends StatelessWidget {
           Expanded(
             child: Text(label,
                 style: const TextStyle(
-                    color: AppColors.textLight, fontSize: 12)),
+                    color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           const Text(" : "),
           Expanded(
             child: Text(value,
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 12)),
+                    fontWeight: FontWeight.normal, fontSize: 12, color: Colors.grey)),
           ),
         ],
       ),
