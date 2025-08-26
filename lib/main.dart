@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart';
 import 'package:flutter_firebase_auth/view/screens/main_screen.dart';
 import 'package:flutter_firebase_auth/view_model/notification_view_model.dart';
 import 'package:flutter_firebase_auth/view_model/report_view_model.dart';
@@ -13,7 +14,9 @@ import 'package:flutter_firebase_auth/view_model/punch_in_success_view_model.dar
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const AppProvider()); //  Wrap MyApp with MultiProvider
 }
 

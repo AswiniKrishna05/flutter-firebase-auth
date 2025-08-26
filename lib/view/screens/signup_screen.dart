@@ -4,8 +4,21 @@ import '../../utils/constants/app_colors.dart';
 import '../../utils/constants/strings.dart';
 import '../../view_model/signup_view_model.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  @override
+  void dispose() {
+    // Dispose controllers when screen is disposed
+    final viewModel = Provider.of<SignupViewModel>(context, listen: false);
+    viewModel.disposeControllers();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -168,44 +181,73 @@ class SignupScreen extends StatelessWidget {
                               onPressed: viewModel.isLoading
                                   ? null
                                   : () async {
+                                      print('Signup button pressed'); // Debug log
+                                      
+                                      // Validate form first
+                                      if (!viewModel.formKey.currentState!.validate()) {
+                                        print('Form validation failed'); // Debug log
+                                        return;
+                                      }
+                                      
+                                      print('Form validation passed, calling signup...'); // Debug log
                                       final error = await viewModel.signup();
+                                      print('Signup result: $error'); // Debug log
+                                      
                                       if (error == null) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (_) => AlertDialog(
-                                            content:
-                                                Text(AppStrings.signupSuccess),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                  Navigator
-                                                      .pushReplacementNamed(
-                                                          context, '/login');
-                                                },
-                                                child:
-                                                    Text(AppStrings.okButton),
-                                              )
-                                            ],
-                                          ),
-                                        );
+                                        print('Signup successful, showing success dialog'); // Debug log
+                                        
+                                        // Clear form after successful signup
+                                        viewModel.fullNameController.clear();
+                                        viewModel.emailController.clear();
+                                        viewModel.phoneController.clear();
+                                        viewModel.passwordController.clear();
+                                        viewModel.confirmPasswordController.clear();
+                                        
+                                        // Show success dialog
+                                        if (mounted) {
+                                          showDialog(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (_) => AlertDialog(
+                                              title: Text(AppStrings.signupSuccess),
+                                              content: Text('Account created successfully! Please login.'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    print('OK button pressed, navigating to login'); // Debug log
+                                                    Navigator.pop(context); // Close dialog
+                                                    Navigator.pushReplacementNamed(context, '/login');
+                                                  },
+                                                  child: Text(AppStrings.okButton),
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        }
+                                        
+                                        // Alternative: Direct navigation after a short delay
+                                        // Future.delayed(Duration(seconds: 2), () {
+                                        //   if (mounted) {
+                                        //     Navigator.pushReplacementNamed(context, '/login');
+                                        //   }
+                                        // });
                                       } else {
-                                        showDialog(
-                                          context: context,
-                                          builder: (_) => AlertDialog(
-                                            title:
-                                                Text(AppStrings.signupFailed),
-                                            content: Text(error),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
-                                                child:
-                                                    Text(AppStrings.okButton),
-                                              )
-                                            ],
-                                          ),
-                                        );
+                                        print('Signup failed with error: $error'); // Debug log
+                                        if (mounted) {
+                                          showDialog(
+                                            context: context,
+                                            builder: (_) => AlertDialog(
+                                              title: Text(AppStrings.signupFailed),
+                                              content: Text(error),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () => Navigator.pop(context),
+                                                  child: Text(AppStrings.okButton),
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        }
                                       }
                                     },
                               style: ElevatedButton.styleFrom(
