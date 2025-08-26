@@ -29,6 +29,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
         body: Consumer<AttendanceCalendarViewModel>(
           builder: (context, vm, _) {
             return SingleChildScrollView(
+              padding: const EdgeInsets.only(bottom: 20),
               child: Column(
                 children: [
                   const SizedBox(height: 16),
@@ -112,7 +113,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 0),
           SizedBox(
-            height: 280,
+            height: 340, // Increased a bit more to solve the 8-pixel overflow
             child: TableCalendar(
               focusedDay: vm.focusedDay,
               firstDay: DateTime.utc(2020, 1, 1),
@@ -143,6 +144,8 @@ class AttendanceCalendarScreen extends StatelessWidget {
                 ),
                 todayTextStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                 defaultTextStyle: const TextStyle(fontWeight: FontWeight.w600),
+                // Reduce cell padding to fit more content
+                cellPadding: EdgeInsets.all(4),
               ),
               eventLoader: (day) => vm.getEventsForDay(day),
               calendarBuilders: CalendarBuilders(
@@ -161,6 +164,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
                           color: status == AppStrings.late
                               ? Colors.blue : Colors.black,
                           fontWeight: FontWeight.bold,
+                          fontSize: 12, // Reduced font size
                         ),
                       ),
                     );
@@ -177,7 +181,7 @@ class AttendanceCalendarScreen extends StatelessWidget {
                     ),
                     child: Text(
                       '${day.day}',
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   );
                 },
