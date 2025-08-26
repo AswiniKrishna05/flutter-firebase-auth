@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../utils/constants/app_colors.dart';
-import 'dashboard_grid.dart';
 
 class TaskMyTab extends StatelessWidget {
   const TaskMyTab({super.key});
@@ -35,8 +34,6 @@ class TaskMyTab extends StatelessWidget {
             description:
             'Developing and Maintaining the Logic that runs on the server, handling user requests, processing data, and interacting with databases.',
           ),
-          SizedBox(height: 12),
-          DashboardGrid(),
         ],
       ),
     );

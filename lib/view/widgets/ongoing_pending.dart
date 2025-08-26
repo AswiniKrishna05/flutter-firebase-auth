@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import '../../utils/constants/app_colors.dart';
-import 'dashboard_grid.dart';
 
 class OngoingPendingTab extends StatelessWidget {
   const OngoingPendingTab({super.key});
@@ -52,8 +51,6 @@ class OngoingPendingTab extends StatelessWidget {
             progress: 0.25,
             actionText: "Start Task",
           ),
-          SizedBox(height: 16),
-          DashboardGrid(),
         ],
       ),
     );

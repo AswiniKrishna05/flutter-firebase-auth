@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../utils/constants/app_colors.dart';
-import 'dashboard_grid.dart';
 
 class WorkSummaryTab extends StatelessWidget {
   const WorkSummaryTab({super.key});
@@ -68,11 +67,6 @@ class WorkSummaryTab extends StatelessWidget {
               ),
             ],
           ),
-
-          const SizedBox(height: 20),
-
-          // Dashboard Grid (after summary)
-          const DashboardGrid(),
         ],
       ),
     );

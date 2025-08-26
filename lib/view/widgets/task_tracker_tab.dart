@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dashboard_grid.dart';
 import 'task_tracker_card.dart';
 
 class TaskTrackerTab extends StatelessWidget {
@@ -38,9 +37,6 @@ class TaskTrackerTab extends StatelessWidget {
           status: "In Progress",
           priority: "Low",
         ),
-        SizedBox(height: 20),
-        DashboardGrid(),
-        SizedBox(height: 20),
       ],
     );
   }
